@@ -1,6 +1,7 @@
-using UnityEngine;
-using TMPro;
 using System.Collections;
+using TMPro;
+using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class BallSc : MonoBehaviour
 {
@@ -48,10 +49,10 @@ public class BallSc : MonoBehaviour
   
                 break;
             case "up_target":
-                rb.useGravity = true;
+                
                 break;
             case "up_player":
-                rb.useGravity = true;
+
                 break;
             case "PlayerHit":
                 
@@ -80,33 +81,39 @@ public class BallSc : MonoBehaviour
     }
     void OnTriggerEnter(Collider hit)
     {
-        if (hit.CompareTag("attack_forward"))//전방 발사
+        if (!gameEnd)
         {
-            rb.AddForce(0, 0, 0);
-            attackspeed += 5;
-            attackStart();
-            AttackType = "forward";
-            targetChange(hit);
-            rb.useGravity = false;
-            if (transform.position.y > 0.75f)
-                rb.AddForce(target.position.x / Mathf.Abs(target.position.x) * (100 + attackspeed), -6.5f, 0);
-            else
-                rb.AddForce(target.position.x / Mathf.Abs(target.position.x) * (100 + attackspeed), 0, 0);
+            if (hit.CompareTag("attack_forward"))//전방 발사
+            {
+                rb.AddForce(0, 0, 0);
+                attackspeed += 5;
+                attackStart();
+                AttackType = "forward";
+                targetChange(hit);
+                rb.useGravity = false;
+                if (transform.position.y > 1f)
+                    rb.AddForce(target.position.x / Mathf.Abs(target.position.x) * (150 + attackspeed), -10f, 0);
+                else
+                    rb.AddForce(target.position.x / Mathf.Abs(target.position.x) * (150 + attackspeed), 0, 0);
+            }
+            else if (hit.CompareTag("attack_up_target"))// 포물선 발사
+            {
+                rb.AddForce(0, 0, 0);
+                attackspeed = 0;
+                attackStart();
+                AttackType = "up_target";
+                targetChange(hit);
+                rb.useGravity = true;
+                //rb.linearVelocity = new Vector3(target.position.x / Mathf.Abs(target.position.x), 0, 0) * 5f + Vector3.up * 5;
+            }
+            else if (hit.CompareTag("attack_up_player"))// 자신 머리위로 발사
+            {
+                attackStart();
+                rb.useGravity = true;
+                AttackType = "up_player";
+            }
         }
-        else if(hit.CompareTag("attack_up_target"))// 포물선 발사
-        {
-            rb.AddForce(0, 0, 0);
-            attackspeed = 0;
-            attackStart();
-            AttackType = "up_target";
-            targetChange(hit);
-            rb.linearVelocity = new Vector3(target.position.x / Mathf.Abs(target.position.x), 0, 0) * 5f + Vector3.up * 5;
-        }
-        else if (hit.CompareTag("attack_up_player"))// 자신 머리위로 발사
-        {
-            attackStart();
-            AttackType = "up_player";
-        }
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -117,6 +124,7 @@ public class BallSc : MonoBehaviour
             AttackType = "PlayerHit";
             rb.linearDamping = 0;
             rb.AddForce(0, 0, 0);
+            collision.collider.GetComponent<Animator>().StopPlayback();
             collision.collider.GetComponent<Animator>().Play("die");
             collision.collider.GetComponent<Player>().StopAllCoroutines();
 
@@ -165,4 +173,5 @@ public class BallSc : MonoBehaviour
         p1.GetComponent<Animator>().Play("idle");
         p2.GetComponent<Animator>().Play("idle");
     }
+
 }

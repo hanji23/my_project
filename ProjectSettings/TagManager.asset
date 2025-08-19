@@ -7,6 +7,7 @@ TagManager:
   - attack_forward
   - attack_up_target
   - attack_up_player
+  - Ball
   layers:
   - Default
   - TransparentFX
