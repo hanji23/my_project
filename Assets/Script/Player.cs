@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         }
 
         if (ani.GetCurrentAnimatorStateInfo(0).IsName("die"))
-            transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 0.25f * Time.deltaTime);
+            transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 25f * Time.deltaTime);
     }
 
 
@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ball") && !ani.GetCurrentAnimatorStateInfo(0).IsName("die"))
         {
-            target = new Vector3(transform.position.x + (transform.position.x / Mathf.Abs(transform.position.x) * 0.5f), transform.position.y, transform.position.z);
+            target = new Vector3(transform.position.x + (transform.position.x / Mathf.Abs(transform.position.x) * 0.75f), transform.position.y, transform.position.z);
         }
     }
 }
