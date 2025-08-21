@@ -149,7 +149,7 @@ public class BallSc : MonoBehaviour
             rb.linearDamping = 0;
             rb.AddForce(0, 0, 0);
             collision.collider.GetComponent<Animator>().StopPlayback();
-            collision.collider.GetComponent<Animator>().Play("die");
+            collision.collider.GetComponent<Animator>().Play("down");
             collision.collider.GetComponent<Player>().StopAllCoroutines();
 
             rb.useGravity = true;

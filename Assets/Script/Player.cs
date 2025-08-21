@@ -1,8 +1,6 @@
 using System.Collections;
-using TMPro;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -10,14 +8,16 @@ public class Player : MonoBehaviour
     Animator ani;
     Vector3 target = Vector3.zero;
     Vector3 vel = Vector3.zero;
+
+    [SerializeField]
+    private CharacterSOMaker SO;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         attack0 = transform.GetChild(0);
         attack1 = transform.GetChild(1);
         ani = GetComponent<Animator>();
-
-        
     }
 
     // Update is called once per frame
@@ -32,14 +32,14 @@ public class Player : MonoBehaviour
             ani.Play("attack4");
         }
 
-        if (ani.GetCurrentAnimatorStateInfo(0).IsName("die"))
+        if (ani.GetCurrentAnimatorStateInfo(0).IsName("down"))
             transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 25f * Time.deltaTime);
     }
 
 
     void BoxOn(int type)
     {
-        if (!ani.GetCurrentAnimatorStateInfo(0).IsName("die"))
+        if (!ani.GetCurrentAnimatorStateInfo(0).IsName("down"))
             transform.GetChild(type).gameObject.SetActive(true);
     }
     IEnumerator ReturnIdle()
@@ -50,9 +50,11 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Ball") && !ani.GetCurrentAnimatorStateInfo(0).IsName("die"))
+        if (collision.collider.CompareTag("Ball") && !ani.GetCurrentAnimatorStateInfo(0).IsName("down"))
         {
             target = new Vector3(transform.position.x + (transform.position.x / Mathf.Abs(transform.position.x) * 0.75f), transform.position.y, transform.position.z);
         }
     }
+
+    
 }
