@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GamePlayManager : MonoBehaviour
 {
     [SerializeField]
-    private int GameMode = 0;
+    private string GameMode = "";
     //설명
 
     [SerializeField]
@@ -18,6 +18,10 @@ public class GamePlayManager : MonoBehaviour
     //설명
 
     [SerializeField]
+    private float Region_Type = 0;
+    //설명
+
+    [SerializeField]
     private List<CharacterSOMaker> SO;
 
     [SerializeField]
@@ -26,7 +30,9 @@ public class GamePlayManager : MonoBehaviour
     [SerializeField]
     private int race = 0;
     [SerializeField]
-    private int round = 0;
+    private int NowRound = 0;
+    [SerializeField]
+    private int MaxRound = 0;
     [SerializeField]
     private int win = 0;
     [SerializeField]
@@ -42,6 +48,11 @@ public class GamePlayManager : MonoBehaviour
         {
             Instance = this;
         }
+    }
+
+    public void GameModeSetting(string s)
+    {
+        GameMode = s;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
