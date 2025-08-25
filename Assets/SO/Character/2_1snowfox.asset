@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Character_name: "\uB208\uC5EC\uC6B0\uBE44\uC62C\uB81B"
   Character_type: 2
+  region_type: 0
   attack_power: 0.3
-  player_animator: {fileID: 9100000, guid: d7de2f6a107257442b85b12fbd55e957, type: 2}
+  player: {fileID: 8250276785020905621, guid: 5e643c999406278469d1aae2aeb9227b, type: 3}

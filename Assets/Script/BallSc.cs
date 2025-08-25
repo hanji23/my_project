@@ -42,7 +42,7 @@ public class BallSc : MonoBehaviour
         p1 = GameObject.Find("Player1").transform;
         p2 = GameObject.Find("Player2").transform;
 
-        t1 = GameObject.Find("Canvas").transform.Find("Text").GetComponent<TextMeshProUGUI>();
+        t1 = GameObject.Find("PlayerCanvas").transform.Find("Text").GetComponent<TextMeshProUGUI>();
 
         ballspeed = 3.5f;
     }

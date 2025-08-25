@@ -18,7 +18,7 @@ public class GamePlayManager : MonoBehaviour
     //설명
 
     [SerializeField]
-    private float Region_Type = 0;
+    private int Region_Type = 0;
     //설명
 
     [SerializeField]
@@ -28,11 +28,11 @@ public class GamePlayManager : MonoBehaviour
     private int map = 0;
 
     [SerializeField]
-    private int race = 0;
+    private int Party = 0;
     [SerializeField]
-    private int NowRound = 0;
+    private int Race = 0;
     [SerializeField]
-    private int MaxRound = 0;
+    private int Round = 0;
     [SerializeField]
     private int win = 0;
     [SerializeField]
@@ -53,6 +53,18 @@ public class GamePlayManager : MonoBehaviour
     public void GameModeSetting(string s)
     {
         GameMode = s;
+    }
+    public float Player_Typecheck()
+    {
+        return player_Type;
+    }
+    public void Player_TypeSetting(float f)
+    {
+        player_Type = f;
+    }
+    public void Region_TypeSetting(int i)
+    {
+        Region_Type = i;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

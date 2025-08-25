@@ -16,6 +16,8 @@ public class CharacherSelect : MonoBehaviour,
     [SerializeField]
     private string Name;
     [SerializeField]
+    private float player_Type;
+    [SerializeField]
     private string aniName;
     [SerializeField]
     private Vector2 position;
@@ -45,14 +47,13 @@ public class CharacherSelect : MonoBehaviour,
                     main.sprite = selectI;
                     break;
                 case "OnPointerExit":
-                    ani.Play("None");
-                    i.enabled = false;
-                    t.text = "";
-                    back.color = new Color32(0, 0, 0, 130);
-                    main.sprite = mainI;
+                    if (GamePlayManager.Instance.Player_Typecheck() == 0)
+                    {
+                        Setting();
+                    }
                     break;
                 case "OnPointerClick":
-
+                    GamePlayManager.Instance.Player_TypeSetting(player_Type);
                     break;
             }
         }
@@ -72,8 +73,17 @@ public class CharacherSelect : MonoBehaviour,
         main = transform.GetChild(0).transform.GetChild(1).GetComponent<Image>();
     }
 
- public string GetAniname()
+    public string GetAniname()
     {
         return aniName;
+    }
+
+    public void Setting()
+    {
+        ani.Play("None");
+        i.enabled = false;
+        t.text = "";
+        back.color = new Color32(0, 0, 0, 130);
+        main.sprite = mainI;
     }
 }

@@ -1,7 +1,8 @@
+using TMPro;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor;
-using TMPro;
 
 public class MainCanvas : MonoBehaviour
 {
@@ -10,12 +11,11 @@ public class MainCanvas : MonoBehaviour
 
     private void Start()
     {
-        if (GameObject.Find("GamePlayManager") == null)
+        if (GamePlayManager.Instance == null)
         {
             GameObject g = Instantiate(GPM);
-            g.name.Replace("(Clone)", "");
-            //g.name.Remove(g.name.Length - 8, 8);
-
+            //g.name.Replace("(Clone)", "");
+            g.name = g.name.Remove(g.name.Length - 7, 7);
         }
     }
 
@@ -40,5 +40,16 @@ public class MainCanvas : MonoBehaviour
     {
         GamePlayManager.Instance.GameModeSetting(null);
         SceneManager.LoadScene("StartScene");
+    }
+
+    public void RegionExit()
+    {
+        GamePlayManager.Instance.Player_TypeSetting(0);
+        GamePlayManager.Instance.Region_TypeSetting(0);
+    }
+
+    public void CharacterExit()
+    {
+        GameObject.Find("Canvas").transform.Find("CharacterSelect").GetChild(Mathf.FloorToInt(GamePlayManager.Instance.Player_Typecheck()) - 1).GetComponent<CharacherSelect>().Setting();
     }
 }
