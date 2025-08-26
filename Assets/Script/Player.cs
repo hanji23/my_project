@@ -33,7 +33,11 @@ public class Player : MonoBehaviour
         }
 
         if (ani.GetCurrentAnimatorStateInfo(0).IsName("down"))
-            transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 15f * Time.deltaTime);
+        {
+                transform.position = Vector3.Lerp(gameObject.transform.position, target, 5 * Time.deltaTime);
+          
+        }
+           
     }
 
 

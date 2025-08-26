@@ -89,7 +89,7 @@ public class BallSc : MonoBehaviour
             if (time <= 0)
             {
                 attackStart();
-                BallReset();
+                NextRoundBall();
             }
             else
             {
@@ -189,14 +189,15 @@ public class BallSc : MonoBehaviour
     {
         if (Random.Range(0, 2) == 0)
         {
-            transform.position = new Vector3(p1.position.x + 0.375f, p1.position.y + 6, p1.position.z);
+            
             target = p1;
         }
         else
         {
-            transform.position = new Vector3(p2.position.x - 0.375f, p2.position.y + 6, p2.position.z);
+            
             target = p2;
         }
+        transform.position = new Vector3(target.position.x + -(target.position.x / Mathf.Abs(target.position.x) * 0.375f), target.position.y + 6, target.position.z);
         attackspeed = -0.25f;
         AttackType = "";
         gameEnd = false;
@@ -209,6 +210,22 @@ public class BallSc : MonoBehaviour
         p2.GetComponent<Animator>().Play("idle");
         Camera.main.GetComponent<CameraSc>().moveOnOff(true);
         
+    }
+
+    void NextRoundBall()
+    {
+        transform.position = new Vector3(target.position.x + -(target.position.x / Mathf.Abs(target.position.x) * 0.375f), target.position.y + 6, target.position.z);
+        attackspeed = -0.25f;
+        AttackType = "";
+        gameEnd = false;
+        rb.linearDamping = 5;
+        time = 3;
+        downplayer = "";
+        t1.text = "게임시작!";
+
+        p1.GetComponent<Animator>().Play("idle");
+        p2.GetComponent<Animator>().Play("idle");
+        Camera.main.GetComponent<CameraSc>().moveOnOff(true);
     }
 
     Vector3 targetpos()

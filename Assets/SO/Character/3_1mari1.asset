@@ -16,4 +16,10 @@ MonoBehaviour:
   Character_type: 3
   region_type: 0
   attack_power: 0.15
+  Stamina: 0
+  MaxStamina: 3
   player: {fileID: 3877504165622000462, guid: e8be4305aa26a0949ab307fe24ecf1e4, type: 3}
+  mainI: {fileID: 1716150868, guid: 5c0c6db881f40d943bacc3afa5f966c6, type: 3}
+  loseI: {fileID: 0}
+  position: {x: 0, y: 0}
+  size: {x: 0, y: 0}
