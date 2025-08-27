@@ -14,12 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Character_name: "\uB208\uC5EC\uC6B0\uBE44\uC62C\uB81B"
   Character_type: 2
-  region_type: 0
   attack_power: 0.3
   Stamina: 0
   MaxStamina: 3
   player: {fileID: 8250276785020905621, guid: 5e643c999406278469d1aae2aeb9227b, type: 3}
   mainI: {fileID: 904886430, guid: e6b5a8342906c4c40b26f182a694b59f, type: 3}
   loseI: {fileID: 0}
-  position: {x: 0, y: 0}
-  size: {x: 0, y: 0}
+  position: {x: 7, y: -18}
+  size: {x: 176, y: 144}

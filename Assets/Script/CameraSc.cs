@@ -5,7 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class CameraSc : MonoBehaviour
 {
-    Transform player1, player2;
+    public Transform player1, player2;
     float distance;
 
     bool moveOn;
@@ -15,8 +15,6 @@ public class CameraSc : MonoBehaviour
     void Start()
     {
 
-        player1 = GameObject.Find("Player1").transform;
-        player2 = GameObject.Find("Player2").transform;
     }
 
     private void LateUpdate()

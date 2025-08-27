@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,7 +19,11 @@ public class GamePlayManager : MonoBehaviour
     //설명
 
     [SerializeField]
-    private int Region_Type = 0;
+    private int player_Region_Type = 0;
+    //설명
+
+    [SerializeField]
+    private int Enemy_Region_Type = 0;
     //설명
 
     [SerializeField]
@@ -62,9 +67,41 @@ public class GamePlayManager : MonoBehaviour
     {
         player_Type = f;
     }
-    public void Region_TypeSetting(int i)
+    public void Player_Region_TypeSetting(int i)
     {
-        Region_Type = i;
+        player_Region_Type = i;
+    }
+    public void Enemy_Region_TypeSetting(int i)
+    {
+        Enemy_Region_Type = i;
+    }
+
+    public float Enemy_Typecheck()
+    {
+        return Enemy_Type;
+    }
+    public void Enemy_TypeSetting(float f)
+    {
+        Enemy_Type = f;
+    }
+
+    public CharacterSOMaker SO_find(string s)
+    {
+        int i = 0;
+
+        for (i = 0; i < SO.Count; i++) //  list는 Count로 전체 범위를 알수 있음
+        {
+            if (s.Equals("p") && SO[i].getSo_Character_type() == player_Type)
+            {
+                break;
+            }
+            else if (s.Equals("e") && SO[i].getSo_Character_type() == Enemy_Type)
+            {
+                break;
+            }
+        }
+
+        return SO[i];
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

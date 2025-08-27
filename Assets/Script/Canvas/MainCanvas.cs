@@ -45,7 +45,7 @@ public class MainCanvas : MonoBehaviour
     public void RegionExit()
     {
         GamePlayManager.Instance.Player_TypeSetting(0);
-        GamePlayManager.Instance.Region_TypeSetting(0);
+        GamePlayManager.Instance.Player_Region_TypeSetting(0);
     }
 
     public void CharacterExit()

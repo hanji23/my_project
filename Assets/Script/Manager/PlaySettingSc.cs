@@ -1,55 +1,123 @@
 using System.Collections;
+using System.Drawing;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class PlaySettingSc : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject GPM;
+
     public RectTransform PlayerUI1, PlayerUI2, EnemyUI1, EnemyUI2;
+    public Image playerImage, enemyImage;
+    public Canvas ready;
+    int uicheck = 0;
+
+    [SerializeField]
+    private CharacterSOMaker so_P, so_E;
+
+    [SerializeField]
+    private float Player, Enemy;
+
+    public static PlaySettingSc Instance = null;
 
     private void OnEnable()
     {
-        StartCoroutine(start(0));
+        //시작 테스트용 나중에 삭제
+        PlayerUI1.transform.parent.gameObject.SetActive(false);
+        EnemyUI1.transform.parent.gameObject.SetActive(false);
+        Destroy(GameObject.Find("Player1"));
+        Destroy(GameObject.Find("Player2"));
+        //
+
+        if (GamePlayManager.Instance == null)
+        {
+            GameObject g = Instantiate(GPM);
+            //g.name.Replace("(Clone)", "");
+            g.name = g.name.Remove(g.name.Length - 7, 7);
+        }
+
+        
+
+        if (GamePlayManager.Instance.Player_Typecheck() == 0)
+            GamePlayManager.Instance.Player_TypeSetting(Random.Range(1, 4));
+
+        Player = GamePlayManager.Instance.Player_Typecheck();
+        so_P = GamePlayManager.Instance.SO_find("p");
+
+        if (GamePlayManager.Instance.Enemy_Typecheck() == 0)
+            GamePlayManager.Instance.Enemy_TypeSetting(Random.Range(1,4));
+
+        Enemy = GamePlayManager.Instance.Enemy_Typecheck();
+        so_E = GamePlayManager.Instance.SO_find("e");
+
+        so_P.spwan_P();
+        so_E.spwan_E();
+
+        playerImage.sprite = so_P.get_Sprite("main");
+        playerImage.rectTransform.sizeDelta = so_P.get_imageSet("size");
+        playerImage.rectTransform.anchoredPosition = so_P.get_imageSet("position");
+
+        enemyImage.sprite = so_E.get_Sprite("main");
+        enemyImage.rectTransform.sizeDelta = so_E.get_imageSet("size");
+        enemyImage.rectTransform.anchoredPosition = so_E.get_imageSet("position");
     }
 
     private void Start()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
+
+    public IEnumerator UIstart(RectTransform r, RectTransform r2)
+    {
+        r.transform.parent.gameObject.SetActive(true);
+
+        r.anchoredPosition = new Vector2(r.anchoredPosition.x, 85);
+        r2.anchoredPosition = new Vector2(r2.anchoredPosition.x, -50);
+        yield return new WaitForSeconds(0.05f);
+        r.anchoredPosition = new Vector2(r.anchoredPosition.x, 40);
+        r2.anchoredPosition = new Vector2(r2.anchoredPosition.x, -25);
+
+        yield return new WaitForSeconds(0.05f);
+        r.anchoredPosition = new Vector2(r.anchoredPosition.x, 10);
+        r2.anchoredPosition = new Vector2(r2.anchoredPosition.x, -10);
+        yield return new WaitForSeconds(0.05f);
+        r.anchoredPosition = new Vector2(r.anchoredPosition.x, -25);
+        r2.anchoredPosition = new Vector2(r2.anchoredPosition.x, 0);
+        yield return new WaitForSeconds(0.025f);
+        r.anchoredPosition = new Vector2(r.anchoredPosition.x, -45);
+        r2.anchoredPosition = new Vector2(r2.anchoredPosition.x, 15);
+        yield return new WaitForSeconds(0.025f);
+        r.anchoredPosition = new Vector2(r.anchoredPosition.x, -52);
+        r2.anchoredPosition = new Vector2(r2.anchoredPosition.x, 22);
+        yield return new WaitForSeconds(0.025f);
+        r.anchoredPosition = new Vector2(r.anchoredPosition.x, -50);
+        r2.anchoredPosition = new Vector2(r2.anchoredPosition.x, 20);
+        yield return new WaitForSeconds(0.025f);
+        r.anchoredPosition = new Vector2(r.anchoredPosition.x, -48);
+        r2.anchoredPosition = new Vector2(r2.anchoredPosition.x, 18);
+    }
+
+    public void UIstart()
+    {
+        uicheck++;
+
+        if (uicheck % 2  == 0)
+        {
+            StartCoroutine(UIstart(PlayerUI1, PlayerUI2));
+            StartCoroutine(UIstart(EnemyUI1, EnemyUI2));
+            
+            UIready();
+            
+        }
         
     }
 
-    public IEnumerator start(int type)
+    public void UIready()
     {
-        switch (type)
-        {
-            case 0:
-                PlayerUI1.anchoredPosition = new Vector2(PlayerUI1.anchoredPosition.x, 85);
-                PlayerUI2.anchoredPosition = new Vector2(PlayerUI2.anchoredPosition.x, -50);
-                yield return new WaitForSeconds(0.05f);
-                PlayerUI1.anchoredPosition = new Vector2(PlayerUI1.anchoredPosition.x, 40);
-                PlayerUI2.anchoredPosition = new Vector2(PlayerUI2.anchoredPosition.x, -25);
-
-                yield return new WaitForSeconds(0.05f);
-                PlayerUI1.anchoredPosition = new Vector2(PlayerUI1.anchoredPosition.x, 10);
-                PlayerUI2.anchoredPosition = new Vector2(PlayerUI2.anchoredPosition.x, -10);
-                yield return new WaitForSeconds(0.05f);
-                PlayerUI1.anchoredPosition = new Vector2(PlayerUI1.anchoredPosition.x, -25);
-                PlayerUI2.anchoredPosition = new Vector2(PlayerUI2.anchoredPosition.x, 0);
-                yield return new WaitForSeconds(0.025f);
-                PlayerUI1.anchoredPosition = new Vector2(PlayerUI1.anchoredPosition.x, -45);
-                PlayerUI2.anchoredPosition = new Vector2(PlayerUI2.anchoredPosition.x, 15);
-                yield return new WaitForSeconds(0.025f);
-                PlayerUI1.anchoredPosition = new Vector2(PlayerUI1.anchoredPosition.x, -52);
-                PlayerUI2.anchoredPosition = new Vector2(PlayerUI2.anchoredPosition.x, 22);
-                yield return new WaitForSeconds(0.025f);
-                PlayerUI1.anchoredPosition = new Vector2(PlayerUI1.anchoredPosition.x, -50);
-                PlayerUI2.anchoredPosition = new Vector2(PlayerUI2.anchoredPosition.x, 20);
-                yield return new WaitForSeconds(0.025f);
-                PlayerUI1.anchoredPosition = new Vector2(PlayerUI1.anchoredPosition.x, -48);
-                PlayerUI2.anchoredPosition = new Vector2(PlayerUI2.anchoredPosition.x, 18);
-                break;
-            case 1:
-
-                break;
-        }
-        
+        ready.gameObject.SetActive(true);
     }
 }

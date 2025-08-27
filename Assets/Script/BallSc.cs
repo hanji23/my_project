@@ -30,7 +30,7 @@ public class BallSc : MonoBehaviour
     int nowtime;
     string downplayer;
 
-    TextMeshProUGUI t1;
+    //TextMeshProUGUI t1;
 
     Vector3 startposition;
 
@@ -42,7 +42,7 @@ public class BallSc : MonoBehaviour
         p1 = GameObject.Find("Player1").transform;
         p2 = GameObject.Find("Player2").transform;
 
-        t1 = GameObject.Find("PlayerCanvas").transform.Find("Text").GetComponent<TextMeshProUGUI>();
+        //t1 = GameObject.Find("PlayerCanvas").transform.Find("Text").GetComponent<TextMeshProUGUI>();
 
         ballspeed = 3.5f;
     }
@@ -93,9 +93,9 @@ public class BallSc : MonoBehaviour
             }
             else
             {
-                time -= Time.deltaTime;
-                nowtime = Mathf.CeilToInt(time);
-                t1.text = $"{downplayer} 다운!\n재시작 시간 : {nowtime}";
+                //time -= Time.deltaTime;
+                //nowtime = Mathf.CeilToInt(time);
+                //t1.text = $"{downplayer} 다운!\n재시작 시간 : {nowtime}";
             }
             
         }
@@ -204,7 +204,7 @@ public class BallSc : MonoBehaviour
         rb.linearDamping = 5;
         time = 3;
         downplayer = "";
-        t1.text = "게임시작!";
+        //t1.text = "게임시작!";
 
         p1.GetComponent<Animator>().Play("idle");
         p2.GetComponent<Animator>().Play("idle");
@@ -221,7 +221,7 @@ public class BallSc : MonoBehaviour
         rb.linearDamping = 5;
         time = 3;
         downplayer = "";
-        t1.text = "게임시작!";
+        //t1.text = "게임시작!";
 
         p1.GetComponent<Animator>().Play("idle");
         p2.GetComponent<Animator>().Play("idle");
