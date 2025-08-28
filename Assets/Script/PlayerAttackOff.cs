@@ -4,11 +4,12 @@ public class PlayerAttackOff : MonoBehaviour
 {
     private void OnEnable()
     {
-        Invoke("off", 0.05f);
+        Invoke("off", Time.deltaTime * 5);
     }
 
     void off()
     {
-        gameObject.SetActive(false);
+        if (isActiveAndEnabled)
+            gameObject.SetActive(false);
     }
 }

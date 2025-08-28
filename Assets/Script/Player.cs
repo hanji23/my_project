@@ -5,13 +5,18 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private string type;
+
     Transform attack0, attack1;
     Animator ani;
     Vector3 target = Vector3.zero;
     Vector3 vel = Vector3.zero;
 
     [SerializeField]
-    private CharacterSOMaker SO;
+    private GameObject Canvas;
+
+    public CharacterSOMaker SO;
 
     bool startMove = true;
 
@@ -40,6 +45,10 @@ public class Player : MonoBehaviour
                 ani.Play("idle");
 
                 PlaySettingSc.Instance.UIstart();
+                if(type.Equals("p"))
+                    Canvas = GameObject.Find("PlayerCanvas");
+                if (type.Equals("e"))
+                    Canvas = GameObject.Find("EnemyCanvas");
             }
                 
         }
@@ -71,7 +80,8 @@ public class Player : MonoBehaviour
     IEnumerator ReturnIdle()
     {
         yield return new WaitForSeconds(0.25f);
-        ani.Play("idle");
+        if (!ani.GetCurrentAnimatorStateInfo(0).IsName("down"))
+            ani.Play("idle");
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -79,8 +89,14 @@ public class Player : MonoBehaviour
         if (collision.collider.CompareTag("Ball") && !ani.GetCurrentAnimatorStateInfo(0).IsName("down"))
         {
             target = new Vector3(transform.position.x + (transform.position.x / Mathf.Abs(transform.position.x) * 0.75f), transform.position.y, transform.position.z);
+
+            StopAllCoroutines();
+            ani.Play("down");
         }
     }
 
-    
+    public void setType(string s)
+    {
+        type = s;
+    }
 }

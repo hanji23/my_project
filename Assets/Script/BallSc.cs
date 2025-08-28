@@ -31,6 +31,7 @@ public class BallSc : MonoBehaviour
     string downplayer;
 
     //TextMeshProUGUI t1;
+    readySc GameCanvas;
 
     Vector3 startposition;
 
@@ -41,6 +42,8 @@ public class BallSc : MonoBehaviour
 
         p1 = GameObject.Find("Player1").transform;
         p2 = GameObject.Find("Player2").transform;
+
+        GameCanvas = GameObject.Find("fightCanvas").transform.GetComponent<readySc>();
 
         //t1 = GameObject.Find("PlayerCanvas").transform.Find("Text").GetComponent<TextMeshProUGUI>();
 
@@ -93,8 +96,9 @@ public class BallSc : MonoBehaviour
             }
             else
             {
-                //time -= Time.deltaTime;
-                //nowtime = Mathf.CeilToInt(time);
+                time -= Time.deltaTime;
+                nowtime = Mathf.CeilToInt(time);
+                
                 //t1.text = $"{downplayer} 다운!\n재시작 시간 : {nowtime}";
             }
             
@@ -106,6 +110,8 @@ public class BallSc : MonoBehaviour
         {
             if (hit.CompareTag("attack_forward"))//전방 발사
             {
+                Debug.Log($"{hit.name} {hit.transform.parent.name}");
+                hit.gameObject.SetActive(false);
                 rb.AddForce(0, 0, 0);
                 attackspeed += 0.25f;
                 attackStart();
@@ -148,15 +154,15 @@ public class BallSc : MonoBehaviour
             AttackType = "PlayerHit";
             rb.linearDamping = 0;
             rb.AddForce(0, 0, 0);
-            collision.collider.GetComponent<Animator>().StopPlayback();
-            collision.collider.GetComponent<Animator>().Play("down");
-            collision.collider.GetComponent<Player>().StopAllCoroutines();
+            
 
             rb.useGravity = true;
             ContactPoint cp = collision.GetContact(0);
             Vector3 dir = /*transform.position*/ new Vector3(transform.position.x, transform.position.y + 10f, transform.position.z - 1f) - cp.point; // 접촉지점에서부터 탄위치 의 방향 https://dallcom-forever2620.tistory.com/42
             rb.AddForce((dir).normalized * 300f);
             downplayer = collision.collider.name;
+
+            StartCoroutine(GameCanvas.UIdown());
         }
 
     }

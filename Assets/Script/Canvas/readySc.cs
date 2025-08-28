@@ -8,6 +8,9 @@ public class readySc : MonoBehaviour
 {
     TextMeshProUGUI t, t2;
 
+    [SerializeField]
+    private GameObject ball;
+
     private void OnEnable()
     {
         t = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
@@ -17,13 +20,12 @@ public class readySc : MonoBehaviour
 
     public IEnumerator UIstart(float duration = 1f)
     {
+        TReset();
         yield return new WaitForSeconds(0.75f);
-        string s = "Ready!";
-        StringBuilder sb = new StringBuilder();
-        t.color = new Color32(255, 255, 255, 255);
-        t2.color = new Color32(255, 255, 255, 255);
-        t.rectTransform.anchoredPosition = new Vector3(0, 0);
-        t2.rectTransform.anchoredPosition = new Vector3(0, 0);
+        TReset();
+        //string s = "Ready!";
+        //StringBuilder sb = new StringBuilder();
+        
         //foreach (char c in s)
         //{
         //    sb.Append(c);
@@ -67,7 +69,7 @@ public class readySc : MonoBehaviour
 
 
         float elapsed = 0f;
-        float startY = 150f;
+        float startY = 175f;
         float endY = 0f;
 
         while (elapsed < duration)
@@ -76,7 +78,7 @@ public class readySc : MonoBehaviour
             float f = Mathf.Clamp01(elapsed / duration);
 
             // EaseOutCubic: 빠르게 시작해서 점점 느려짐 (감속)
-            float easedT = 1f - Mathf.Pow(1f - f, 3f);
+            float easedT = 1f - Mathf.Pow(1f - f, 5f);
             float y = Mathf.Lerp(startY, endY, easedT);
 
             t.rectTransform.anchoredPosition = new Vector2(t.rectTransform.anchoredPosition.x, y);
@@ -87,40 +89,40 @@ public class readySc : MonoBehaviour
         t.rectTransform.anchoredPosition = new Vector2(t.rectTransform.anchoredPosition.x, endY);
 
 
-        yield return new WaitForSeconds(0.39f);
+        yield return null;
 
-        for (byte colorA = 255; colorA > 0; colorA -= 5)
+        for (byte colorA = 255; colorA > 0; colorA -= 15)
         {
             t.color = new Color32(255, 255, 255, colorA);
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
         t.color = new Color32(255, 255, 255, 0);
-        yield return new WaitForSeconds(0.01f);
+        yield return null;
 
         t.text = "3";
-        for (byte colorA = 255; colorA > 0; colorA -= 5)
+        for (byte colorA = 255; colorA > 0; colorA -= 15)
         {
             t.color = new Color32(255, 255, 255, colorA);
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
         t.color = new Color32(255, 255, 255, 0);
-        yield return new WaitForSeconds(0.01f);
+        yield return null;
         t.text = "2";
-        for (byte colorA = 255; colorA > 0; colorA -= 5)
+        for (byte colorA = 255; colorA > 0; colorA -= 15)
         {
             t.color = new Color32(255, 255, 255, colorA);
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
         t.color = new Color32(255, 255, 255, 0);
-        yield return new WaitForSeconds(0.01f);
+        yield return null;
         t.text = "1";
-        for (byte colorA = 255; colorA > 0; colorA -= 5)
+        for (byte colorA = 255; colorA > 0; colorA -= 15)
         {
             t.color = new Color32(255, 255, 255, colorA);
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
         t.color = new Color32(255, 255, 255, 0);
-        yield return new WaitForSeconds(0.01f);
+        yield return null;
 
         t.color = new Color32(255, 255, 255, 255);
         t2.color = new Color32(255, 255, 255, 255);
@@ -151,8 +153,11 @@ public class readySc : MonoBehaviour
         //    yield return new WaitForSeconds(0.01f);
         //}
 
+        GameObject b = Instantiate(ball);
+        b.name = b.name.Remove(b.name.Length - 7, 7);
+
         elapsed = 0f;
-        startY = 150f;
+        startY = 175f;
         endY = 20f;
 
         while (elapsed < duration)
@@ -161,7 +166,7 @@ public class readySc : MonoBehaviour
             float f = Mathf.Clamp01(elapsed / duration);
 
             // EaseOutCubic: 빠르게 시작해서 점점 느려짐 (감속)
-            float easedT = 1f - Mathf.Pow(1f - f, 3f);
+            float easedT = 1f - Mathf.Pow(1f - f, 5f);
             float y = Mathf.Lerp(startY, endY, easedT);
             float y2 = Mathf.Lerp(-startY, -endY, easedT);
 
@@ -172,8 +177,8 @@ public class readySc : MonoBehaviour
 
         // 마지막 위치 보정
         t.rectTransform.anchoredPosition = new Vector2(t.rectTransform.anchoredPosition.x, endY);
-
-        yield return new WaitForSeconds(0.29f);
+        t2.rectTransform.anchoredPosition = new Vector2(t2.rectTransform.anchoredPosition.x, -endY);
+        yield return null;
 
         //for (int i = 0; i <= 400; i += 20)
         //{
@@ -184,22 +189,22 @@ public class readySc : MonoBehaviour
 
         elapsed = 0f;
         startY = 20f;
-        endY = 150f;
+        endY = 175f;
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             float f = Mathf.Clamp01(elapsed / duration);
 
-            // EaseOutCubic: 빠르게 시작해서 점점 느려짐 (감속)
-            float easedT = Mathf.Pow(f, 3f);
+
+            float easedT = Mathf.Pow(f, 5f);
             float y = Mathf.Lerp(startY, endY, easedT);
             float y2 = Mathf.Lerp(-startY, -endY, easedT);
+            float x = Mathf.Lerp(0, -250, easedT);
+            float x2 = Mathf.Lerp(0, 250, easedT);
 
-            t.rectTransform.anchoredPosition = new Vector2(t.rectTransform.anchoredPosition.x, y);
-            t.rectTransform.anchoredPosition = new Vector2(-y * 2, t.rectTransform.anchoredPosition.y);
-            t2.rectTransform.anchoredPosition = new Vector2(t2.rectTransform.anchoredPosition.x, y2);
-            t2.rectTransform.anchoredPosition = new Vector2(y * 2, t2.rectTransform.anchoredPosition.y);
+            t.rectTransform.anchoredPosition = new Vector2(x, y);
+            t2.rectTransform.anchoredPosition = new Vector2(x2, y2);
             yield return null;
         }
 
@@ -207,6 +212,68 @@ public class readySc : MonoBehaviour
         t2.color = new Color32(255, 255, 255, 0);
         t.text = "";
         t2.text = "";
-        gameObject.SetActive(false);
+        t.rectTransform.anchoredPosition = new Vector3(0, 0);
+        t2.rectTransform.anchoredPosition = new Vector3(0, 0);
+
+        //gameObject.SetActive(false);
+    }
+
+    public IEnumerator UIdown(float duration = 1f)
+    {
+        TReset();
+        t.text = "DOWN!";
+
+        float elapsed = 0f;
+        float startY = 175f;
+        float endY = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float f = Mathf.Clamp01(elapsed / duration);
+
+            // EaseOutCubic: 빠르게 시작해서 점점 느려짐 (감속)
+            float easedT = 1f - Mathf.Pow(1f - f, 5f);
+            float y = Mathf.Lerp(startY, endY, easedT);
+
+            t.rectTransform.anchoredPosition = new Vector2(t.rectTransform.anchoredPosition.x, y);
+            yield return null;
+        }
+
+        // 마지막 위치 보정
+        t.rectTransform.anchoredPosition = new Vector2(t.rectTransform.anchoredPosition.x, endY);
+
+        elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float f = Mathf.Clamp01(elapsed / duration);
+
+
+            float easedT = Mathf.Pow(f, 1f);
+            float x = Mathf.Lerp(t.rectTransform.localScale.x, 1f, easedT);
+            float y = Mathf.Lerp(t.rectTransform.localScale.y, 0f, easedT);
+
+
+            t.rectTransform.localScale = new Vector3(x, y , t.rectTransform.localScale.z);
+            yield return null;
+        }
+
+        t.rectTransform.localScale = new Vector3(1, 1, 1);
+        //gameObject.SetActive(false);
+        t.color = new Color32(255, 255, 255, 0);
+        t.text = "";
+        yield return null;
+    }
+
+    void TReset()
+    {
+        t.color = new Color32(255, 255, 255, 255);
+        t2.color = new Color32(255, 255, 255, 255);
+        t.rectTransform.anchoredPosition = new Vector3(0, 0);
+        t2.rectTransform.anchoredPosition = new Vector3(0, 0);
+        t.text = "";
+        t2.text = "";
     }
 }

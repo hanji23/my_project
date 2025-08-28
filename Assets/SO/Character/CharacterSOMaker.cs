@@ -41,6 +41,8 @@ public class CharacterSOMaker : ScriptableObject
         p.transform.localScale = new Vector3(-1, 1, 1);
         p.transform.GetComponent<BoxCollider>().size = new Vector3(p.transform.GetComponent<BoxCollider>().size.x * -1, p.transform.GetComponent<BoxCollider>().size.y, p.transform.GetComponent<BoxCollider>().size.z);
         p.name = "Player1";
+        p.GetComponent<Player>().setType("p");
+        p.GetComponent<Player>().SO = this;
         Camera.main.GetComponent<CameraSc>().player1 = p.transform;
     }
 
@@ -48,6 +50,8 @@ public class CharacterSOMaker : ScriptableObject
     {
         GameObject e = Instantiate(player, new Vector3(6, 0, 0), Quaternion.identity);
         e.name = "Player2";
+        e.GetComponent<Player>().setType("e");
+        e.GetComponent<Player>().SO = this;
         Camera.main.GetComponent<CameraSc>().player2 = e.transform;
     }
 
@@ -66,4 +70,5 @@ public class CharacterSOMaker : ScriptableObject
         else
             return loseI;
     }
+
 }

@@ -21,15 +21,8 @@ public class PlaySettingSc : MonoBehaviour
 
     public static PlaySettingSc Instance = null;
 
-    private void OnEnable()
+    private void Awake()
     {
-        //시작 테스트용 나중에 삭제
-        PlayerUI1.transform.parent.gameObject.SetActive(false);
-        EnemyUI1.transform.parent.gameObject.SetActive(false);
-        Destroy(GameObject.Find("Player1"));
-        Destroy(GameObject.Find("Player2"));
-        //
-
         if (GamePlayManager.Instance == null)
         {
             GameObject g = Instantiate(GPM);
@@ -37,7 +30,23 @@ public class PlaySettingSc : MonoBehaviour
             g.name = g.name.Remove(g.name.Length - 7, 7);
         }
 
-        
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
+
+    private void OnEnable()
+    {
+        //테스트용 나중에 삭제
+        PlayerUI1.transform.parent.gameObject.SetActive(false);
+        EnemyUI1.transform.parent.gameObject.SetActive(false);
+        Destroy(GameObject.Find("Player1"));
+        Destroy(GameObject.Find("Player2"));
+        Destroy(GameObject.Find("AttackBall"));
+        ready.GetComponent<readySc>().StopAllCoroutines();
+        ready.gameObject.SetActive(false);
+        //
 
         if (GamePlayManager.Instance.Player_Typecheck() == 0)
             GamePlayManager.Instance.Player_TypeSetting(Random.Range(1, 4));
@@ -65,10 +74,7 @@ public class PlaySettingSc : MonoBehaviour
 
     private void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
+        
     }
 
     public IEnumerator UIstart(RectTransform r, RectTransform r2)
