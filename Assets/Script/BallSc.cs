@@ -28,7 +28,6 @@ public class BallSc : MonoBehaviour
 
     float time, t;
     int nowtime;
-    string downplayer;
 
     //TextMeshProUGUI t1;
     readySc GameCanvas;
@@ -69,7 +68,8 @@ public class BallSc : MonoBehaviour
                 {
                     t += Time.deltaTime / 2;
 
-                    transform.position = Vector3.Lerp(startposition, target.position, t);
+                    transform.position = Vector3.Lerp(startposition,
+                        new Vector3(target.position.x + (target.position.x / Mathf.Abs(target.position.x) * 0.5f), target.position.y, target.position.z), t);
                     // 추가: Y축에만 포물선 오프셋
                     transform.position += new Vector3(0f, Mathf.Sin(t * Mathf.PI) * 2.5f, 0f);
                 }
@@ -89,7 +89,7 @@ public class BallSc : MonoBehaviour
     {
         if (AttackType.Equals("PlayerHit"))
         {
-            if (time <= 0)
+            if (time <= 0 && GamePlayManager.Instance.GetRound() <= 3)
             {
                 attackStart();
                 NextRoundBall();
@@ -110,7 +110,7 @@ public class BallSc : MonoBehaviour
         {
             if (hit.CompareTag("attack_forward"))//전방 발사
             {
-                Debug.Log($"{hit.name} {hit.transform.parent.name}");
+                //Debug.Log($"{hit.name} {hit.transform.parent.name}");
                 hit.gameObject.SetActive(false);
                 rb.AddForce(0, 0, 0);
                 attackspeed += 0.25f;
@@ -160,9 +160,23 @@ public class BallSc : MonoBehaviour
             ContactPoint cp = collision.GetContact(0);
             Vector3 dir = /*transform.position*/ new Vector3(transform.position.x, transform.position.y + 10f, transform.position.z - 1f) - cp.point; // 접촉지점에서부터 탄위치 의 방향 https://dallcom-forever2620.tistory.com/42
             rb.AddForce((dir).normalized * 300f);
-            downplayer = collision.collider.name;
 
-            StartCoroutine(GameCanvas.UIdown());
+            if (collision.collider.transform == p1)
+                p2.GetComponent<Player>().canvasWinCheck();
+            else if (collision.collider.transform == p2)
+                p1.GetComponent<Player>().canvasWinCheck();
+
+            GamePlayManager.Instance.SetRound();
+
+            if (GamePlayManager.Instance.GetRound() <= 3)
+            {
+                StartCoroutine(GameCanvas.UIdown());
+            }
+            else
+            {
+                StartCoroutine(GameCanvas.UIFINISH());
+            }
+            
         }
 
     }
@@ -209,7 +223,6 @@ public class BallSc : MonoBehaviour
         gameEnd = false;
         rb.linearDamping = 5;
         time = 3;
-        downplayer = "";
         //t1.text = "게임시작!";
 
         p1.GetComponent<Animator>().Play("idle");
@@ -226,7 +239,6 @@ public class BallSc : MonoBehaviour
         gameEnd = false;
         rb.linearDamping = 5;
         time = 3;
-        downplayer = "";
         //t1.text = "게임시작!";
 
         p1.GetComponent<Animator>().Play("idle");

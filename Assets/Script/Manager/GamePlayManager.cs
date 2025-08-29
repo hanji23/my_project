@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GamePlayManager : MonoBehaviour
 {
+
     [SerializeField]
     private string GameMode = "";
     //Ό³Έν
@@ -43,17 +44,8 @@ public class GamePlayManager : MonoBehaviour
     [SerializeField]
     private int lose = 0;
 
-    public static GamePlayManager Instance = null;
+    
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-    }
 
     public void GameModeSetting(string s)
     {
@@ -85,6 +77,32 @@ public class GamePlayManager : MonoBehaviour
         Enemy_Type = f;
     }
 
+    public void SetWin()
+    {
+        win++;
+    }
+    public int GetWin()
+    {
+        return win;
+    }
+
+    public void SetRace()
+    {
+        Race++;
+    }
+    public int GetRace()
+    {
+        return Race;
+    }
+    public void SetParty()
+    {
+        Party++;
+    }
+    public int GetParty()
+    {
+        return Party;
+    }
+
     public CharacterSOMaker SO_find(string s)
     {
         int i = 0;
@@ -104,6 +122,50 @@ public class GamePlayManager : MonoBehaviour
         return SO[i];
     }
 
+    public int GetRound()
+    {
+        return Round;
+    }
+
+    public void SetRound()
+    {
+        Round++;
+    }
+    public void SetRound0()
+    {
+        Round = 0;
+    }
+
+    public void settingReset()
+    {
+        GameMode = "";
+
+        player_Type = 0;
+
+        Enemy_Type = 0;
+
+        player_Region_Type = 0;
+
+        Enemy_Region_Type = 0;
+
+        map = 0;
+
+        Party = 0;
+        Race = 0;
+        Round = 0;
+        lose = 0;
+    }
+
+    public static GamePlayManager Instance = null;
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
 public class Player : MonoBehaviour
@@ -15,6 +17,12 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private GameObject Canvas;
+
+
+    [SerializeField]
+    private int Win = 0;
+    [SerializeField]
+    private int RoundWin = 0;
 
     public CharacterSOMaker SO;
 
@@ -45,10 +53,8 @@ public class Player : MonoBehaviour
                 ani.Play("idle");
 
                 PlaySettingSc.Instance.UIstart();
-                if(type.Equals("p"))
-                    Canvas = GameObject.Find("PlayerCanvas");
-                if (type.Equals("e"))
-                    Canvas = GameObject.Find("EnemyCanvas");
+
+                Invoke("canvasCheck", 0.5f);
             }
                 
         }
@@ -98,5 +104,44 @@ public class Player : MonoBehaviour
     public void setType(string s)
     {
         type = s;
+    }
+
+    public void canvasCheck()
+    {
+        if (type.Equals("p"))
+            Canvas = GameObject.Find("PlayerCanvas");
+        if (type.Equals("e"))
+            Canvas = GameObject.Find("EnemyCanvas");
+
+        Canvas.transform.GetChild(1).Find("VictoryText").GetComponent<TextMeshProUGUI>().text = $"WIN_[ {GetWin()} ]";
+    }
+
+    public GameObject Getcanvas()
+    {
+        return Canvas;
+    }
+
+    public void canvasWinCheck()
+    {
+        if(RoundWin < 3)
+        {
+            Canvas.transform.GetChild(1).transform.GetChild(1).transform.GetChild(RoundWin).GetComponent<Image>().color = Color.red;
+            RoundWin++;
+        }
+        
+    }
+
+    public int GetWin()
+    {
+        return Win;
+    }
+    public void SetWin()
+    {
+        Win++;
+    }
+
+    public int GetRoundWin()
+    {
+        return RoundWin;
     }
 }

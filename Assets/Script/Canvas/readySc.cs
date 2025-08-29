@@ -1,8 +1,9 @@
 using System.Collections;
-using System.Text;
+using System.Diagnostics;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class readySc : MonoBehaviour
 {
@@ -126,6 +127,9 @@ public class readySc : MonoBehaviour
 
         t.color = new Color32(255, 255, 255, 255);
         t2.color = new Color32(255, 255, 255, 255);
+
+        GamePlayManager.Instance.SetRound();
+
         t.text = "Let's";
         t2.text = "Party!";
 
@@ -218,7 +222,7 @@ public class readySc : MonoBehaviour
         //gameObject.SetActive(false);
     }
 
-    public IEnumerator UIdown(float duration = 1f)
+    public IEnumerator UIdown()
     {
         TReset();
         t.text = "DOWN!";
@@ -226,6 +230,7 @@ public class readySc : MonoBehaviour
         float elapsed = 0f;
         float startY = 175f;
         float endY = 0f;
+        float duration = 1f;
 
         while (elapsed < duration)
         {
@@ -267,12 +272,161 @@ public class readySc : MonoBehaviour
         yield return null;
     }
 
+    public IEnumerator UIFINISH()
+    {
+        Time.timeScale = 0f;
+        float Ysave = Camera.main.transform.position.y;
+
+        int i = 0;
+
+        float elapsed = 0f;
+        float startY = 1f;
+        float endY = 0f;
+        float duration = 1;
+
+        while (elapsed < duration)
+        {
+            
+            elapsed += Time.unscaledDeltaTime * 3;
+            float f = Mathf.Clamp01(elapsed / duration);
+
+            // EaseOutCubic: 빠르게 시작해서 점점 느려짐 (감속)
+            float easedT = 1f - Mathf.Pow(1f - f, 3f);
+            float y = Mathf.Lerp(startY, endY, easedT);
+
+            if (i % 2 == 0)
+                Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Ysave + y, Camera.main.transform.position.z);
+            else
+                Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Ysave - y, Camera.main.transform.position.z);
+            i++;
+            yield return new WaitForSecondsRealtime(0.05f);
+        }
+        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Ysave, Camera.main.transform.position.z);
+        Time.timeScale = 1f;
+
+        elapsed = 0f;
+        startY = 175f;
+        endY = 0f;
+        duration = 1f;
+
+        TReset();
+        t.text = "FINISH!";
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float f = Mathf.Clamp01(elapsed / duration);
+
+            // EaseOutCubic: 빠르게 시작해서 점점 느려짐 (감속)
+            float easedT = 1f - Mathf.Pow(1f - f, 5f);
+            float y = Mathf.Lerp(startY, endY, easedT);
+
+            t.rectTransform.anchoredPosition = new Vector2(t.rectTransform.anchoredPosition.x, y);
+            yield return null;
+        }
+
+        // 마지막 위치 보정
+        t.rectTransform.anchoredPosition = new Vector2(t.rectTransform.anchoredPosition.x, endY);
+
+        elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float f = Mathf.Clamp01(elapsed / duration);
+
+
+            float easedT = Mathf.Pow(f, 1f);
+            float x = Mathf.Lerp(t.rectTransform.localScale.x, 1f, easedT);
+            float y = Mathf.Lerp(t.rectTransform.localScale.y, 0f, easedT);
+
+
+            t.rectTransform.localScale = new Vector3(x, y, t.rectTransform.localScale.z);
+            yield return null;
+        }
+
+        t.rectTransform.localScale = new Vector3(1, 1, 1);
+        //gameObject.SetActive(false);
+        t.color = new Color32(255, 255, 255, 0);
+        t.text = "";
+
+        Player Winner;
+        if (GameObject.Find("Player1").GetComponent<Player>().GetRoundWin() > GameObject.Find("Player2").GetComponent<Player>().GetRoundWin())
+        {
+            Winner = GameObject.Find("Player1").GetComponent<Player>();
+            //GamePlayManager.Instance.SetWin();
+        }
+        else
+        {
+            Winner = GameObject.Find("Player2").GetComponent<Player>();
+        }
+        Winner.SetWin();
+        t.text = $"{Winner.SO.getSo_Character_name()} Win!";
+
+        GameObject canvas = Winner.Getcanvas();
+        canvas.transform.GetChild(1).Find("VictoryText").GetComponent<TextMeshProUGUI>().text = $"WIN_[ {Winner.GetWin()} ]";
+
+        t.color = new Color32(255, 255, 255, 255);
+        elapsed = 0f;
+        t.rectTransform.localScale = new Vector3(t.rectTransform.localScale.x, 0, t.rectTransform.localScale.z);
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float f = Mathf.Clamp01(elapsed / duration);
+
+            // EaseOutCubic: 빠르게 시작해서 점점 느려짐 (감속)
+            float easedT = 1f - Mathf.Pow(1f - f, 1f);
+            float y = Mathf.Lerp(t.rectTransform.localScale.y, 1f, easedT);
+
+            t.rectTransform.localScale = new Vector3(t.rectTransform.localScale.x, y, t.rectTransform.localScale.z);
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float f = Mathf.Clamp01(elapsed / duration);
+
+
+            float easedT = Mathf.Pow(f, 1f);
+            float x = Mathf.Lerp(t.rectTransform.localScale.x, 1f, easedT);
+            float y = Mathf.Lerp(t.rectTransform.localScale.y, 0f, easedT);
+
+
+            t.rectTransform.localScale = new Vector3(x, y, t.rectTransform.localScale.z);
+            yield return null;
+        }
+
+        for (byte colorA = 0; colorA < 255; colorA += 15)
+        {
+            transform.GetChild(2).GetComponent<Image>().color = new Color32(0, 0, 0, colorA);
+            yield return null;
+        }
+        transform.GetChild(2).GetComponent<Image>().color = new Color32(0, 0, 0, 255);
+
+        yield return new WaitForSeconds(0.5f);
+        if (GamePlayManager.Instance.GetRace() == 8)
+        {
+            SceneManager.LoadScene("ResultScene");
+        }
+        else
+            SceneManager.LoadScene("StoreScene");
+    }
+
     void TReset()
     {
+        transform.GetChild(2).GetComponent<Image>().color = new Color32(0, 0, 0, 0);
         t.color = new Color32(255, 255, 255, 255);
         t2.color = new Color32(255, 255, 255, 255);
         t.rectTransform.anchoredPosition = new Vector3(0, 0);
         t2.rectTransform.anchoredPosition = new Vector3(0, 0);
+        t.rectTransform.localScale = new Vector3(1, 1, 1);
+        t2.rectTransform.localScale = new Vector3(1, 1, 1);
         t.text = "";
         t2.text = "";
     }

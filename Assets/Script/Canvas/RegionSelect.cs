@@ -7,6 +7,8 @@ public class RegionSelect : MonoBehaviour
     public void select(int Region)
     {
         GamePlayManager.Instance.Player_Region_TypeSetting(Region);
+        GamePlayManager.Instance.SetParty();
+        GamePlayManager.Instance.SetRace();
         SceneManager.LoadScene("BattleScene");
     } 
 }

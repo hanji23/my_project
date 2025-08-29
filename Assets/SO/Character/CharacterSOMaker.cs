@@ -22,6 +22,10 @@ public class CharacterSOMaker : ScriptableObject
     [SerializeField]
     private Vector2 size;
 
+    public string getSo_Character_name()
+    {
+        return Character_name;
+    }
     public float getSo_Character_type()
     {
         return Character_type;

@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee9bcf167fac19429c9e7893029c583, type: 3}
   m_Name: 2_2snowwitch
   m_EditorClassIdentifier: 
-  Character_name: "\uB208\uB9C8\uB140\uBE44\uC62C\uB81B"
+  Character_name: "\uBE44\uC62C\uB81B"
   Character_type: 2.5
-  region_type: 0
   attack_power: 0.3
   Stamina: 0
   MaxStamina: 3
