@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,7 +25,7 @@ public class readySc : MonoBehaviour
         TReset();
         //string s = "Ready!";
         //StringBuilder sb = new StringBuilder();
-        
+
         //foreach (char c in s)
         //{
         //    sb.Append(c);
@@ -34,7 +33,8 @@ public class readySc : MonoBehaviour
         //    yield return new WaitForSeconds(0.01f);
         //}
 
-        t.text = "Ready!";
+        t.text = $"Race{GamePlayManager.Instance.GetRace()}";
+        //t.text = "Ready!";
         //for (int i = 150; i >= 0; i -= 2)
         //{
         //    if (i > 100)
@@ -71,7 +71,7 @@ public class readySc : MonoBehaviour
 
         float elapsed = 0f;
         float startY = 175f;
-        float endY = 0f;
+        float endY = 20f;
 
         while (elapsed < duration)
         {
@@ -88,18 +88,56 @@ public class readySc : MonoBehaviour
 
         // 마지막 위치 보정
         t.rectTransform.anchoredPosition = new Vector2(t.rectTransform.anchoredPosition.x, endY);
+        t2.rectTransform.anchoredPosition = new Vector2(t2.rectTransform.anchoredPosition.x, -20);
+        t2.text = "Ready!";
 
-
-        yield return null;
-
-        for (byte colorA = 255; colorA > 0; colorA -= 15)
+        t2.color = new Color32(255, 255, 255, 255);
+        elapsed = 0f;
+        t2.rectTransform.localScale = new Vector3(t.rectTransform.localScale.x, 0, t.rectTransform.localScale.z);
+        while (elapsed < duration)
         {
-            t.color = new Color32(255, 255, 255, colorA);
+            elapsed += Time.deltaTime;
+            float f = Mathf.Clamp01(elapsed / duration);
+
+            // EaseOutCubic: 빠르게 시작해서 점점 느려짐 (감속)
+            float easedT = 1f - Mathf.Pow(1f - f, 1f);
+            float y = Mathf.Lerp(t2.rectTransform.localScale.y, 1f, easedT);
+
+            t2.rectTransform.localScale = new Vector3(t2.rectTransform.localScale.x, y, t2.rectTransform.localScale.z);
+
             yield return null;
         }
-        t.color = new Color32(255, 255, 255, 0);
+
         yield return null;
 
+        elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float f = Mathf.Clamp01(elapsed / duration);
+
+
+            float easedT = Mathf.Pow(f, 1f);
+            float x = Mathf.Lerp(t.rectTransform.localScale.y, 0f, easedT);
+            float y = Mathf.Lerp(t2.rectTransform.localScale.y, 0f, easedT);
+
+            t.rectTransform.localScale = new Vector3(t.rectTransform.localScale.x, x, t.rectTransform.localScale.z);
+            t2.rectTransform.localScale = new Vector3(t2.rectTransform.localScale.x, y, t2.rectTransform.localScale.z);
+            yield return null;
+        }
+
+        //for (byte colorA = 255; colorA > 0; colorA -= 15)
+        //{
+        //    t.color = new Color32(255, 255, 255, colorA);
+        //    yield return null;
+        //}
+        //t.color = new Color32(255, 255, 255, 0);
+        //yield return null;
+
+        t.rectTransform.localScale = new Vector3(1, 1, 1);
+
+        t.rectTransform.anchoredPosition = new Vector2(t.rectTransform.anchoredPosition.x, 0);
         t.text = "3";
         for (byte colorA = 255; colorA > 0; colorA -= 15)
         {
@@ -163,7 +201,7 @@ public class readySc : MonoBehaviour
         elapsed = 0f;
         startY = 175f;
         endY = 20f;
-
+        t2.rectTransform.localScale = new Vector3(t2.rectTransform.localScale.x, 1, t2.rectTransform.localScale.z);
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
@@ -269,6 +307,51 @@ public class readySc : MonoBehaviour
         //gameObject.SetActive(false);
         t.color = new Color32(255, 255, 255, 0);
         t.text = "";
+        yield return null;
+
+        TReset();
+        t.text = $"Round {GamePlayManager.Instance.GetRound()}!";
+
+        t.color = new Color32(255, 255, 255, 255);
+        elapsed = 0f;
+        t.rectTransform.localScale = new Vector3(t.rectTransform.localScale.x, 0, t.rectTransform.localScale.z);
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float f = Mathf.Clamp01(elapsed / duration);
+
+            // EaseOutCubic: 빠르게 시작해서 점점 느려짐 (감속)
+            float easedT = 1f - Mathf.Pow(1f - f, 1f);
+            float y = Mathf.Lerp(t.rectTransform.localScale.y, 1f, easedT);
+
+            t.rectTransform.localScale = new Vector3(t.rectTransform.localScale.x, y, t.rectTransform.localScale.z);
+
+            yield return null;
+        }
+
+        yield return null;
+
+        elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float f = Mathf.Clamp01(elapsed / duration);
+
+
+            float easedT = Mathf.Pow(f, 1f);
+            float x = Mathf.Lerp(t.rectTransform.localScale.x, 1f, easedT);
+            float y = Mathf.Lerp(t.rectTransform.localScale.y, 0f, easedT);
+
+
+            t.rectTransform.localScale = new Vector3(x, y, t.rectTransform.localScale.z);
+            yield return null;
+        }
+
+        t.rectTransform.localScale = new Vector3(1, 1, 1);
+        //gameObject.SetActive(false);
+        t.color = new Color32(255, 255, 255, 0);
+
         yield return null;
     }
 
@@ -430,4 +513,6 @@ public class readySc : MonoBehaviour
         t.text = "";
         t2.text = "";
     }
+
+
 }

@@ -51,6 +51,11 @@ public class GamePlayManager : MonoBehaviour
     {
         GameMode = s;
     }
+    public string GetGameMode()
+    {
+        return GameMode;
+    }
+
     public float Player_Typecheck()
     {
         return player_Type;
