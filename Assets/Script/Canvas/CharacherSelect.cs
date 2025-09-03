@@ -47,13 +47,14 @@ public class CharacherSelect : MonoBehaviour,
                     main.sprite = selectI;
                     break;
                 case "OnPointerExit":
-                    if (GamePlayManager.Instance.Player_Typecheck() == 0)
+                    if (PlayerCheckManager.Instance.ListCount() == 0)
                     {
                         Setting();
                     }
                     break;
                 case "OnPointerClick":
-                    GamePlayManager.Instance.Player_TypeSetting(player_Type);
+                    //GamePlayManager.Instance.Player_TypeSetting(player_Type);
+                    PlayerCheckManager.Instance.newPlayer("Player", player_Type);
                     break;
             }
         }

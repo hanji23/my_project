@@ -48,20 +48,20 @@ public class PlaySettingSc : MonoBehaviour
         ready.gameObject.SetActive(false);
         //
 
-        if (GamePlayManager.Instance.Player_Typecheck() == 0)
-            GamePlayManager.Instance.Player_TypeSetting(Random.Range(1, 4));
+        //if (GamePlayManager.Instance.Player_Typecheck() == 0)
+        //    GamePlayManager.Instance.Player_TypeSetting(Random.Range(1, 4));
 
-        Player = GamePlayManager.Instance.Player_Typecheck();
-        so_P = GamePlayManager.Instance.SO_find("p");
+        //Player = GamePlayManager.Instance.Player_Typecheck();
+        //so_P = GamePlayManager.Instance.SO_find("p");
 
-        if (GamePlayManager.Instance.Enemy_Typecheck() == 0)
-            GamePlayManager.Instance.Enemy_TypeSetting(Random.Range(1,4));
+        //if (GamePlayManager.Instance.Enemy_Typecheck() == 0)
+        //    GamePlayManager.Instance.Enemy_TypeSetting(Random.Range(1,4));
 
-        Enemy = GamePlayManager.Instance.Enemy_Typecheck();
-        so_E = GamePlayManager.Instance.SO_find("e");
+        //Enemy = GamePlayManager.Instance.Enemy_Typecheck();
+        //so_E = GamePlayManager.Instance.SO_find("e");
 
-        so_P.spwan_P();
-        so_E.spwan_E();
+        //so_P.spwan_P();
+        //so_E.spwan_E();
 
         playerImage.sprite = so_P.get_Sprite("main");
         playerImage.rectTransform.sizeDelta = so_P.get_imageSet("size");

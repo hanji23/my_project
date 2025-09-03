@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class VersusUI : MonoBehaviour
 {
@@ -103,8 +104,24 @@ public class VersusUI : MonoBehaviour
 
         while (PlayerCheckManager.Instance.ListCount() < 8)
         {
-            PlayerCheckManager.Instance.newPlayer("Ai");
+            PlayerCheckManager.Instance.newPlayer("Ai", Random.Range(1, 4));
+            PlayerCheckManager.Instance.PlayerRegion(Random.Range(1, 5));
         }
 
+    }
+
+    public void back()
+    {
+        if (GamePlayManager.Instance != null)
+        {
+            string text = GamePlayManager.Instance.GetGameMode();
+            GamePlayManager.Instance.settingReset();
+            GamePlayManager.Instance.GameModeSetting(text);
+        }
+
+        if (PlayerCheckManager.Instance != null)
+            PlayerCheckManager.Instance.clearlist();
+
+        SceneManager.LoadScene("SelectScene");
     }
 }

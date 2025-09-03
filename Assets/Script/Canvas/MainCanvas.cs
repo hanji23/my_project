@@ -51,12 +51,13 @@ public class MainCanvas : MonoBehaviour
 
     public void RegionExit()
     {
-        GamePlayManager.Instance.Player_TypeSetting(0);
-        GamePlayManager.Instance.Player_Region_TypeSetting(0);
+        //GamePlayManager.Instance.Player_TypeSetting(0);
+        //GamePlayManager.Instance.Player_Region_TypeSetting(0);
+        PlayerCheckManager.Instance.clearlist();
     }
 
     public void CharacterExit()
     {
-        GameObject.Find("Canvas").transform.Find("CharacterSelect").GetChild(Mathf.FloorToInt(GamePlayManager.Instance.Player_Typecheck()) - 1).GetComponent<CharacherSelect>().Setting();
+        GameObject.Find("Canvas").transform.Find("CharacterSelect").GetChild(Mathf.FloorToInt(PlayerCheckManager.Instance.GetPlayerType()) - 1).GetComponent<CharacherSelect>().Setting();
     }
 }

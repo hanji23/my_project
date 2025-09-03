@@ -41,7 +41,7 @@ public class StoreUiSc : MonoBehaviour
 
         GamePlayManager.Instance.SetRace();
         GamePlayManager.Instance.SetRound0();
-        GamePlayManager.Instance.Enemy_TypeSetting(Random.Range(1,4));
+        //GamePlayManager.Instance.Enemy_TypeSetting(Random.Range(1,4));
         SceneManager.LoadScene("BattleScene");
     }
 }

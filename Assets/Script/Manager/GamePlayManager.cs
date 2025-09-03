@@ -11,24 +11,34 @@ public class GamePlayManager : MonoBehaviour
     private string GameMode = "";
     //설명
 
-    [SerializeField]
-    private float player_Type = 0;
-    //설명
+    //[SerializeField]
+    //private float player_Type = 0;
+    ////설명
 
-    [SerializeField]
-    private float Enemy_Type = 0;
-    //설명
+    //[SerializeField]
+    //private float Enemy_Type = 0;
+    ////설명
 
-    [SerializeField]
-    private int player_Region_Type = 0;
-    //설명
+    //[SerializeField]
+    //private int player_Region_Type = 0;
+    ////설명
 
-    [SerializeField]
-    private int Enemy_Region_Type = 0;
-    //설명
+    //[SerializeField]
+    //private int Enemy_Region_Type = 0;
+    ////설명
 
     [SerializeField]
     private List<CharacterSOMaker> SO;
+
+    public int SOLC()
+    {
+        return SO.Count;
+    }
+
+    public CharacterSOMaker SOList(int i)
+    {
+        return SO[i];
+    }
 
     [SerializeField]
     private int map = 0;
@@ -39,10 +49,6 @@ public class GamePlayManager : MonoBehaviour
     private int Race = 0;
     [SerializeField]
     private int Round = 0;
-    [SerializeField]
-    private int win = 0;
-    [SerializeField]
-    private int lose = 0;
 
     
 
@@ -56,40 +62,40 @@ public class GamePlayManager : MonoBehaviour
         return GameMode;
     }
 
-    public float Player_Typecheck()
-    {
-        return player_Type;
-    }
-    public void Player_TypeSetting(float f)
-    {
-        player_Type = f;
-    }
-    public void Player_Region_TypeSetting(int i)
-    {
-        player_Region_Type = i;
-    }
-    public void Enemy_Region_TypeSetting(int i)
-    {
-        Enemy_Region_Type = i;
-    }
+    //public float Player_Typecheck()
+    //{
+    //    return player_Type;
+    //}
+    //public void Player_TypeSetting(float f)
+    //{
+    //    player_Type = f;
+    //}
+    //public void Player_Region_TypeSetting(int i)
+    //{
+    //    player_Region_Type = i;
+    //}
+    //public void Enemy_Region_TypeSetting(int i)
+    //{
+    //    Enemy_Region_Type = i;
+    //}
 
-    public float Enemy_Typecheck()
-    {
-        return Enemy_Type;
-    }
-    public void Enemy_TypeSetting(float f)
-    {
-        Enemy_Type = f;
-    }
+    //public float Enemy_Typecheck()
+    //{
+    //    return Enemy_Type;
+    //}
+    //public void Enemy_TypeSetting(float f)
+    //{
+    //    Enemy_Type = f;
+    //}
 
-    public void SetWin()
-    {
-        win++;
-    }
-    public int GetWin()
-    {
-        return win;
-    }
+    //public void SetWin()
+    //{
+    //    win++;
+    //}
+    //public int GetWin()
+    //{
+    //    return win;
+    //}
 
     public void SetRace()
     {
@@ -108,24 +114,24 @@ public class GamePlayManager : MonoBehaviour
         return Party;
     }
 
-    public CharacterSOMaker SO_find(string s)
-    {
-        int i = 0;
+    //public CharacterSOMaker SO_find(string s)
+    //{
+    //    int i = 0;
 
-        for (i = 0; i < SO.Count; i++) //  list는 Count로 전체 범위를 알수 있음
-        {
-            if (s.Equals("p") && SO[i].getSo_Character_type() == player_Type)
-            {
-                break;
-            }
-            else if (s.Equals("e") && SO[i].getSo_Character_type() == Enemy_Type)
-            {
-                break;
-            }
-        }
+    //    for (i = 0; i < SO.Count; i++) //  list는 Count로 전체 범위를 알수 있음
+    //    {
+    //        if (s.Equals("p") && SO[i].getSo_Character_type() == player_Type)
+    //        {
+    //            break;
+    //        }
+    //        else if (s.Equals("e") && SO[i].getSo_Character_type() == Enemy_Type)
+    //        {
+    //            break;
+    //        }
+    //    }
 
-        return SO[i];
-    }
+    //    return SO[i];
+    //}
 
     public int GetRound()
     {
@@ -145,20 +151,20 @@ public class GamePlayManager : MonoBehaviour
     {
         GameMode = "";
 
-        player_Type = 0;
+        //player_Type = 0;
 
-        Enemy_Type = 0;
+        //Enemy_Type = 0;
 
-        player_Region_Type = 0;
+        //player_Region_Type = 0;
 
-        Enemy_Region_Type = 0;
+        //Enemy_Region_Type = 0;
 
         map = 0;
 
         Party = 0;
         Race = 0;
         Round = 0;
-        lose = 0;
+        //lose = 0;
     }
 
     public static GamePlayManager Instance = null;
