@@ -9,5 +9,6 @@ public class GameExitSc : MonoBehaviour
     {
         SceneManager.LoadScene("StartScene");
         GamePlayManager.Instance.settingReset();
+        PlayerCheckManager.Instance.clearlist();
     }
 }

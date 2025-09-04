@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerCheckManager : MonoBehaviour
@@ -21,6 +22,11 @@ public class PlayerCheckManager : MonoBehaviour
         [SerializeField]
         private string isPlayer;
 
+        static int count = 0;
+        
+        [SerializeField]
+        private int playerNum = 0;
+
         [SerializeField]
         private float player_Type = 0;
         //Ό³Έν
@@ -35,6 +41,10 @@ public class PlayerCheckManager : MonoBehaviour
         [SerializeField]
         private CharacterSOMaker PlayerSo;
 
+        public PlayerList()
+        {
+            
+        }
         public PlayerList(string p)
         {
             isPlayer = p;
@@ -82,6 +92,27 @@ public class PlayerCheckManager : MonoBehaviour
 
             PlayerSo = GamePlayManager.Instance.SOList(i);
         }
+
+        public CharacterSOMaker Get_SO()
+        {
+            return PlayerSo;
+        }
+
+        public void SetCount(bool b) 
+        {
+            if (b)
+            {
+                count++;
+                playerNum = count;
+            }
+            else
+                count = 0;
+            
+        }
+        public int GetPlayerNum()
+        {
+            return playerNum;
+        }
     }
 
     [SerializeField]
@@ -94,6 +125,14 @@ public class PlayerCheckManager : MonoBehaviour
 
         newP.Player_TypeSetting(f);
         newP.SO_find();
+        newP.SetCount(true);
+
+        if (newP.GetisPlayer() == "Ai")
+        {
+            newP.Player_Region_TypeSetting(UnityEngine.Random.Range(1, 5));
+        }
+
+        //Debug.Log(newP.GetPlayerNum());
     }
 
     public void PlayerRegion(int i)
@@ -104,11 +143,39 @@ public class PlayerCheckManager : MonoBehaviour
             {
                 p.Player_Region_TypeSetting(i);
             }
-            else if(p.GetisPlayer() == "Ai")
+        }
+    }
+
+    public int PlayerCheck()
+    {
+        for (int i = 0; i < Player.Count; i++)
+        {
+            if (Player[i].GetisPlayer() == "Player")
             {
-                p.Player_Region_TypeSetting(i);
+                return i;
             }
         }
+        return -1;
+    }
+    public float PlayerTypeCheck(int i)
+    {
+        return Player[i].Player_Typecheck();
+    }
+    public CharacterSOMaker PlayerSOCheck(int i)
+    {
+        return Player[i].Get_SO();
+    }
+    public int PlayerNumCheck(int i)
+    {
+        return Player[i].GetPlayerNum();
+    }
+    public int GetPlayerWin(int i)
+    {
+        return Player[i].GetWin();
+    }
+    public void SetPlayerWin(int i)
+    {
+        Player[i].SetWin();
     }
 
     public float GetPlayerType()
@@ -128,26 +195,21 @@ public class PlayerCheckManager : MonoBehaviour
         return Player.Count;
     }
 
-    
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public float ListCheck(int i)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-
+        return Player[i].Player_Typecheck();
     }
 
     public void clearlist()
     {
         Player.Clear();
+        PlayerList playerList = new PlayerList();
+        playerList.SetCount(false);
     }
 
-
+    public void clearCount()
+    {
+        PlayerList playerList = new PlayerList();
+        playerList.SetCount(false);
+    }
 }

@@ -39,7 +39,7 @@ public class CharacterSOMaker : ScriptableObject
         return Stamina;
     }
 
-    public void spwan_P()
+    public void spwan_P(int i)
     {
         GameObject p = Instantiate(player, new Vector3(-6, 0 , 0), Quaternion.identity);
         p.transform.localScale = new Vector3(-1, 1, 1);
@@ -47,15 +47,17 @@ public class CharacterSOMaker : ScriptableObject
         p.name = "Player1";
         p.GetComponent<Player>().setType("p");
         p.GetComponent<Player>().SO = this;
+        p.GetComponent<Player>().Setpnum(i);
         Camera.main.GetComponent<CameraSc>().player1 = p.transform;
     }
 
-    public void spwan_E()
+    public void spwan_E(int i)
     {
         GameObject e = Instantiate(player, new Vector3(6, 0, 0), Quaternion.identity);
         e.name = "Player2";
         e.GetComponent<Player>().setType("e");
         e.GetComponent<Player>().SO = this;
+        e.GetComponent<Player>().Setpnum(i);
         Camera.main.GetComponent<CameraSc>().player2 = e.transform;
     }
 

@@ -1,14 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
 
 public class Player : MonoBehaviour
 {
     [SerializeField]
     private string type;
+    [SerializeField]
+    private int pnum;
 
     Transform attack0, attack1;
     Animator ani;
@@ -133,15 +133,20 @@ public class Player : MonoBehaviour
 
     public int GetWin()
     {
-        return Win;
+        return /*Win;*/PlayerCheckManager.Instance.GetPlayerWin(pnum);
     }
     public void SetWin()
     {
-        Win++;
+        PlayerCheckManager.Instance.SetPlayerWin(pnum);
     }
 
     public int GetRoundWin()
     {
         return RoundWin;
+    }
+
+    public void Setpnum(int i)
+    {
+        pnum = i;
     }
 }

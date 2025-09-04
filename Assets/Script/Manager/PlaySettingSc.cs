@@ -17,7 +17,7 @@ public class PlaySettingSc : MonoBehaviour
     private CharacterSOMaker so_P, so_E;
 
     [SerializeField]
-    private float Player, Enemy;
+    private int Player, Enemy;
 
     public static PlaySettingSc Instance = null;
 
@@ -54,14 +54,29 @@ public class PlaySettingSc : MonoBehaviour
         //Player = GamePlayManager.Instance.Player_Typecheck();
         //so_P = GamePlayManager.Instance.SO_find("p");
 
+        for (int i = 0; i < 8; i++)
+        {
+            if (PlayerCheckManager.Instance.PlayerCheck() != -1 && PlayerCheckManager.Instance.PlayerCheck() == i)
+            {
+                Player = PlayerCheckManager.Instance.PlayerNumCheck(i);
+                so_P = PlayerCheckManager.Instance.PlayerSOCheck(i);
+                break;
+            }
+        }
+
         //if (GamePlayManager.Instance.Enemy_Typecheck() == 0)
         //    GamePlayManager.Instance.Enemy_TypeSetting(Random.Range(1,4));
 
         //Enemy = GamePlayManager.Instance.Enemy_Typecheck();
         //so_E = GamePlayManager.Instance.SO_find("e");
 
-        //so_P.spwan_P();
-        //so_E.spwan_E();
+        int emeny = Random.Range(1, 8);
+
+        Enemy = PlayerCheckManager.Instance.PlayerNumCheck(emeny);
+        so_E = PlayerCheckManager.Instance.PlayerSOCheck(emeny);
+
+        so_P.spwan_P(Player - 1);
+        so_E.spwan_E(Enemy - 1);
 
         playerImage.sprite = so_P.get_Sprite("main");
         playerImage.rectTransform.sizeDelta = so_P.get_imageSet("size");
