@@ -39,14 +39,14 @@ public class PlaySettingSc : MonoBehaviour
     private void OnEnable()
     {
         //테스트용 나중에 삭제
-        PlayerUI1.transform.parent.gameObject.SetActive(false);
-        EnemyUI1.transform.parent.gameObject.SetActive(false);
-        Destroy(GameObject.Find("Player1"));
-        Destroy(GameObject.Find("Player2"));
-        Destroy(GameObject.Find("AttackBall"));
-        ready.GetComponent<readySc>().StopAllCoroutines();
-        ready.gameObject.SetActive(false);
-        //
+        //PlayerUI1.transform.parent.gameObject.SetActive(false);
+        //EnemyUI1.transform.parent.gameObject.SetActive(false);
+        //Destroy(GameObject.Find("Player1"));
+        //Destroy(GameObject.Find("Player2"));
+        //Destroy(GameObject.Find("AttackBall"));
+        //ready.GetComponent<readySc>().StopAllCoroutines();
+        //ready.gameObject.SetActive(false);
+        //여기까지
 
         //if (GamePlayManager.Instance.Player_Typecheck() == 0)
         //    GamePlayManager.Instance.Player_TypeSetting(Random.Range(1, 4));
@@ -70,10 +70,12 @@ public class PlaySettingSc : MonoBehaviour
         //Enemy = GamePlayManager.Instance.Enemy_Typecheck();
         //so_E = GamePlayManager.Instance.SO_find("e");
 
-        int emeny = Random.Range(1, 8);
+        //int emeny = Random.Range(1, 8);
 
-        Enemy = PlayerCheckManager.Instance.PlayerNumCheck(emeny);
-        so_E = PlayerCheckManager.Instance.PlayerSOCheck(emeny);
+        int emeny = PlayerCheckManager.Instance.GetPlayerVs(Player - 1);
+
+        Enemy = PlayerCheckManager.Instance.PlayerNumCheck(emeny - 1);
+        so_E = PlayerCheckManager.Instance.PlayerSOCheck(emeny - 1);
 
         so_P.spwan_P(Player - 1);
         so_E.spwan_E(Enemy - 1);

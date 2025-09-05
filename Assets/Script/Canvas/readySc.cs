@@ -493,13 +493,21 @@ public class readySc : MonoBehaviour
         transform.GetChild(2).GetComponent<Image>().color = new Color32(0, 0, 0, 255);
 
         yield return new WaitForSeconds(0.5f);
+
+        PlayerCheckManager.Instance.AiVsResult();
+
         if (GamePlayManager.Instance.GetRace() == 8)
         {
+            PlayerCheckManager.Instance.playerResultList();
             SceneManager.LoadScene("ResultScene");
         }
         else
+        {
+            PlayerCheckManager.Instance.playerNextVsList();
             SceneManager.LoadScene("StoreScene");
+        }
     }
+           
 
     void TReset()
     {

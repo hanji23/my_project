@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerCheckManager : MonoBehaviour
 {
@@ -41,6 +42,12 @@ public class PlayerCheckManager : MonoBehaviour
         [SerializeField]
         private CharacterSOMaker PlayerSo;
 
+        [SerializeField]
+        private bool isWin = false;
+
+        [SerializeField]
+        private int VsplayerNum = 0;
+
         public PlayerList()
         {
             
@@ -78,6 +85,16 @@ public class PlayerCheckManager : MonoBehaviour
             return win;
         }
 
+        public void WinCheck(bool b)
+        {
+            isWin = b;
+        }
+
+        public bool GetisWin()
+        {
+            return isWin;
+        }
+
         public void SO_find()
         {
             int i = 0;
@@ -113,10 +130,86 @@ public class PlayerCheckManager : MonoBehaviour
         {
             return playerNum;
         }
+
+        public void SetVsplayerNum(int i)
+        {
+            VsplayerNum = i;
+        }
+
+        public int GetVsplayerNum()
+        {
+            return VsplayerNum;
+        }
     }
 
     [SerializeField]
     private List<PlayerList> Player = new List<PlayerList>();
+
+
+    [SerializeField]
+    private List<PlayerList> PlayerCopy = new List<PlayerList>();
+    public void PlayerCopyStart()
+    {
+        for(int i = 0;i < Player.Count; i++)
+        {
+            PlayerCopy.Add(Player[i]);
+        }
+    }
+
+    [SerializeField]
+    private List<PlayerList> VersusPlayers = new List<PlayerList>();
+
+    public void playerRandomList()
+    {
+        for(int i = 0; i < Player.Count; i++)
+        {
+            int r = UnityEngine.Random.Range(0, PlayerCopy.Count);
+            VersusPlayers.Add(PlayerCopy[r]);
+            PlayerCopy.RemoveAt(r);
+
+            if (PlayerCopy.Count % 2 == 0)
+            {
+                VersusPlayers[i].SetVsplayerNum(VersusPlayers[i - 1].GetPlayerNum());
+                VersusPlayers[i - 1].SetVsplayerNum(VersusPlayers[i].GetPlayerNum());
+            }
+        }
+    }
+
+    public void playerNextVsList()
+    {
+        VersusPlayers.Clear();
+        for (int i = 0; i < Player.Count; i++)
+        {
+            if (Player[i].GetisWin())
+            {
+                VersusPlayers.Add(Player[i]);
+            }
+        }
+        for (int i = 0; i < Player.Count; i++)
+        {
+            if (!Player[i].GetisWin())
+            {
+                VersusPlayers.Add(Player[i]);
+            }
+        }
+        for (int i = 0; i < VersusPlayers.Count; i++)
+        {
+            Player[i].WinCheck(false);
+
+            if (i % 2 == 1)
+            {
+                VersusPlayers[i - 1].SetVsplayerNum(VersusPlayers[i].GetPlayerNum());
+                VersusPlayers[i].SetVsplayerNum(VersusPlayers[i - 1].GetPlayerNum());
+            }
+        }
+    }
+
+    public void playerResultList()
+    {
+        int winner = 0;
+
+        VersusPlayers.Sort((s1, s2) => s2.GetWin().CompareTo(s1.GetWin()));
+    }
 
     public void newPlayer(string s, float f)
     {
@@ -157,6 +250,16 @@ public class PlayerCheckManager : MonoBehaviour
         }
         return -1;
     }
+
+    public string GetResultPlayer(int i)
+    {
+        return VersusPlayers[i].GetisPlayer();
+    }
+    public string GetResultCharacter(int i)
+    {
+        return VersusPlayers[i].Get_SO().getSo_Character_name();
+    }
+
     public float PlayerTypeCheck(int i)
     {
         return Player[i].Player_Typecheck();
@@ -169,6 +272,14 @@ public class PlayerCheckManager : MonoBehaviour
     {
         return Player[i].GetPlayerNum();
     }
+    public int ResultPlayerNumCheck(int i)
+    {
+        return VersusPlayers[i].GetPlayerNum();
+    }
+    public int ResultPlayerWinCheck(int i)
+    {
+        return VersusPlayers[i].GetWin();
+    }
     public int GetPlayerWin(int i)
     {
         return Player[i].GetWin();
@@ -176,6 +287,18 @@ public class PlayerCheckManager : MonoBehaviour
     public void SetPlayerWin(int i)
     {
         Player[i].SetWin();
+    }
+    public void IsPlayerWin(int i, bool b)
+    {
+        Player[i].WinCheck(b);
+    }
+
+    public void PlayerWinReset()
+    {
+        for (int i = 0; i < Player.Count; i++)
+        {
+            Player[i].WinCheck(false);
+        }
     }
 
     public float GetPlayerType()
@@ -190,6 +313,32 @@ public class PlayerCheckManager : MonoBehaviour
         return 0;
     }
 
+    public int GetPlayerVs(int i)
+    {
+        return Player[i].GetVsplayerNum();
+    }
+
+    public void AiVsResult()
+    {
+        for (int i = 0; i < VersusPlayers.Count; i += 2)
+        {
+            if (VersusPlayers[i].GetisWin() == false && VersusPlayers[i + 1].GetisWin() == false)
+            {
+                if (UnityEngine.Random.Range(0, 2) == 1)
+                {
+                    VersusPlayers[i].WinCheck(true);
+                    VersusPlayers[i].SetWin();
+                }
+                else
+                {
+                    VersusPlayers[i + 1].WinCheck(true);
+                    VersusPlayers[i + 1].SetWin();
+                }
+                    
+            }
+        }
+    }
+
     public int ListCount()
     {
         return Player.Count;
@@ -200,9 +349,16 @@ public class PlayerCheckManager : MonoBehaviour
         return Player[i].Player_Typecheck();
     }
 
+    public float ResultListCheck(int i)
+    {
+        return VersusPlayers[i].Player_Typecheck();
+    }
+
     public void clearlist()
     {
         Player.Clear();
+        PlayerCopy.Clear();
+        VersusPlayers.Clear();
         PlayerList playerList = new PlayerList();
         playerList.SetCount(false);
     }
@@ -212,4 +368,6 @@ public class PlayerCheckManager : MonoBehaviour
         PlayerList playerList = new PlayerList();
         playerList.SetCount(false);
     }
+
+
 }

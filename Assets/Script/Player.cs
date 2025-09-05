@@ -138,6 +138,7 @@ public class Player : MonoBehaviour
     public void SetWin()
     {
         PlayerCheckManager.Instance.SetPlayerWin(pnum);
+        PlayerCheckManager.Instance.IsPlayerWin(pnum, true);
     }
 
     public int GetRoundWin()

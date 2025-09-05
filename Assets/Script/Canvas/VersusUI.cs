@@ -156,6 +156,9 @@ public class VersusUI : MonoBehaviour
         parentRect.localScale = new Vector3(1, 1, 1);
         yield return new WaitForSeconds(0.5f);
 
+        PlayerCheckManager.Instance.PlayerCopyStart();
+        PlayerCheckManager.Instance.playerRandomList();
+
         SceneManager.LoadScene("BattleScene");
     }
 
