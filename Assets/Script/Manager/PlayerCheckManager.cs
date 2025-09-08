@@ -30,7 +30,7 @@ public class PlayerCheckManager : MonoBehaviour
 
         [SerializeField]
         private float player_Type = 0;
-        //설명
+        //설명 (캐릭터 타입 넘버 .5는 변종 스킨)
 
         [SerializeField]
         private int player_Region_Type = 0;
@@ -250,20 +250,24 @@ public class PlayerCheckManager : MonoBehaviour
         }
         return -1;
     }
-
+    public string GetPlayer(int i)
+    {
+        return Player[i].GetisPlayer();
+    }
     public string GetResultPlayer(int i)
     {
         return VersusPlayers[i].GetisPlayer();
     }
+    public string GetCharacter(int i)
+    {
+        return Player[i].Get_SO().getSo_Character_name();
+    }
+
     public string GetResultCharacter(int i)
     {
         return VersusPlayers[i].Get_SO().getSo_Character_name();
     }
 
-    public float PlayerTypeCheck(int i)
-    {
-        return Player[i].Player_Typecheck();
-    }
     public CharacterSOMaker PlayerSOCheck(int i)
     {
         return Player[i].Get_SO();

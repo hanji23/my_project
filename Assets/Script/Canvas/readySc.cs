@@ -496,7 +496,7 @@ public class readySc : MonoBehaviour
 
         PlayerCheckManager.Instance.AiVsResult();
 
-        if (GamePlayManager.Instance.GetRace() == 8)
+        if (GamePlayManager.Instance.GetRace() == GamePlayManager.Instance.GetFinalRace())
         {
             PlayerCheckManager.Instance.playerResultList();
             SceneManager.LoadScene("ResultScene");

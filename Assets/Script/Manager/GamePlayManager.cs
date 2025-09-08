@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GamePlayManager : MonoBehaviour
 {
+    [SerializeField]
+    private float timespeed = 1.0f;
 
     [SerializeField]
     private string GameMode = "";
@@ -47,6 +49,8 @@ public class GamePlayManager : MonoBehaviour
     private int Party = 0;
     [SerializeField]
     private int Race = 0;
+    [SerializeField]
+    private int FinalRace = 0;
     [SerializeField]
     private int Round = 0;
 
@@ -104,6 +108,14 @@ public class GamePlayManager : MonoBehaviour
     public int GetRace()
     {
         return Race;
+    }
+    public void SetFinalRace(int i)
+    {
+        FinalRace = i;
+    }
+    public int GetFinalRace()
+    {
+        return FinalRace;
     }
     public void SetParty()
     {
@@ -186,6 +198,7 @@ public class GamePlayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Round <= 3)
+            Time.timeScale = timespeed;
     }
 }
