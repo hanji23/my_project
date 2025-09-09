@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: 1_o_seo2
   m_EditorClassIdentifier: 
   Character_name: "\uC624\uC11C"
-  Character_type: 1.5
-  region_type: 0
+  Character_type: 2
   attack_power: 0.25
   Stamina: 0
   MaxStamina: 3

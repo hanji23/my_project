@@ -59,6 +59,9 @@ public class MainCanvas : MonoBehaviour
 
     public void CharacterExit()
     {
-        GameObject.Find("Canvas").transform.Find("CharacterSelect").GetChild(Mathf.FloorToInt(PlayerCheckManager.Instance.GetPlayerType()) - 1).GetComponent<CharacherSelect>().Setting();
+        //나중에 반복문 돌리기
+        GameObject.Find("Canvas").transform.Find("CharacterSelect").GetChild(0).GetComponent<CharacherSelect>().Setting();
+        GameObject.Find("Canvas").transform.Find("CharacterSelect").GetChild(1).GetComponent<CharacherSelect>().Setting();
+        GameObject.Find("Canvas").transform.Find("CharacterSelect").GetChild(2).GetComponent<CharacherSelect>().Setting();
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 2_1snowfox
   m_EditorClassIdentifier: 
   Character_name: "\uBE44\uC62C\uB81B"
-  Character_type: 2
+  Character_type: 3
   attack_power: 0.3
   Stamina: 0
   MaxStamina: 3

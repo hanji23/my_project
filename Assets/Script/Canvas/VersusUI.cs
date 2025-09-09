@@ -76,7 +76,7 @@ public class VersusUI : MonoBehaviour
             {
                 f = PlayerCheckManager.Instance.ListCheck(i);
 
-                icon[i].sprite = sprites[Mathf.FloorToInt(f) - 1];
+                icon[i].sprite = sprites[Mathf.FloorToInt(f)];
             }
         }
         else
@@ -122,7 +122,19 @@ public class VersusUI : MonoBehaviour
 
         while (PlayerCheckManager.Instance.ListCount() < 8)
         {
-            PlayerCheckManager.Instance.newPlayer("Ai", Random.Range(1, 4));
+            //변종스킨 구현시 제거
+            int r = Random.Range(1, 6);
+            switch (r)
+            {
+                case 2:
+                case 4:
+                case 6:
+                    r++;
+                    break;
+            }
+            PlayerCheckManager.Instance.newPlayer("Ai", r);
+            //
+            //PlayerCheckManager.Instance.newPlayer("Ai", Random.Range(1, 7));
             //PlayerCheckManager.Instance.PlayerRegion(Random.Range(1, 5));
         }
         PlayerCheckManager.Instance.clearCount();

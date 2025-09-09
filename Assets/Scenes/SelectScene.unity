@@ -2966,7 +2966,7 @@ MonoBehaviour:
   selectI: {fileID: 1770393459, guid: e6b5a8342906c4c40b26f182a694b59f, type: 3}
   t: {fileID: 1361248133}
   Name: "\uBE44\uC62C\uB81B"
-  player_Type: 2
+  player_Type: 3
   aniName: Fox_run_UI
   position: {x: 20, y: -9}
   size: {x: 176, y: 144}
@@ -4783,7 +4783,7 @@ MonoBehaviour:
   selectI: {fileID: -1425238248, guid: 5c0c6db881f40d943bacc3afa5f966c6, type: 3}
   t: {fileID: 1361248133}
   Name: "\uB9C8\uB9AC"
-  player_Type: 3
+  player_Type: 5
   aniName: Mari_run1_UI
   position: {x: 50, y: 1}
   size: {x: 224, y: 192}

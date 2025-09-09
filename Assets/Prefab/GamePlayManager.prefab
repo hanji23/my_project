@@ -44,11 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373929bf802804b47aa414a607e5eede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timespeed: 1
   GameMode: 
-  player_Type: 0
-  Enemy_Type: 0
-  Region_Type: 0
   SO:
+  - {fileID: 11400000, guid: 17ad8abb419a63f459759f75430a69c5, type: 2}
   - {fileID: 11400000, guid: 8be5049fd7421e948987b93aeabdd672, type: 2}
   - {fileID: 11400000, guid: ab33e2d4de1d8204da790a656bd5116e, type: 2}
   - {fileID: 11400000, guid: fb2bbc76d304ca3478e6fc45ca08bb2e, type: 2}
@@ -56,8 +55,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 37ede548db568df4ab631c25c20ab47d, type: 2}
   - {fileID: 11400000, guid: 359e194a43102074682025a90140bb31, type: 2}
   map: 0
-  race: 0
-  NowRound: 0
-  MaxRound: 0
-  win: 0
-  lose: 0
+  Party: 0
+  Race: 0
+  FinalRace: 0
+  Round: 0

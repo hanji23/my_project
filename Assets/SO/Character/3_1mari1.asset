@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 3_1mari1
   m_EditorClassIdentifier: 
   Character_name: "\uB9C8\uB9AC"
-  Character_type: 3
+  Character_type: 5
   attack_power: 0.15
   Stamina: 0
   MaxStamina: 3

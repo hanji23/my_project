@@ -1,6 +1,8 @@
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
@@ -30,7 +32,7 @@ public class PlayerCheckManager : MonoBehaviour
 
         [SerializeField]
         private float player_Type = 0;
-        //설명 (캐릭터 타입 넘버 .5는 변종 스킨)
+        //설명 (캐릭터 타입 넘버 짝수는 변종 스킨)
 
         [SerializeField]
         private int player_Region_Type = 0;
@@ -178,20 +180,27 @@ public class PlayerCheckManager : MonoBehaviour
     public void playerNextVsList()
     {
         VersusPlayers.Clear();
-        for (int i = 0; i < Player.Count; i++)
+
+        List<PlayerList> winners = new List<PlayerList>();
+        List<PlayerList> losers = new List<PlayerList>();
+
+        // 승자/패자 분리
+        foreach (var p in Player)
         {
-            if (Player[i].GetisWin())
-            {
-                VersusPlayers.Add(Player[i]);
-            }
+            if (p.GetisWin())
+                winners.Add(p);
+            else
+                losers.Add(p);
         }
-        for (int i = 0; i < Player.Count; i++)
-        {
-            if (!Player[i].GetisWin())
-            {
-                VersusPlayers.Add(Player[i]);
-            }
-        }
+
+        // 셔플
+        Shuffle(winners);
+        Shuffle(losers);
+
+        // 섞인 순서대로 VersusPlayers에 추가
+        VersusPlayers.AddRange(winners);
+        VersusPlayers.AddRange(losers);
+
         for (int i = 0; i < VersusPlayers.Count; i++)
         {
             Player[i].WinCheck(false);
@@ -203,6 +212,72 @@ public class PlayerCheckManager : MonoBehaviour
             }
         }
     }
+
+    // 진짜 랜덤 셔플 함수 (Fisher-Yates)
+    private void Shuffle<T>(List<T> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int j = UnityEngine.Random.Range(0, i + 1);
+            (list[i], list[j]) = (list[j], list[i]);
+        }
+    }
+
+    //public void playerNextVsList()
+    //{
+    //    VersusPlayers.Clear();
+
+    //    List<int> f = new List<int>();
+
+    //    for (int i = 0; i < Player.Count; i++)
+    //    {
+    //        if (Player[i].GetisWin())
+    //        {
+    //            //VersusPlayers.Add(Player[i]);
+    //            f.Add(i);
+    //        }
+    //    }
+
+    //    for (int i = f.Count; i > 0; i--)
+    //    {
+    //        int r = UnityEngine.Random.Range(0, f.Count);
+
+    //        VersusPlayers.Add(Player[f[r]]);
+
+    //        f.RemoveAt(r);
+    //    }
+
+    //    f.Clear();
+
+    //    for (int i = 0; i < Player.Count; i++)
+    //    {
+    //        if (!Player[i].GetisWin())
+    //        {
+    //            //VersusPlayers.Add(Player[i]);
+    //            f.Add(i);
+    //        }
+    //    }
+
+    //    for (int i = f.Count; i > 0; i--)
+    //    {
+    //        int r = UnityEngine.Random.Range(0, f.Count);
+
+    //        VersusPlayers.Add(Player[f[r]]);
+
+    //        f.RemoveAt(r);
+    //    }
+
+    //    for (int i = 0; i < VersusPlayers.Count; i++)
+    //    {
+    //        Player[i].WinCheck(false);
+
+    //        if (i % 2 == 1)
+    //        {
+    //            VersusPlayers[i - 1].SetVsplayerNum(VersusPlayers[i].GetPlayerNum());
+    //            VersusPlayers[i].SetVsplayerNum(VersusPlayers[i - 1].GetPlayerNum());
+    //        }
+    //    }
+    //}
 
     public void playerResultList()
     {
@@ -328,6 +403,7 @@ public class PlayerCheckManager : MonoBehaviour
         {
             if (VersusPlayers[i].GetisWin() == false && VersusPlayers[i + 1].GetisWin() == false)
             {
+                   
                 if (UnityEngine.Random.Range(0, 2) == 1)
                 {
                     VersusPlayers[i].WinCheck(true);

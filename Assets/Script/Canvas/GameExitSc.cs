@@ -24,7 +24,7 @@ public class GameExitSc : MonoBehaviour
             {
                 f = PlayerCheckManager.Instance.ResultListCheck(i);
 
-                icon[i].sprite = sprites[Mathf.FloorToInt(f) - 1];
+                icon[i].sprite = sprites[Mathf.FloorToInt(f)];
                 icon[i].transform.parent.transform.parent.GetChild(2).GetComponent<TextMeshProUGUI>().text = 
                     $"{PlayerCheckManager.Instance.GetResultPlayer(i)}{PlayerCheckManager.Instance.ResultPlayerNumCheck(i)} \n {PlayerCheckManager.Instance.GetResultCharacter(i)}";
                 icon[i].transform.parent.transform.parent.GetChild(3).GetComponent<TextMeshProUGUI>().text =

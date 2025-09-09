@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cee9bcf167fac19429c9e7893029c583, type: 3}
-  m_Name: 2_2snowwitch
+  m_Name: 0
   m_EditorClassIdentifier: 
-  Character_name: "\uBE44\uC62C\uB81B"
-  Character_type: 4
-  attack_power: 0.3
+  Character_name: 
+  Character_type: 0
+  attack_power: 0
   Stamina: 0
-  MaxStamina: 3
+  MaxStamina: 0
   player: {fileID: 0}
   mainI: {fileID: 0}
   loseI: {fileID: 0}

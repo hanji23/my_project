@@ -9,10 +9,10 @@ using UnityEngine.UI;
 public class StoreUiSc : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI win, namet;
+    private TextMeshProUGUI win, namet, win_p, namet_p, roundt;
 
     [SerializeField]
-    private Image I;
+    private Image I, I_p;
 
     [SerializeField]
     private int Player, Enemy;
@@ -30,6 +30,12 @@ public class StoreUiSc : MonoBehaviour
                 if (PlayerCheckManager.Instance.PlayerCheck() != -1 && PlayerCheckManager.Instance.PlayerCheck() == i)
                 {
                     Player = PlayerCheckManager.Instance.PlayerNumCheck(i);
+                    I_p.sprite = sprites[Mathf.FloorToInt(PlayerCheckManager.Instance.ListCheck(Player - 1))];
+
+                    namet_p.text =
+                $"{PlayerCheckManager.Instance.GetPlayer(Player - 1)}{PlayerCheckManager.Instance.PlayerNumCheck(Player - 1)} \n {PlayerCheckManager.Instance.GetCharacter(Player - 1)}";
+                    win_p.text = $"win [ {PlayerCheckManager.Instance.ResultPlayerWinCheck(Player - 1)} ]";
+
                     break;
                 }
             }
@@ -37,7 +43,7 @@ public class StoreUiSc : MonoBehaviour
 
             Enemy = PlayerCheckManager.Instance.PlayerNumCheck(emeny - 1);
 
-            I.sprite = sprites[Mathf.FloorToInt(PlayerCheckManager.Instance.ListCheck(Enemy - 2))];
+            I.sprite = sprites[Mathf.FloorToInt(PlayerCheckManager.Instance.ListCheck(Enemy - 1))];
 
             namet.text =
                 $"{PlayerCheckManager.Instance.GetPlayer(Enemy - 1)}{PlayerCheckManager.Instance.PlayerNumCheck(Enemy - 1)} \n {PlayerCheckManager.Instance.GetCharacter(Enemy - 1)}";
@@ -57,6 +63,7 @@ public class StoreUiSc : MonoBehaviour
         handle = Addressables.LoadAssetAsync<Sprite[]>("character_Icon");
         handle.Completed += Handle_Completed;
 
+        roundt.text = $"Race {GamePlayManager.Instance.GetRace() + 1}\n<size=10>다음상대</size>";
     }
 
     // Update is called once per frame
