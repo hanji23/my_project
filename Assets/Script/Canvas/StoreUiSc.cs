@@ -34,7 +34,7 @@ public class StoreUiSc : MonoBehaviour
 
                     namet_p.text =
                 $"{PlayerCheckManager.Instance.GetPlayer(Player - 1)}{PlayerCheckManager.Instance.PlayerNumCheck(Player - 1)} \n {PlayerCheckManager.Instance.GetCharacter(Player - 1)}";
-                    win_p.text = $"win [ {PlayerCheckManager.Instance.ResultPlayerWinCheck(Player - 1)} ]";
+                    win_p.text = $"win [ {PlayerCheckManager.Instance.GetPlayerWin(Player - 1)} ]";
 
                     break;
                 }
@@ -47,7 +47,7 @@ public class StoreUiSc : MonoBehaviour
 
             namet.text =
                 $"{PlayerCheckManager.Instance.GetPlayer(Enemy - 1)}{PlayerCheckManager.Instance.PlayerNumCheck(Enemy - 1)} \n {PlayerCheckManager.Instance.GetCharacter(Enemy - 1)}";
-            win.text = $"win [ {PlayerCheckManager.Instance.ResultPlayerWinCheck(Enemy - 1)} ]";
+            win.text = $"win [ {PlayerCheckManager.Instance.GetPlayerWin(Enemy - 1)} ]";
 
         }
         else
