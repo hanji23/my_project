@@ -30,7 +30,7 @@ public class BallSc : MonoBehaviour
     int nowtime;
 
     //TextMeshProUGUI t1;
-    readySc GameCanvas;
+    ready GameCanvas;
 
     Vector3 startposition;
 
@@ -42,7 +42,7 @@ public class BallSc : MonoBehaviour
         p1 = GameObject.Find("Player1").transform;
         p2 = GameObject.Find("Player2").transform;
 
-        GameCanvas = GameObject.Find("fightCanvas").transform.GetComponent<readySc>();
+        GameCanvas = GameObject.Find("fightCanvas").transform.GetComponent<ready>();
 
         //t1 = GameObject.Find("PlayerCanvas").transform.Find("Text").GetComponent<TextMeshProUGUI>();
 

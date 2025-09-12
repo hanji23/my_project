@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class readySc : MonoBehaviour
+public class ready : MonoBehaviour
 {
     TextMeshProUGUI t, t2;
 
@@ -259,6 +259,8 @@ public class readySc : MonoBehaviour
 
         //gameObject.SetActive(false);
     }
+
+    // = Util.GetColor(255, 255, 255 255)
 
     public IEnumerator UIdown()
     {
