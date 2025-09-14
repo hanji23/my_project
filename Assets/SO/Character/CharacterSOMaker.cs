@@ -48,7 +48,7 @@ public class CharacterSOMaker : ScriptableObject
         p.GetComponent<Player>().setType("p");
         p.GetComponent<Player>().SO = this;
         p.GetComponent<Player>().Setpnum(i);
-        Camera.main.GetComponent<CameraSc>().player1 = p.transform;
+        Camera.main.GetComponent<MainCamera>().player1 = p.transform;
     }
 
     public void spwan_E(int i)
@@ -58,7 +58,7 @@ public class CharacterSOMaker : ScriptableObject
         e.GetComponent<Player>().setType("e");
         e.GetComponent<Player>().SO = this;
         e.GetComponent<Player>().Setpnum(i);
-        Camera.main.GetComponent<CameraSc>().player2 = e.transform;
+        Camera.main.GetComponent<MainCamera>().player2 = e.transform;
     }
 
     public Vector2 get_imageSet(string s)

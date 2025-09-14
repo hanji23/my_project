@@ -3,7 +3,7 @@ using System.Drawing;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlaySettingSc : MonoBehaviour
+public class PlaySetting : MonoBehaviour
 {
     [SerializeField]
     private GameObject GPM;
@@ -19,7 +19,7 @@ public class PlaySettingSc : MonoBehaviour
     [SerializeField]
     private int Player, Enemy;
 
-    public static PlaySettingSc Instance = null;
+    public static PlaySetting Instance = null;
 
     private void Awake()
     {

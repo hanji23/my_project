@@ -6,188 +6,57 @@ using UnityEngine.SceneManagement;
 
 public class GamePlayManager : MonoBehaviour
 {
+    public static GamePlayManager Instance = null;
+
     [SerializeField]
     private float timespeed = 1.0f;
+    //테스트용 시간속도 변수
+
+    public enum GameModeList 
+    { 
+        None,
+        TraningMode,
+        AiMode,
+        OnLineMode
+    }
+
+    public int GameMode = 0;
+
+    //게임모드 정보가 들어가는 변수 (추후 enum으로 변경 예정)
 
     [SerializeField]
-    private string GameMode = "";
-    //설명
+    private List<CharacterSOMaker> so;
+    //캐릭터 SO 정보가 담긴 리스트
+    public List<CharacterSOMaker> SO => so;
 
-    //[SerializeField]
-    //private float player_Type = 0;
-    ////설명
+    public int map = 0;
+    // 게임 스테이지를 나타내는 변수 (추후 enum으로 변경할 예정)
 
-    //[SerializeField]
-    //private float Enemy_Type = 0;
-    ////설명
-
-    //[SerializeField]
-    //private int player_Region_Type = 0;
-    ////설명
-
-    //[SerializeField]
-    //private int Enemy_Region_Type = 0;
-    ////설명
+    public int Race = 0;
+    //현재 레이스 변수 한 레이스당 3번의 라운드가 진행됨
 
     [SerializeField]
-    private List<CharacterSOMaker> SO;
+    public int FinalRace = 0;
+    //한 게임당 몇번의 레이스를 진행할지 경정할때 쓰이는 변수
 
-    public int SOLC()
-    {
-        return SO.Count;
-    }
-
-    public CharacterSOMaker SOList(int i)
-    {
-        return SO[i];
-    }
-
-    [SerializeField]
-    private int map = 0;
-
-    [SerializeField]
-    private int Party = 0;
-    [SerializeField]
-    private int Race = 0;
-    [SerializeField]
-    private int FinalRace = 0;
-    [SerializeField]
-    private int Round = 0;
-
-    
-
-
-    public void GameModeSetting(string s)
-    {
-        GameMode = s;
-    }
-    public string GetGameMode()
-    {
-        return GameMode;
-    }
-
-    //public float Player_Typecheck()
-    //{
-    //    return player_Type;
-    //}
-    //public void Player_TypeSetting(float f)
-    //{
-    //    player_Type = f;
-    //}
-    //public void Player_Region_TypeSetting(int i)
-    //{
-    //    player_Region_Type = i;
-    //}
-    //public void Enemy_Region_TypeSetting(int i)
-    //{
-    //    Enemy_Region_Type = i;
-    //}
-
-    //public float Enemy_Typecheck()
-    //{
-    //    return Enemy_Type;
-    //}
-    //public void Enemy_TypeSetting(float f)
-    //{
-    //    Enemy_Type = f;
-    //}
-
-    //public void SetWin()
-    //{
-    //    win++;
-    //}
-    //public int GetWin()
-    //{
-    //    return win;
-    //}
-
-    public void SetRace()
-    {
-        Race++;
-    }
-    public int GetRace()
-    {
-        return Race;
-    }
-    public void SetFinalRace(int i)
-    {
-        FinalRace = i;
-    }
-    public int GetFinalRace()
-    {
-        return FinalRace;
-    }
-    public void SetParty()
-    {
-        Party++;
-    }
-    public int GetParty()
-    {
-        return Party;
-    }
-
-    //public CharacterSOMaker SO_find(string s)
-    //{
-    //    int i = 0;
-
-    //    for (i = 0; i < SO.Count; i++) //  list는 Count로 전체 범위를 알수 있음
-    //    {
-    //        if (s.Equals("p") && SO[i].getSo_Character_type() == player_Type)
-    //        {
-    //            break;
-    //        }
-    //        else if (s.Equals("e") && SO[i].getSo_Character_type() == Enemy_Type)
-    //        {
-    //            break;
-    //        }
-    //    }
-
-    //    return SO[i];
-    //}
-
-    public int GetRound()
-    {
-        return Round;
-    }
-
-    public void SetRound()
-    {
-        Round++;
-    }
-    public void SetRound0()
-    {
-        Round = 0;
-    }
+    public int Round = 0;
+    //현재 라운드가 몇인지 기록하는 변수
 
     public void settingReset()
     {
-        GameMode = "";
-
-        //player_Type = 0;
-
-        //Enemy_Type = 0;
-
-        //player_Region_Type = 0;
-
-        //Enemy_Region_Type = 0;
-
+        GameMode = 0;
         map = 0;
-
-        Party = 0;
         Race = 0;
         Round = 0;
-        //lose = 0;
     }
 
-    public static GamePlayManager Instance = null;
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
-
         if (Instance == null)
         {
             Instance = this;
         }
+        DontDestroyOnLoad(this.gameObject);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

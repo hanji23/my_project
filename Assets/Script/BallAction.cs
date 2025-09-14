@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 using static UnityEditor.PlayerSettings;
 using static UnityEngine.GraphicsBuffer;
 
-public class BallSc : MonoBehaviour
+public class BallAction : MonoBehaviour
 {
     Rigidbody rb;
     Transform p1, p2;
@@ -89,7 +89,7 @@ public class BallSc : MonoBehaviour
     {
         if (AttackType.Equals("PlayerHit"))
         {
-            if (time <= 0 && GamePlayManager.Instance.GetRound() <= 3)
+            if (time <= 0 && GamePlayManager.Instance.Round <= 3)
             {
                 attackStart();
                 NextRoundBall();
@@ -149,7 +149,7 @@ public class BallSc : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player") && !gameEnd)
         {
-            Camera.main.GetComponent<CameraSc>().moveOnOff(false);
+            Camera.main.GetComponent<MainCamera>().moveOnOff(false);
             gameEnd = true;
             AttackType = "PlayerHit";
             rb.linearDamping = 0;
@@ -166,9 +166,9 @@ public class BallSc : MonoBehaviour
             else if (collision.collider.transform == p2)
                 p1.GetComponent<Player>().canvasWinCheck();
 
-            GamePlayManager.Instance.SetRound();
+            GamePlayManager.Instance.Round++;
 
-            if (GamePlayManager.Instance.GetRound() <= 3)
+            if (GamePlayManager.Instance.Round <= 3)
             {
                 StartCoroutine(GameCanvas.UIdown());
             }
@@ -227,7 +227,7 @@ public class BallSc : MonoBehaviour
 
         p1.GetComponent<Animator>().Play("idle");
         p2.GetComponent<Animator>().Play("idle");
-        Camera.main.GetComponent<CameraSc>().moveOnOff(true);
+        Camera.main.GetComponent<MainCamera>().moveOnOff(true);
         
     }
 
@@ -243,7 +243,7 @@ public class BallSc : MonoBehaviour
 
         p1.GetComponent<Animator>().Play("idle");
         p2.GetComponent<Animator>().Play("idle");
-        Camera.main.GetComponent<CameraSc>().moveOnOff(true);
+        Camera.main.GetComponent<MainCamera>().moveOnOff(true);
     }
 
     Vector3 targetpos()

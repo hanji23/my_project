@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
                 startMove = false;
                 ani.Play("idle");
 
-                PlaySettingSc.Instance.UIstart();
+                PlaySetting.Instance.UIstart();
 
                 Invoke("canvasCheck", 0.5f);
             }

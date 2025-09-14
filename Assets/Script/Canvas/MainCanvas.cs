@@ -1,4 +1,6 @@
+using System;
 using TMPro;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -39,14 +41,14 @@ public class MainCanvas : MonoBehaviour
     {
         //씬 이동
         //유의사항 :  씬이 유니티 에디터에서 등록되어 있어야 합니다.
-        GamePlayManager.Instance.GameModeSetting(s);
-        GamePlayManager.Instance.SetFinalRace(16);
+        GamePlayManager.Instance.GameMode = (int)(GamePlayManager.GameModeList)Enum.Parse(typeof(GamePlayManager.GameModeList), s);
+        GamePlayManager.Instance.FinalRace = 16;
         SceneManager.LoadScene("SelectScene");
     }
 
     public void SelectExit()
     {
-        GamePlayManager.Instance.GameModeSetting(null);
+        GamePlayManager.Instance.GameMode = 0;
         SceneManager.LoadScene("StartScene");
     }
 

@@ -101,15 +101,15 @@ public class PlayerCheckManager : MonoBehaviour
         {
             int i = 0;
 
-            for (i = 0; i < GamePlayManager.Instance.SOLC(); i++) //  list는 Count로 전체 범위를 알수 있음
+            for (i = 0; i < GamePlayManager.Instance.SO.Count(); i++) //  list는 Count로 전체 범위를 알수 있음
             {
-                if (GamePlayManager.Instance.SOList(i).getSo_Character_type() == player_Type)
+                if (GamePlayManager.Instance.SO[i].getSo_Character_type() == player_Type)
                 {
                     break;
                 }
             }
 
-            PlayerSo = GamePlayManager.Instance.SOList(i);
+            PlayerSo = GamePlayManager.Instance.SO[i];
         }
 
         public CharacterSOMaker Get_SO()

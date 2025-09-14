@@ -33,7 +33,7 @@ public class ready : MonoBehaviour
         //    yield return new WaitForSeconds(0.01f);
         //}
 
-        t.text = $"Race{GamePlayManager.Instance.GetRace()}";
+        t.text = $"Race{GamePlayManager.Instance.Race}";
         //t.text = "Ready!";
         //for (int i = 150; i >= 0; i -= 2)
         //{
@@ -166,7 +166,7 @@ public class ready : MonoBehaviour
         t.color = new Color32(255, 255, 255, 255);
         t2.color = new Color32(255, 255, 255, 255);
 
-        GamePlayManager.Instance.SetRound();
+        GamePlayManager.Instance.Round++;
 
         t.text = "Let's";
         t2.text = "Party!";
@@ -312,7 +312,7 @@ public class ready : MonoBehaviour
         yield return null;
 
         TReset();
-        t.text = $"Round {GamePlayManager.Instance.GetRound()}!";
+        t.text = $"Round {GamePlayManager.Instance.Round}!";
 
         t.color = new Color32(255, 255, 255, 255);
         elapsed = 0f;
@@ -498,7 +498,7 @@ public class ready : MonoBehaviour
 
         PlayerCheckManager.Instance.AiVsResult();
 
-        if (GamePlayManager.Instance.GetRace() == GamePlayManager.Instance.GetFinalRace())
+        if (GamePlayManager.Instance.Race == GamePlayManager.Instance.FinalRace)
         {
             PlayerCheckManager.Instance.playerResultList();
             SceneManager.LoadScene("ResultScene");

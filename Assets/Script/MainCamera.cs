@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class CameraSc : MonoBehaviour
+public class MainCamera : MonoBehaviour
 {
     public Transform player1, player2;
     float distance;

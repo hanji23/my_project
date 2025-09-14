@@ -23,7 +23,10 @@ public class VersusUI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (GamePlayManager.Instance != null && (GamePlayManager.Instance.GetGameMode().Equals("TraningMode") || GamePlayManager.Instance.GetGameMode().Equals("AiMode"))) 
+        var mode = (GamePlayManager.GameModeList)GamePlayManager.Instance.GameMode;
+
+        if (GamePlayManager.Instance != null && 
+            (mode == GamePlayManager.GameModeList.TraningMode || mode == GamePlayManager.GameModeList.AiMode))
         {
             time = 0;
         }
@@ -178,9 +181,9 @@ public class VersusUI : MonoBehaviour
     {
         if (GamePlayManager.Instance != null)
         {
-            string text = GamePlayManager.Instance.GetGameMode();
+            int gameMode_now = GamePlayManager.Instance.GameMode;
             GamePlayManager.Instance.settingReset();
-            GamePlayManager.Instance.GameModeSetting(text);
+            GamePlayManager.Instance.GameMode = gameMode_now;
         }
 
         if (PlayerCheckManager.Instance != null)

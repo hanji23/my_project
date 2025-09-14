@@ -5,7 +5,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameExitSc : MonoBehaviour
+public class GameExitUI : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 

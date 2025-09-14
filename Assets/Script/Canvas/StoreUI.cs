@@ -6,7 +6,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class StoreUiSc : MonoBehaviour
+public class StoreUI : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI win, namet, win_p, namet_p, roundt;
@@ -63,7 +63,7 @@ public class StoreUiSc : MonoBehaviour
         handle = Addressables.LoadAssetAsync<Sprite[]>("character_Icon");
         handle.Completed += Handle_Completed;
 
-        roundt.text = $"Race {GamePlayManager.Instance.GetRace() + 1}\n<size=10>다음상대</size>";
+        roundt.text = $"Race {GamePlayManager.Instance.Race + 1}\n<size=10>다음상대</size>";
     }
 
     // Update is called once per frame
@@ -94,8 +94,8 @@ public class StoreUiSc : MonoBehaviour
         su.color = new Color32(0, 0, 0, 255);
         yield return new WaitForSeconds(0.5f);
 
-        GamePlayManager.Instance.SetRace();
-        GamePlayManager.Instance.SetRound0();
+        GamePlayManager.Instance.Race++;
+        GamePlayManager.Instance.Round = 0;
         //GamePlayManager.Instance.Enemy_TypeSetting(Random.Range(1,4));
         SceneManager.LoadScene("BattleScene");
     }
