@@ -4,15 +4,40 @@ using UnityEngine;
 public class CharacterSOMaker : ScriptableObject
 {
     [SerializeField]
-    private string Character_name;
+    private string character_name;
+    public string Character_name
+    {
+        get { return character_name; }
+    }
+
     [SerializeField]
-    private float Character_type;
+    private int character_type;
+    public int Character_Type
+    {
+        get { return character_type; }
+    }
+
     [SerializeField]
     private float attack_power;
+    public float Attack_Power
+    {
+        get { return attack_power; }
+    }
+
     [SerializeField]
-    private float Stamina;
+    private float stamina;
+    public float Stamina
+    {
+        get { return stamina; }
+    }
+
     [SerializeField]
-    private float MaxStamina;
+    private float maxStamina;
+    public float MaxStamina
+    {
+        get { return maxStamina; }
+    }
+
     [SerializeField]
     private GameObject player;
 
@@ -22,43 +47,27 @@ public class CharacterSOMaker : ScriptableObject
     [SerializeField]
     private Vector2 size;
 
-    public string getSo_Character_name()
+    public void spwan(int i, char c, int num, int x)
     {
-        return Character_name;
-    }
-    public float getSo_Character_type()
-    {
-        return Character_type;
-    }
-    public float getSo_attack_power()
-    {
-        return attack_power;
-    }
-    public float getSo_Stamina()
-    {
-        return Stamina;
-    }
+        GameObject p = null;
+        p = Instantiate(player, new Vector3(6 * x, 0, 0), Quaternion.identity);
 
-    public void spwan_P(int i)
-    {
-        GameObject p = Instantiate(player, new Vector3(-6, 0 , 0), Quaternion.identity);
-        p.transform.localScale = new Vector3(-1, 1, 1);
-        p.transform.GetComponent<BoxCollider>().size = new Vector3(p.transform.GetComponent<BoxCollider>().size.x * -1, p.transform.GetComponent<BoxCollider>().size.y, p.transform.GetComponent<BoxCollider>().size.z);
-        p.name = "Player1";
-        p.GetComponent<Player>().setType("p");
+        if (c == 'p')
+        {
+            p.transform.localScale = new Vector3(-1, 1, 1);
+            p.transform.GetComponent<BoxCollider>().size = new Vector3(p.transform.GetComponent<BoxCollider>().size.x * -1, p.transform.GetComponent<BoxCollider>().size.y, p.transform.GetComponent<BoxCollider>().size.z);
+
+            Camera.main.GetComponent<MainCamera>().player1 = p.transform;
+        }
+        else if(c == 'e')
+        {
+            Camera.main.GetComponent<MainCamera>().player2 = p.transform;
+        }
+
+        p.name = $"Player{num}";
+        p.GetComponent<Player>().Type = c;
         p.GetComponent<Player>().SO = this;
-        p.GetComponent<Player>().Setpnum(i);
-        Camera.main.GetComponent<MainCamera>().player1 = p.transform;
-    }
-
-    public void spwan_E(int i)
-    {
-        GameObject e = Instantiate(player, new Vector3(6, 0, 0), Quaternion.identity);
-        e.name = "Player2";
-        e.GetComponent<Player>().setType("e");
-        e.GetComponent<Player>().SO = this;
-        e.GetComponent<Player>().Setpnum(i);
-        Camera.main.GetComponent<MainCamera>().player2 = e.transform;
+        p.GetComponent<Player>().Pnum = i;
     }
 
     public Vector2 get_imageSet(string s)

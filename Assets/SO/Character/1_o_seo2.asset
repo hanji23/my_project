@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee9bcf167fac19429c9e7893029c583, type: 3}
   m_Name: 1_o_seo2
   m_EditorClassIdentifier: 
-  Character_name: "\uC624\uC11C"
-  Character_type: 2
+  character_name: "\uC624\uC11C(\uACFC\uAC70)"
+  character_type: 2
   attack_power: 0.25
-  Stamina: 0
-  MaxStamina: 3
+  stamina: 0
+  maxStamina: 3
   player: {fileID: 0}
   mainI: {fileID: 0}
   loseI: {fileID: 0}

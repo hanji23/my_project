@@ -9,157 +9,91 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class PlayerCheckManager : MonoBehaviour
 {
     public static PlayerCheckManager Instance = null;
-    private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
 
-        if (Instance == null)
-        {
-            Instance = this;
-        }
+    public enum EPlayerType
+    {
+        None,
+        Player,
+        Enemy,
+        Ai
     }
 
     [Serializable]
-    private class PlayerList
+    public class PlayerList
     {
-        [SerializeField]
-        private string isPlayer;
+
+        public int PlayerType;
 
         static int count = 0;
         
-        [SerializeField]
-        private int playerNum = 0;
+        public int playerNum = 0;
+        //플레이어 번호 방에 들어온 순서대로 값이 1씩 높아짐
 
-        [SerializeField]
-        private float player_Type = 0;
-        //설명 (캐릭터 타입 넘버 짝수는 변종 스킨)
+        public int VsplayerNum = 0;
+        //이번 레이스에 상대할 상대 플레이어 번호
 
-        [SerializeField]
-        private int player_Region_Type = 0;
-        //설명
+        public int characterNum = 0;
+        //고유 캐릭터 넘버(캐릭터 선택시 받아옴) (짝수는 변종 스킨)
 
-        [SerializeField]
-        private int win;
+        public int player_Region_Type = 0;
+        //캐릭터 진영 (선택창에서 고른것이 여기로 넘어옴)
 
-        [SerializeField]
-        private CharacterSOMaker PlayerSo;
+        public int win;
+        //이긴 횟수
 
-        [SerializeField]
-        private bool isWin = false;
+        public CharacterSOMaker PlayerSo;
+        //캐릭터 스크랩터블 오브젝트 (선택한 캐릭터의 스크랩터블 오브젝트를 여기로 받음)
 
-        [SerializeField]
-        private int VsplayerNum = 0;
+        public bool isWin = false;
+        //해당 레이스를 이겻는지 확인하는 변수
 
         public PlayerList()
         {
             
         }
-        public PlayerList(string p)
+        public PlayerList(int p)
         {
-            isPlayer = p;
+            PlayerType = p;
         }
 
-        public string GetisPlayer()
-        {
-            return isPlayer;
-        }
+        //public void SO_find()
+        //{
+        //    int i = 0;
 
-        // 변수 읽기 수정 부분
-        public float Player_Typecheck()
-        {
-            return player_Type;
-        }
-        public void Player_TypeSetting(float f)
-        {
-            player_Type = f;
-        }
-        public void Player_Region_TypeSetting(int i)
-        {
-            player_Region_Type = i;
-        }
+        //    for (i = 0; i < GamePlayManager.Instance.SO.Count(); i++) //  list는 Count로 전체 범위를 알수 있음
+        //    {
+        //        if (GamePlayManager.Instance.SO[i].getSo_Character_type() == characterNum)
+        //        {
+        //            break;
+        //        }
+        //    }
 
-        public void SetWin()
-        {
-            win++;
-        }
-        public int GetWin()
-        {
-            return win;
-        }
-
-        public void WinCheck(bool b)
-        {
-            isWin = b;
-        }
-
-        public bool GetisWin()
-        {
-            return isWin;
-        }
-
-        public void SO_find()
-        {
-            int i = 0;
-
-            for (i = 0; i < GamePlayManager.Instance.SO.Count(); i++) //  list는 Count로 전체 범위를 알수 있음
-            {
-                if (GamePlayManager.Instance.SO[i].getSo_Character_type() == player_Type)
-                {
-                    break;
-                }
-            }
-
-            PlayerSo = GamePlayManager.Instance.SO[i];
-        }
-
-        public CharacterSOMaker Get_SO()
-        {
-            return PlayerSo;
-        }
+        //    PlayerSo = GamePlayManager.Instance.SO[i];
+        //}
 
         public void SetCount(bool b) 
         {
             if (b)
-            {
-                count++;
-                playerNum = count;
-            }
+                playerNum = ++count;
             else
                 count = 0;
-            
-        }
-        public int GetPlayerNum()
-        {
-            return playerNum;
         }
 
-        public void SetVsplayerNum(int i)
-        {
-            VsplayerNum = i;
-        }
-
-        public int GetVsplayerNum()
-        {
-            return VsplayerNum;
-        }
     }
 
-    [SerializeField]
-    private List<PlayerList> Player = new List<PlayerList>();
-
+    public List<PlayerList> Player = new List<PlayerList>();
 
     [SerializeField]
     private List<PlayerList> PlayerCopy = new List<PlayerList>();
     public void PlayerCopyStart()
     {
-        for(int i = 0;i < Player.Count; i++)
+        for (int i = 0; i < Player.Count; i++)
         {
             PlayerCopy.Add(Player[i]);
         }
     }
 
-    [SerializeField]
-    private List<PlayerList> VersusPlayers = new List<PlayerList>();
+    public List<PlayerList> VersusPlayers = new List<PlayerList>();
 
     public void playerRandomList()
     {
@@ -171,8 +105,8 @@ public class PlayerCheckManager : MonoBehaviour
 
             if (PlayerCopy.Count % 2 == 0)
             {
-                VersusPlayers[i].SetVsplayerNum(VersusPlayers[i - 1].GetPlayerNum());
-                VersusPlayers[i - 1].SetVsplayerNum(VersusPlayers[i].GetPlayerNum());
+                VersusPlayers[i].VsplayerNum = VersusPlayers[i - 1].playerNum;
+                VersusPlayers[i - 1].VsplayerNum = VersusPlayers[i].playerNum;
             }
         }
     }
@@ -187,7 +121,7 @@ public class PlayerCheckManager : MonoBehaviour
         // 승자/패자 분리
         foreach (var p in Player)
         {
-            if (p.GetisWin())
+            if (p.isWin)
                 winners.Add(p);
             else
                 losers.Add(p);
@@ -203,12 +137,12 @@ public class PlayerCheckManager : MonoBehaviour
 
         for (int i = 0; i < VersusPlayers.Count; i++)
         {
-            Player[i].WinCheck(false);
+            Player[i].isWin = false;
 
             if (i % 2 == 1)
             {
-                VersusPlayers[i - 1].SetVsplayerNum(VersusPlayers[i].GetPlayerNum());
-                VersusPlayers[i].SetVsplayerNum(VersusPlayers[i - 1].GetPlayerNum());
+                VersusPlayers[i - 1].VsplayerNum = VersusPlayers[i].playerNum;
+                VersusPlayers[i].VsplayerNum = VersusPlayers[i - 1].playerNum;
             }
         }
     }
@@ -223,93 +157,26 @@ public class PlayerCheckManager : MonoBehaviour
         }
     }
 
-    //public void playerNextVsList()
-    //{
-    //    VersusPlayers.Clear();
-
-    //    List<int> f = new List<int>();
-
-    //    for (int i = 0; i < Player.Count; i++)
-    //    {
-    //        if (Player[i].GetisWin())
-    //        {
-    //            //VersusPlayers.Add(Player[i]);
-    //            f.Add(i);
-    //        }
-    //    }
-
-    //    for (int i = f.Count; i > 0; i--)
-    //    {
-    //        int r = UnityEngine.Random.Range(0, f.Count);
-
-    //        VersusPlayers.Add(Player[f[r]]);
-
-    //        f.RemoveAt(r);
-    //    }
-
-    //    f.Clear();
-
-    //    for (int i = 0; i < Player.Count; i++)
-    //    {
-    //        if (!Player[i].GetisWin())
-    //        {
-    //            //VersusPlayers.Add(Player[i]);
-    //            f.Add(i);
-    //        }
-    //    }
-
-    //    for (int i = f.Count; i > 0; i--)
-    //    {
-    //        int r = UnityEngine.Random.Range(0, f.Count);
-
-    //        VersusPlayers.Add(Player[f[r]]);
-
-    //        f.RemoveAt(r);
-    //    }
-
-    //    for (int i = 0; i < VersusPlayers.Count; i++)
-    //    {
-    //        Player[i].WinCheck(false);
-
-    //        if (i % 2 == 1)
-    //        {
-    //            VersusPlayers[i - 1].SetVsplayerNum(VersusPlayers[i].GetPlayerNum());
-    //            VersusPlayers[i].SetVsplayerNum(VersusPlayers[i - 1].GetPlayerNum());
-    //        }
-    //    }
-    //}
-
-    public void playerResultList()
+    public void newPlayer(int i, int n)
     {
-        int winner = 0;
-
-        VersusPlayers.Sort((s1, s2) => s2.GetWin().CompareTo(s1.GetWin()));
-    }
-
-    public void newPlayer(string s, float f)
-    {
-        PlayerList newP = new PlayerList(s);
+        PlayerList newP = new PlayerList(i);
         Player.Add(newP); // 리스트에 추가
 
-        newP.Player_TypeSetting(f);
-        newP.SO_find();
+        newP.characterNum = n;
+        newP.PlayerSo = GamePlayManager.Instance.SO[newP.characterNum]; // 잘안되면 SO_find 참고
         newP.SetCount(true);
 
-        if (newP.GetisPlayer() == "Ai")
-        {
-            newP.Player_Region_TypeSetting(UnityEngine.Random.Range(1, 5));
-        }
-
-        //Debug.Log(newP.GetPlayerNum());
+        if ((EPlayerType)newP.PlayerType == EPlayerType.Ai)
+            newP.player_Region_Type = (UnityEngine.Random.Range(1, 5));
     }
 
     public void PlayerRegion(int i)
     {
         foreach (PlayerList p in Player)
         {
-            if (p.GetisPlayer() == "Player")
+            if ((EPlayerType)p.PlayerType == EPlayerType.Player)
             {
-                p.Player_Region_TypeSetting(i);
+                p.player_Region_Type = i;
             }
         }
     }
@@ -318,120 +185,34 @@ public class PlayerCheckManager : MonoBehaviour
     {
         for (int i = 0; i < Player.Count; i++)
         {
-            if (Player[i].GetisPlayer() == "Player")
+            if ((EPlayerType)Player[i].PlayerType == EPlayerType.Player)
             {
                 return i;
             }
         }
         return -1;
     }
-    public string GetPlayer(int i)
-    {
-        return Player[i].GetisPlayer();
-    }
-    public string GetResultPlayer(int i)
-    {
-        return VersusPlayers[i].GetisPlayer();
-    }
-    public string GetCharacter(int i)
-    {
-        return Player[i].Get_SO().getSo_Character_name();
-    }
-
-    public string GetResultCharacter(int i)
-    {
-        return VersusPlayers[i].Get_SO().getSo_Character_name();
-    }
-
-    public CharacterSOMaker PlayerSOCheck(int i)
-    {
-        return Player[i].Get_SO();
-    }
-    public int PlayerNumCheck(int i)
-    {
-        return Player[i].GetPlayerNum();
-    }
-    public int ResultPlayerNumCheck(int i)
-    {
-        return VersusPlayers[i].GetPlayerNum();
-    }
-    public int ResultPlayerWinCheck(int i)
-    {
-        return VersusPlayers[i].GetWin();
-    }
-    public int GetPlayerWin(int i)
-    {
-        return Player[i].GetWin();
-    }
-    public void SetPlayerWin(int i)
-    {
-        Player[i].SetWin();
-    }
-    public void IsPlayerWin(int i, bool b)
-    {
-        Player[i].WinCheck(b);
-    }
-
-    public void PlayerWinReset()
-    {
-        for (int i = 0; i < Player.Count; i++)
-        {
-            Player[i].WinCheck(false);
-        }
-    }
-
-    public float GetPlayerType()
-    {
-        foreach (PlayerList p in Player)
-        {
-            if (p.GetisPlayer() == "Player")
-            {
-                return p.Player_Typecheck();
-            }
-        }
-        return 0;
-    }
-
-    public int GetPlayerVs(int i)
-    {
-        return Player[i].GetVsplayerNum();
-    }
 
     public void AiVsResult()
     {
         for (int i = 0; i < VersusPlayers.Count; i += 2)
         {
-            if (VersusPlayers[i].GetisWin() == false && VersusPlayers[i + 1].GetisWin() == false)
+            if (VersusPlayers[i].isWin == false && VersusPlayers[i + 1].isWin == false)
             {
                    
                 if (UnityEngine.Random.Range(0, 2) == 1)
                 {
-                    VersusPlayers[i].WinCheck(true);
-                    VersusPlayers[i].SetWin();
+                    VersusPlayers[i].isWin = true;
+                    VersusPlayers[i].win++;
                 }
                 else
                 {
-                    VersusPlayers[i + 1].WinCheck(true);
-                    VersusPlayers[i + 1].SetWin();
+                    VersusPlayers[i + 1].isWin = true;
+                    VersusPlayers[i + 1].win++;
                 }
                     
             }
         }
-    }
-
-    public int ListCount()
-    {
-        return Player.Count;
-    }
-
-    public float ListCheck(int i)
-    {
-        return Player[i].Player_Typecheck();
-    }
-
-    public float ResultListCheck(int i)
-    {
-        return VersusPlayers[i].Player_Typecheck();
     }
 
     public void clearlist()
@@ -449,5 +230,13 @@ public class PlayerCheckManager : MonoBehaviour
         playerList.SetCount(false);
     }
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
 
+        DontDestroyOnLoad(this.gameObject);
+    }
 }

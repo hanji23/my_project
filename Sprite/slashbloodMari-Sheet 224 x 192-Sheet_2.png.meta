@@ -1,0 +1,1384 @@
+fileFormatVersion: 2
+guid: 5c0c6db881f40d943bacc3afa5f966c6
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1152
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 295f939ad51fabc4887df27abc7323db
+      internalID: -1656942164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_1
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 1152
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac500089421a8a94da9ebd4429e355ff
+      internalID: -1949027915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_2
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 1152
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af66452a4c955a14b84f153d06d5141d
+      internalID: 1167125009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_3
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 1152
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c54b39409d57f746ad01d18cd87e64c
+      internalID: 1545266402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_4
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1152
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 370a2c842e0049e4d919714d252e8042
+      internalID: 1122965870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_5
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 1152
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c12d18a88097c44db2e7b6e18a88d9c
+      internalID: -1060384452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_6
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 1152
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bf1043748ed66f4a8513645a3a0bbe3
+      internalID: -281924170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_7
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1152
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55f10a3d28f7f45429fd9878ec98c022
+      internalID: -1576258897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 960
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3f35b8027146274ab5e3887e427b77a
+      internalID: 748500549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_9
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 960
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25d91f6357ad9bb4b8ebdb4e1df5a3b2
+      internalID: 664762921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_10
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 960
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32e54c8eef82d8a44b0e066853224da0
+      internalID: 737457576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_11
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 960
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02a3cfca72aad044885aa035b4e5ba24
+      internalID: 71045244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_12
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 960
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ec879b4a06e2464585ae255a8c12c2f
+      internalID: 1716150868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_13
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 960
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86e3b64facca492459ac5578a856f1eb
+      internalID: 1721730249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_14
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 960
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c65746cb97ae7e45ab0410379957471
+      internalID: -614815844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_15
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 960
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92e6fe46077dbba47a09fec1efc9973a
+      internalID: 2130756656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 586bc92c0ba656348a150f54d4224cf3
+      internalID: 210258140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_17
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 768
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9034c187c2bf27c49940cf5d8dce6c8f
+      internalID: 1451866804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_18
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 768
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46555b70d221c2e48ad44850c8523484
+      internalID: 1213542757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_19
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 768
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa85c7f51cdcf9a4f8889fa0862688c0
+      internalID: 531486976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 576
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c43dc62f8409274ab9849d7de016829
+      internalID: 2031701517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_21
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 576
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b253c0e74b6fdfd49b3c273dd65ff06c
+      internalID: -2074196413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_22
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 576
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd873d327587e6c409080f6e89897186
+      internalID: -839942464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_23
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 576
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cdc45d8e53e42b41a47ede17e77659f
+      internalID: 1225601398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_24
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 576
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92bc5268b32af1641a083093cb4630f4
+      internalID: -999454409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_25
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 576
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: daa15f2c97a0d4147bf85597cc038a0e
+      internalID: 1165160791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_26
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 576
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07ee583d5af6d044d9688c6e4833076b
+      internalID: -1425238248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_27
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 576
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0da71cae54ac1c14cb7115a736009dc0
+      internalID: -1660182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96c3ef9860b99b04f91b95eab3ce9216
+      internalID: 902649267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_29
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 384
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b39ae1259de00f14e8372f92e7b934f5
+      internalID: -1311128546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_30
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 384
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a18b1b3788a44f043909c92642c4ae62
+      internalID: -32985047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_31
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 384
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba3ad82e09cf33444aabab1ef01aa244
+      internalID: 343904548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_32
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 384
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14ba24f62d0d508459abd1821c8ccde8
+      internalID: 1715523599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_33
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 384
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8936d641f743bf84daae104e6928d90f
+      internalID: 978311464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_34
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 384
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9249e13ac820f04aa1907a9f73a2150
+      internalID: -370118016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_35
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 384
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c0bfd8bfa5ef3a4cb42060415331dc2
+      internalID: -2139494250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_36
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 384
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59ae7f7870f9a4949bd849666e357fd5
+      internalID: -383682531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_37
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfa8618350354084da9ae2efb2892c1f
+      internalID: -1008914568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_38
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 192
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e37e43935c349b4780a9210f62afa5a
+      internalID: 1071319770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_39
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e48f322427ac76e4688fc3e5024f6043
+      internalID: -642330710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_40
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 192
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fae52bd2ab82641458397ed4758a8f3d
+      internalID: 1499290199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_41
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 192
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f934dcbc56a2c904e828c9546eb19766
+      internalID: 1668869590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_42
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 192
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 427a35c1cdb101e4b808dcf88400c530
+      internalID: 304909647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_43
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 192
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cfcdd359442f1143aab2eb841848a41
+      internalID: -1951329311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_44
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 192
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5c2e086815bfe442a73b804821048bb
+      internalID: 529170923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_45
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 192
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 052f554776eb2484db2b5bae8ddf3797
+      internalID: 964604006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_46
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5398be983c9aa974a8f6800fb9ae4c2f
+      internalID: -1069889189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_47
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d206951283ae06445b98cb798bdb5be3
+      internalID: -207063856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_48
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a427dd3c027e18c4ea76f4322d320e68
+      internalID: -655607530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_49
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b249b576ac240e43b28c148ee7be983
+      internalID: -1605764249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_50
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6876ecbfba93cf344ac4b9c7cfa0921c
+      internalID: 1751314493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_51
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 0
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e94c0324250822744bbc8efab5f9de00
+      internalID: -1163264149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_52
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 0
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57147e2c0fa2bcc4e8952ca8d98e5141
+      internalID: 1876502714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_53
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 0
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16c0e3432a596b546b8e55cdf02dfae9
+      internalID: -266596674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashbloodMari-Sheet 224 x 192-Sheet_2_54
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 224
+        height: 192
+      alignment: 9
+      pivot: {x: 0.6339286, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e47a67cb221e9b9439b9871178112d37
+      internalID: -1242232212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 0d0d572f7efa2a14fa039a315fec5eb1
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":224.0,"y":192.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.6339285969734192,"y":0.25},"autoSlicingMethod":0,"spriteAlignment":9,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      slashbloodMari-Sheet 224 x 192-Sheet_2_0: -1656942164
+      slashbloodMari-Sheet 224 x 192-Sheet_2_1: -1949027915
+      slashbloodMari-Sheet 224 x 192-Sheet_2_10: 737457576
+      slashbloodMari-Sheet 224 x 192-Sheet_2_11: 71045244
+      slashbloodMari-Sheet 224 x 192-Sheet_2_12: 1716150868
+      slashbloodMari-Sheet 224 x 192-Sheet_2_13: 1721730249
+      slashbloodMari-Sheet 224 x 192-Sheet_2_14: -614815844
+      slashbloodMari-Sheet 224 x 192-Sheet_2_15: 2130756656
+      slashbloodMari-Sheet 224 x 192-Sheet_2_16: 210258140
+      slashbloodMari-Sheet 224 x 192-Sheet_2_17: 1451866804
+      slashbloodMari-Sheet 224 x 192-Sheet_2_18: 1213542757
+      slashbloodMari-Sheet 224 x 192-Sheet_2_19: 531486976
+      slashbloodMari-Sheet 224 x 192-Sheet_2_2: 1167125009
+      slashbloodMari-Sheet 224 x 192-Sheet_2_20: 2031701517
+      slashbloodMari-Sheet 224 x 192-Sheet_2_21: -2074196413
+      slashbloodMari-Sheet 224 x 192-Sheet_2_22: -839942464
+      slashbloodMari-Sheet 224 x 192-Sheet_2_23: 1225601398
+      slashbloodMari-Sheet 224 x 192-Sheet_2_24: -999454409
+      slashbloodMari-Sheet 224 x 192-Sheet_2_25: 1165160791
+      slashbloodMari-Sheet 224 x 192-Sheet_2_26: -1425238248
+      slashbloodMari-Sheet 224 x 192-Sheet_2_27: -1660182
+      slashbloodMari-Sheet 224 x 192-Sheet_2_28: 902649267
+      slashbloodMari-Sheet 224 x 192-Sheet_2_29: -1311128546
+      slashbloodMari-Sheet 224 x 192-Sheet_2_3: 1545266402
+      slashbloodMari-Sheet 224 x 192-Sheet_2_30: -32985047
+      slashbloodMari-Sheet 224 x 192-Sheet_2_31: 343904548
+      slashbloodMari-Sheet 224 x 192-Sheet_2_32: 1715523599
+      slashbloodMari-Sheet 224 x 192-Sheet_2_33: 978311464
+      slashbloodMari-Sheet 224 x 192-Sheet_2_34: -370118016
+      slashbloodMari-Sheet 224 x 192-Sheet_2_35: -2139494250
+      slashbloodMari-Sheet 224 x 192-Sheet_2_36: -383682531
+      slashbloodMari-Sheet 224 x 192-Sheet_2_37: -1008914568
+      slashbloodMari-Sheet 224 x 192-Sheet_2_38: 1071319770
+      slashbloodMari-Sheet 224 x 192-Sheet_2_39: -642330710
+      slashbloodMari-Sheet 224 x 192-Sheet_2_4: 1122965870
+      slashbloodMari-Sheet 224 x 192-Sheet_2_40: 1499290199
+      slashbloodMari-Sheet 224 x 192-Sheet_2_41: 1668869590
+      slashbloodMari-Sheet 224 x 192-Sheet_2_42: 304909647
+      slashbloodMari-Sheet 224 x 192-Sheet_2_43: -1951329311
+      slashbloodMari-Sheet 224 x 192-Sheet_2_44: 529170923
+      slashbloodMari-Sheet 224 x 192-Sheet_2_45: 964604006
+      slashbloodMari-Sheet 224 x 192-Sheet_2_46: -1069889189
+      slashbloodMari-Sheet 224 x 192-Sheet_2_47: -207063856
+      slashbloodMari-Sheet 224 x 192-Sheet_2_48: -655607530
+      slashbloodMari-Sheet 224 x 192-Sheet_2_49: -1605764249
+      slashbloodMari-Sheet 224 x 192-Sheet_2_5: -1060384452
+      slashbloodMari-Sheet 224 x 192-Sheet_2_50: 1751314493
+      slashbloodMari-Sheet 224 x 192-Sheet_2_51: -1163264149
+      slashbloodMari-Sheet 224 x 192-Sheet_2_52: 1876502714
+      slashbloodMari-Sheet 224 x 192-Sheet_2_53: -266596674
+      slashbloodMari-Sheet 224 x 192-Sheet_2_54: -1242232212
+      slashbloodMari-Sheet 224 x 192-Sheet_2_6: -281924170
+      slashbloodMari-Sheet 224 x 192-Sheet_2_7: -1576258897
+      slashbloodMari-Sheet 224 x 192-Sheet_2_8: 748500549
+      slashbloodMari-Sheet 224 x 192-Sheet_2_9: 664762921
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -12,12 +12,17 @@ public class GamePlayManager : MonoBehaviour
     private float timespeed = 1.0f;
     //테스트용 시간속도 변수
 
-    public enum GameModeList 
+    public enum EGameMode 
     { 
         None,
         TraningMode,
         AiMode,
         OnLineMode
+    }
+
+    public enum EMap
+    {
+        None
     }
 
     public int GameMode = 0;

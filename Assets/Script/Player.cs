@@ -6,23 +6,39 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private string type;
+    private char type;
+    public char Type
+    {
+        set { type = value; }
+    }
+
     [SerializeField]
     private int pnum;
+    public int Pnum
+    {
+        set { pnum = value; }
+    }
 
     Transform attack0, attack1;
     Animator ani;
     Vector3 target = Vector3.zero;
-    Vector3 vel = Vector3.zero;
 
     [SerializeField]
-    private GameObject Canvas;
-
+    private GameObject canvas;
+    public GameObject Canvas
+    {
+        get { return canvas; }
+    }
 
     [SerializeField]
-    private int Win = 0;
+    private int win = 0;
     [SerializeField]
-    private int RoundWin = 0;
+    private int roundWin = 0;
+
+    public int RoundWin
+    {
+        get { return roundWin; }
+    }
 
     public CharacterSOMaker SO;
 
@@ -43,7 +59,6 @@ public class Player : MonoBehaviour
     {
         if(startMove)
         {
-            //transform.position = Vector3.Lerp(gameObject.transform.position, target, 5 * Time.deltaTime);
             transform.position = Vector3.MoveTowards(transform.position, target, 1.5f * Time.deltaTime);
             ani.Play("run");
 
@@ -101,53 +116,34 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void setType(string s)
-    {
-        type = s;
-    }
-
     public void canvasCheck()
     {
-        if (type.Equals("p"))
-            Canvas = GameObject.Find("PlayerCanvas");
-        if (type.Equals("e"))
-            Canvas = GameObject.Find("EnemyCanvas");
+        if (type.Equals('p'))
+            canvas = GameObject.Find("PlayerCanvas");
+        if (type.Equals('e'))
+            canvas = GameObject.Find("EnemyCanvas");
 
-        Canvas.transform.GetChild(1).Find("VictoryText").GetComponent<TextMeshProUGUI>().text = $"WIN_[ {GetWin()} ]";
+        canvas.transform.GetChild(1).Find("VictoryText").GetComponent<TextMeshProUGUI>().text = $"WIN_[ {GetWin()} ]";
     }
 
-    public GameObject Getcanvas()
-    {
-        return Canvas;
-    }
 
     public void canvasWinCheck()
     {
-        if(RoundWin < 3)
+        if(roundWin < 3)
         {
-            Canvas.transform.GetChild(1).transform.GetChild(1).transform.GetChild(RoundWin).GetComponent<Image>().color = Color.red;
-            RoundWin++;
+            canvas.transform.GetChild(1).transform.GetChild(1).transform.GetChild(roundWin).GetComponent<Image>().color = Color.red;
+            roundWin++;
         }
-        
     }
 
     public int GetWin()
     {
-        return /*Win;*/PlayerCheckManager.Instance.GetPlayerWin(pnum);
+        return PlayerCheckManager.Instance.Player[pnum].win;
     }
     public void SetWin()
     {
-        PlayerCheckManager.Instance.SetPlayerWin(pnum);
-        PlayerCheckManager.Instance.IsPlayerWin(pnum, true);
+        PlayerCheckManager.Instance.Player[pnum].win++;
+        PlayerCheckManager.Instance.Player[pnum].isWin = true;
     }
 
-    public int GetRoundWin()
-    {
-        return RoundWin;
-    }
-
-    public void Setpnum(int i)
-    {
-        pnum = i;
-    }
 }

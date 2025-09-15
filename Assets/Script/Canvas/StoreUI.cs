@@ -29,25 +29,27 @@ public class StoreUI : MonoBehaviour
             {
                 if (PlayerCheckManager.Instance.PlayerCheck() != -1 && PlayerCheckManager.Instance.PlayerCheck() == i)
                 {
-                    Player = PlayerCheckManager.Instance.PlayerNumCheck(i);
-                    I_p.sprite = sprites[Mathf.FloorToInt(PlayerCheckManager.Instance.ListCheck(Player - 1))];
+                    Player = PlayerCheckManager.Instance.Player[i].playerNum;
+                    I_p.sprite = sprites[Mathf.FloorToInt(PlayerCheckManager.Instance.Player[Player - 1].characterNum)];
 
                     namet_p.text =
-                $"{PlayerCheckManager.Instance.GetPlayer(Player - 1)}{PlayerCheckManager.Instance.PlayerNumCheck(Player - 1)} \n {PlayerCheckManager.Instance.GetCharacter(Player - 1)}";
-                    win_p.text = $"win [ {PlayerCheckManager.Instance.GetPlayerWin(Player - 1)} ]";
+                $"{(PlayerCheckManager.EPlayerType)PlayerCheckManager.Instance.Player[Player - 1].PlayerType}" +
+                $"{PlayerCheckManager.Instance.Player[Player - 1].playerNum} \n {PlayerCheckManager.Instance.Player[Player - 1].PlayerSo.Character_name}";
+                    win_p.text = $"win [ {PlayerCheckManager.Instance.Player[Player - 1].win} ]";
 
                     break;
                 }
             }
-            int emeny = PlayerCheckManager.Instance.GetPlayerVs(Player - 1);
+            int emeny = PlayerCheckManager.Instance.Player[Player - 1].VsplayerNum;
 
-            Enemy = PlayerCheckManager.Instance.PlayerNumCheck(emeny - 1);
+            Enemy = PlayerCheckManager.Instance.Player[emeny - 1].playerNum;
 
-            I.sprite = sprites[Mathf.FloorToInt(PlayerCheckManager.Instance.ListCheck(Enemy - 1))];
-
+            I.sprite = sprites[Mathf.FloorToInt(PlayerCheckManager.Instance.Player[Enemy - 1].characterNum)];
+            
             namet.text =
-                $"{PlayerCheckManager.Instance.GetPlayer(Enemy - 1)}{PlayerCheckManager.Instance.PlayerNumCheck(Enemy - 1)} \n {PlayerCheckManager.Instance.GetCharacter(Enemy - 1)}";
-            win.text = $"win [ {PlayerCheckManager.Instance.GetPlayerWin(Enemy - 1)} ]";
+                $"{(PlayerCheckManager.EPlayerType)PlayerCheckManager.Instance.Player[Enemy - 1].PlayerType}" +
+                $"{PlayerCheckManager.Instance.Player[Enemy - 1].playerNum} \n {PlayerCheckManager.Instance.Player[Enemy - 1].PlayerSo.Character_name}";
+            win.text = $"win [ {PlayerCheckManager.Instance.Player[Enemy - 1].win} ]";
 
         }
         else
@@ -66,18 +68,9 @@ public class StoreUI : MonoBehaviour
         roundt.text = $"Race {GamePlayManager.Instance.Race + 1}\n<size=10>다음상대</size>";
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void NextBattle()
     {
-        
         StartCoroutine(offui());
-        
-      
     }
 
     public IEnumerator offui()

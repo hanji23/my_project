@@ -38,47 +38,23 @@ public class PlaySetting : MonoBehaviour
 
     private void OnEnable()
     {
-        //테스트용 나중에 삭제
-        //PlayerUI1.transform.parent.gameObject.SetActive(false);
-        //EnemyUI1.transform.parent.gameObject.SetActive(false);
-        //Destroy(GameObject.Find("Player1"));
-        //Destroy(GameObject.Find("Player2"));
-        //Destroy(GameObject.Find("AttackBall"));
-        //ready.GetComponent<readySc>().StopAllCoroutines();
-        //ready.gameObject.SetActive(false);
-        //여기까지
-
-        //if (GamePlayManager.Instance.Player_Typecheck() == 0)
-        //    GamePlayManager.Instance.Player_TypeSetting(Random.Range(1, 4));
-
-        //Player = GamePlayManager.Instance.Player_Typecheck();
-        //so_P = GamePlayManager.Instance.SO_find("p");
-
         for (int i = 0; i < 8; i++)
         {
             if (PlayerCheckManager.Instance.PlayerCheck() != -1 && PlayerCheckManager.Instance.PlayerCheck() == i)
             {
-                Player = PlayerCheckManager.Instance.PlayerNumCheck(i);
-                so_P = PlayerCheckManager.Instance.PlayerSOCheck(i);
+                Player = PlayerCheckManager.Instance.Player[i].playerNum;
+                so_P = PlayerCheckManager.Instance.Player[i].PlayerSo;
                 break;
             }
         }
 
-        //if (GamePlayManager.Instance.Enemy_Typecheck() == 0)
-        //    GamePlayManager.Instance.Enemy_TypeSetting(Random.Range(1,4));
+        int emeny = PlayerCheckManager.Instance.Player[Player - 1].VsplayerNum;
 
-        //Enemy = GamePlayManager.Instance.Enemy_Typecheck();
-        //so_E = GamePlayManager.Instance.SO_find("e");
+        Enemy = PlayerCheckManager.Instance.Player[emeny - 1].playerNum;
+        so_E = PlayerCheckManager.Instance.Player[emeny - 1].PlayerSo;
 
-        //int emeny = Random.Range(1, 8);
-
-        int emeny = PlayerCheckManager.Instance.GetPlayerVs(Player - 1);
-
-        Enemy = PlayerCheckManager.Instance.PlayerNumCheck(emeny - 1);
-        so_E = PlayerCheckManager.Instance.PlayerSOCheck(emeny - 1);
-
-        so_P.spwan_P(Player - 1);
-        so_E.spwan_E(Enemy - 1);
+        so_P.spwan(Player - 1, 'p', 1, -1);
+        so_E.spwan(Enemy - 1, 'e', 2, 1);
 
         playerImage.sprite = so_P.get_Sprite("main");
         playerImage.rectTransform.sizeDelta = so_P.get_imageSet("size");

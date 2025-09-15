@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,7 +17,7 @@ public class CharacherSelect : MonoBehaviour,
     [SerializeField]
     private string Name;
     [SerializeField]
-    private float player_Type;
+    private int player_Type;
     [SerializeField]
     private string aniName;
     [SerializeField]
@@ -47,14 +48,13 @@ public class CharacherSelect : MonoBehaviour,
                     main.sprite = selectI;
                     break;
                 case "OnPointerExit":
-                    if (PlayerCheckManager.Instance.ListCount() == 0)
+                    if (PlayerCheckManager.Instance.Player.Count == 0)
                     {
                         Setting();
                     }
                     break;
                 case "OnPointerClick":
-                    //GamePlayManager.Instance.Player_TypeSetting(player_Type);
-                    PlayerCheckManager.Instance.newPlayer("Player", player_Type);
+                    PlayerCheckManager.Instance.newPlayer((int)(PlayerCheckManager.EPlayerType)Enum.Parse(typeof(PlayerCheckManager.EPlayerType), "Player"), player_Type);
                     break;
             }
         }

@@ -77,5 +77,9 @@ crashlytics-build.properties
 # hanzi
 /[Aa]ssets/Sprite
 /[Aa]ssets/TMP
-/[Aa]ssets/TextMesh Pro
+/[Aa]ssets/TextMesh Pro/Fonts
+/[Aa]ssets/TextMesh Pro/Shaders
+/[Aa]ssets/TextMesh Pro/Sprites
+/[Aa]ssets/TextMesh Pro/Resources/Fonts & Materials
+/[Aa]ssets/TextMesh Pro/Resources/Sprite Assets
 /[Aa]ssets/CustomAssets

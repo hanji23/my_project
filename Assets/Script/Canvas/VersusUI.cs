@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using System.Net;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -23,10 +23,10 @@ public class VersusUI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        var mode = (GamePlayManager.GameModeList)GamePlayManager.Instance.GameMode;
+        var mode = (GamePlayManager.EGameMode)GamePlayManager.Instance.GameMode;
 
         if (GamePlayManager.Instance != null && 
-            (mode == GamePlayManager.GameModeList.TraningMode || mode == GamePlayManager.GameModeList.AiMode))
+            (mode == GamePlayManager.EGameMode.TraningMode || mode == GamePlayManager.EGameMode.AiMode))
         {
             time = 0;
         }
@@ -77,7 +77,7 @@ public class VersusUI : MonoBehaviour
             float f;
             for (int i = 0; i < icon.Length; i++)
             {
-                f = PlayerCheckManager.Instance.ListCheck(i);
+                f = PlayerCheckManager.Instance.Player[i].characterNum;
 
                 icon[i].sprite = sprites[Mathf.FloorToInt(f)];
             }
@@ -123,10 +123,10 @@ public class VersusUI : MonoBehaviour
         timetext.text = "\n파티 시작!";
         timetext2.text = "";
 
-        while (PlayerCheckManager.Instance.ListCount() < 8)
+        while (PlayerCheckManager.Instance.Player.Count < 8)
         {
             //변종스킨 구현시 제거
-            int r = Random.Range(1, 6);
+            int r = UnityEngine.Random.Range(1, 6);
             switch (r)
             {
                 case 2:
@@ -135,10 +135,7 @@ public class VersusUI : MonoBehaviour
                     r++;
                     break;
             }
-            PlayerCheckManager.Instance.newPlayer("Ai", r);
-            //
-            //PlayerCheckManager.Instance.newPlayer("Ai", Random.Range(1, 7));
-            //PlayerCheckManager.Instance.PlayerRegion(Random.Range(1, 5));
+            PlayerCheckManager.Instance.newPlayer((int)(PlayerCheckManager.EPlayerType)Enum.Parse(typeof(PlayerCheckManager.EPlayerType), "Ai"), r);
         }
         PlayerCheckManager.Instance.clearCount();
 

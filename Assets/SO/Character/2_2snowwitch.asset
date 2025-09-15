@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee9bcf167fac19429c9e7893029c583, type: 3}
   m_Name: 2_2snowwitch
   m_EditorClassIdentifier: 
-  Character_name: "\uBE44\uC62C\uB81B"
-  Character_type: 4
+  character_name: "\uB208\uB9C8\uB140\uBE44\uC62C\uB81B"
+  character_type: 4
   attack_power: 0.3
-  Stamina: 0
-  MaxStamina: 3
+  stamina: 0
+  maxStamina: 3
   player: {fileID: 0}
   mainI: {fileID: 0}
   loseI: {fileID: 0}

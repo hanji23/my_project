@@ -41,7 +41,7 @@ public class MainCanvas : MonoBehaviour
     {
         //씬 이동
         //유의사항 :  씬이 유니티 에디터에서 등록되어 있어야 합니다.
-        GamePlayManager.Instance.GameMode = (int)(GamePlayManager.GameModeList)Enum.Parse(typeof(GamePlayManager.GameModeList), s);
+        GamePlayManager.Instance.GameMode = (int)(GamePlayManager.EGameMode)Enum.Parse(typeof(GamePlayManager.EGameMode), s);
         GamePlayManager.Instance.FinalRace = 16;
         SceneManager.LoadScene("SelectScene");
     }

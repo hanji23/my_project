@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee9bcf167fac19429c9e7893029c583, type: 3}
   m_Name: 2_1snowfox
   m_EditorClassIdentifier: 
-  Character_name: "\uBE44\uC62C\uB81B"
-  Character_type: 3
+  character_name: "\uBE44\uC62C\uB81B"
+  character_type: 3
   attack_power: 0.3
-  Stamina: 0
-  MaxStamina: 3
+  stamina: 0
+  maxStamina: 3
   player: {fileID: 8250276785020905621, guid: 5e643c999406278469d1aae2aeb9227b, type: 3}
   mainI: {fileID: 904886430, guid: e6b5a8342906c4c40b26f182a694b59f, type: 3}
   loseI: {fileID: 0}

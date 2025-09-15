@@ -39,8 +39,8 @@ public class BallAction : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        p1 = GameObject.Find("Player1").transform;
-        p2 = GameObject.Find("Player2").transform;
+        p1 = Camera.main.GetComponent<MainCamera>().player1;
+        p2 = Camera.main.GetComponent<MainCamera>().player2;
 
         GameCanvas = GameObject.Find("fightCanvas").transform.GetComponent<ready>();
 
