@@ -31,8 +31,6 @@ public class Player : MonoBehaviour
     }
 
     [SerializeField]
-    private int win = 0;
-    [SerializeField]
     private int roundWin = 0;
 
     public int RoundWin

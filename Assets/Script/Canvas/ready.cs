@@ -36,7 +36,8 @@ public class ready : MonoBehaviour
 
         while (elapsed < duration)
         {
-            Util.EaseOutCubic(elapsed += Time.deltaTime, duration, startY, endY, topRect, bottomRect);
+            elapsed += Time.deltaTime;
+            Util.EaseCubic(elapsed, duration, startY, endY, 5f, Util.ESetting.Out, Util.EType.MoveY, Rect1: topRect);
             yield return new WaitForSeconds(0.01f);
         }
 
@@ -48,18 +49,12 @@ public class ready : MonoBehaviour
         t2.color = Util.Setcolor255A(255);
         elapsed = 0f;
         bottomRect.localScale = new Vector3(topRect.localScale.x, 0, topRect.localScale.z);
+
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            float f = Mathf.Clamp01(elapsed / duration);
-
-            // EaseOutCubic: 빠르게 시작해서 점점 느려짐 (감속)
-            float easedT = 1f - Mathf.Pow(1f - f, 1f);
-            float y = Mathf.Lerp(bottomRect.localScale.y, 1f, easedT);
-
-            bottomRect.localScale = new Vector3(bottomRect.localScale.x, y, bottomRect.localScale.z);
-
-           yield return new WaitForSeconds(0.01f);
+            Util.EaseCubic(elapsed, duration, bottomRect.localScale.y, 1f, 1f, Util.ESetting.Out, Util.EType.Text, Rect2: bottomRect);
+            yield return new WaitForSeconds(0.01f);
         }
 
        yield return new WaitForSeconds(0.01f);
@@ -69,44 +64,31 @@ public class ready : MonoBehaviour
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            float f = Mathf.Clamp01(elapsed / duration);
-
-
-            float easedT = Mathf.Pow(f, 1f);
-            float x = Mathf.Lerp(topRect.localScale.y, 0f, easedT);
-            float y = Mathf.Lerp(bottomRect.localScale.y, 0f, easedT);
-
-            topRect.localScale = new Vector3(topRect.localScale.x, x, topRect.localScale.z);
-            bottomRect.localScale = new Vector3(bottomRect.localScale.x, y, bottomRect.localScale.z);
-           yield return new WaitForSeconds(0.01f);
+            Util.EaseCubic(elapsed, duration, bottomRect.localScale.y, 0f, 1f, Util.ESetting.In, Util.EType.Text, Rect1: topRect);
+            Util.EaseCubic(elapsed, duration, bottomRect.localScale.y, 0f, 1f, Util.ESetting.In, Util.EType.Text, Rect2: bottomRect);
+            yield return new WaitForSeconds(0.01f);
         }
 
         topRect.localScale = new Vector3(1, 1, 1);
 
         topRect.anchoredPosition = new Vector2(topRect.anchoredPosition.x, 0);
+
         t.text = "3";
-        for (byte colorA = 255; colorA > 0; colorA -= 15)
-        {
-            t.color = Util.Setcolor255A(colorA);
-           yield return new WaitForSeconds(0.01f);
-        }
-        t.color = Util.Setcolor255A(0);
+
+        yield return StartCoroutine(Util.FadeTransparency(t, Util.ESetting.Out));
+
        yield return new WaitForSeconds(0.01f);
+
         t.text = "2";
-        for (byte colorA = 255; colorA > 0; colorA -= 15)
-        {
-            t.color = Util.Setcolor255A(colorA);
-           yield return new WaitForSeconds(0.01f);
-        }
-        t.color = Util.Setcolor255A(0);
+
+        yield return StartCoroutine(Util.FadeTransparency(t, Util.ESetting.Out));
+
         yield return new WaitForSeconds(0.01f);
+
         t.text = "1";
-        for (byte colorA = 255; colorA > 0; colorA -= 15)
-        {
-            t.color = Util.Setcolor255A(colorA);
-            yield return new WaitForSeconds(0.01f);
-        }
-        t.color = Util.Setcolor255A(0);
+
+        yield return StartCoroutine(Util.FadeTransparency(t, Util.ESetting.Out));
+
         yield return new WaitForSeconds(0.01f);
 
         t.color = Util.Setcolor255A(255);
@@ -124,25 +106,20 @@ public class ready : MonoBehaviour
         startY = 175f;
         endY = 20f;
         bottomRect.localScale = new Vector3(bottomRect.localScale.x, 1, bottomRect.localScale.z);
+
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            float f = Mathf.Clamp01(elapsed / duration);
+            Util.EaseCubic(elapsed, duration, startY, endY, 5f, Util.ESetting.Out, Util.EType.MoveY, Rect1: topRect);
+            Util.EaseCubic(elapsed, duration, -startY, -endY, 5f, Util.ESetting.Out, Util.EType.MoveY, Rect2: bottomRect);
 
-            // EaseOutCubic: 빠르게 시작해서 점점 느려짐 (감속)
-            float easedT = 1f - Mathf.Pow(1f - f, 5f);
-            float y = Mathf.Lerp(startY, endY, easedT);
-            float y2 = Mathf.Lerp(-startY, -endY, easedT);
-
-            topRect.anchoredPosition = new Vector2(topRect.anchoredPosition.x, y);
-            bottomRect.anchoredPosition = new Vector2(bottomRect.anchoredPosition.x, y2);
-           yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.01f);
         }
 
         // 마지막 위치 보정
         topRect.anchoredPosition = new Vector2(topRect.anchoredPosition.x, endY);
         bottomRect.anchoredPosition = new Vector2(bottomRect.anchoredPosition.x, -endY);
-       yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.03f);
 
         elapsed = 0f;
         startY = 20f;
@@ -151,18 +128,10 @@ public class ready : MonoBehaviour
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            float f = Mathf.Clamp01(elapsed / duration);
+            Util.EaseCubic(elapsed, duration, startY, endY, 5f, Util.ESetting.In, Util.EType.MoveYX, Rect1: topRect, startX: 0, endX: -250);
+            Util.EaseCubic(elapsed, duration, -startY, -endY, 5f, Util.ESetting.In, Util.EType.MoveYX, Rect2: bottomRect, startX: 0, endX: 250);
 
-
-            float easedT = Mathf.Pow(f, 5f);
-            float y = Mathf.Lerp(startY, endY, easedT);
-            float y2 = Mathf.Lerp(-startY, -endY, easedT);
-            float x = Mathf.Lerp(0, -250, easedT);
-            float x2 = Mathf.Lerp(0, 250, easedT);
-
-            topRect.anchoredPosition = new Vector2(x, y);
-            bottomRect.anchoredPosition = new Vector2(x2, y2);
-           yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.01f);
         }
 
         t.color = Util.Setcolor255A(0);
@@ -189,14 +158,9 @@ public class ready : MonoBehaviour
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            float f = Mathf.Clamp01(elapsed / duration);
+            Util.EaseCubic(elapsed, duration, startY, endY, 5f, Util.ESetting.Out, Util.EType.MoveY, Rect1: topRect);
 
-            // EaseOutCubic: 빠르게 시작해서 점점 느려짐 (감속)
-            float easedT = 1f - Mathf.Pow(1f - f, 5f);
-            float y = Mathf.Lerp(startY, endY, easedT);
-
-            topRect.anchoredPosition = new Vector2(topRect.anchoredPosition.x, y);
-           yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.01f);
         }
 
         // 마지막 위치 보정
