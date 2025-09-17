@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5809108053372234957}
   - component: {fileID: 2633736042470801906}
   m_Layer: 0
-  m_Name: PlayerCheckManager
+  m_Name: PlayerManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,14 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7658350630609131381}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c27fa69e9d35d9241b26fe1d441f81c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f25b350966850d4eb64e30ea616675e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SO:
-  - {fileID: 11400000, guid: 8be5049fd7421e948987b93aeabdd672, type: 2}
-  - {fileID: 11400000, guid: ab33e2d4de1d8204da790a656bd5116e, type: 2}
-  - {fileID: 11400000, guid: fb2bbc76d304ca3478e6fc45ca08bb2e, type: 2}
-  - {fileID: 11400000, guid: 799dcd5c0b917dc4496829c41007e24e, type: 2}
-  - {fileID: 11400000, guid: 37ede548db568df4ab631c25c20ab47d, type: 2}
-  - {fileID: 11400000, guid: 359e194a43102074682025a90140bb31, type: 2}
-  Player: []
+  allPlayers: []
+  playerBackup: []
+  matchedPlayers: []

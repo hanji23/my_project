@@ -23,10 +23,10 @@ public class VersusUI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        var mode = (GamePlayManager.EGameMode)GamePlayManager.Instance.GameMode;
+        var mode = (GamePlayManager.EGameMode)GamePlayManager.Instance.gameModeIndex;
 
         if (GamePlayManager.Instance != null && 
-            (mode == GamePlayManager.EGameMode.TraningMode || mode == GamePlayManager.EGameMode.AiMode))
+            (mode == GamePlayManager.EGameMode.Training || mode == GamePlayManager.EGameMode.AI))
         {
             time = 0;
         }
@@ -77,7 +77,7 @@ public class VersusUI : MonoBehaviour
             float f;
             for (int i = 0; i < icon.Length; i++)
             {
-                f = PlayerCheckManager.Instance.Player[i].characterNum;
+                f = PlayerManager.Instance.allPlayers[i].characterNumber;
 
                 icon[i].sprite = sprites[Mathf.FloorToInt(f)];
             }
@@ -123,7 +123,7 @@ public class VersusUI : MonoBehaviour
         timetext.text = "\n파티 시작!";
         timetext2.text = "";
 
-        while (PlayerCheckManager.Instance.Player.Count < 8)
+        while (PlayerManager.Instance.allPlayers.Count < 8)
         {
             //변종스킨 구현시 제거
             int r = UnityEngine.Random.Range(1, 6);
@@ -135,13 +135,13 @@ public class VersusUI : MonoBehaviour
                     r++;
                     break;
             }
-            PlayerCheckManager.Instance.newPlayer((int)(PlayerCheckManager.EPlayerType)Enum.Parse(typeof(PlayerCheckManager.EPlayerType), "Ai"), r);
+            PlayerManager.Instance.AddNewPlayer((int)(PlayerManager.EPlayerType)Enum.Parse(typeof(PlayerManager.EPlayerType), "AI"), r);
         }
-        PlayerCheckManager.Instance.clearCount();
+        PlayerManager.Instance.ResetPlayerCount();
 
         for (int i = 0; i < icon.Length; i++)
         {
-            if (PlayerCheckManager.Instance.PlayerCheck() != -1 && PlayerCheckManager.Instance.PlayerCheck() == i)
+            if (PlayerManager.Instance.GetMainPlayerIndex() != -1 && PlayerManager.Instance.GetMainPlayerIndex() == i)
             { 
                 icon[i].transform.parent.GetChild(0).GetComponent<Image>().color = new Color32(100, 200, 100, 255);
             }
@@ -168,8 +168,8 @@ public class VersusUI : MonoBehaviour
         parentRect.localScale = new Vector3(1, 1, 1);
         yield return new WaitForSeconds(0.5f);
 
-        PlayerCheckManager.Instance.PlayerCopyStart();
-        PlayerCheckManager.Instance.playerRandomList();
+        PlayerManager.Instance.CopyPlayerList();
+        PlayerManager.Instance.ShuffleAndMatchPlayers();
 
         SceneManager.LoadScene("BattleScene");
     }
@@ -178,13 +178,13 @@ public class VersusUI : MonoBehaviour
     {
         if (GamePlayManager.Instance != null)
         {
-            int gameMode_now = GamePlayManager.Instance.GameMode;
-            GamePlayManager.Instance.settingReset();
-            GamePlayManager.Instance.GameMode = gameMode_now;
+            int gameMode_now = GamePlayManager.Instance.gameModeIndex;
+            GamePlayManager.Instance.ResetGameSettings();
+            GamePlayManager.Instance.gameModeIndex = gameMode_now;
         }
 
-        if (PlayerCheckManager.Instance != null)
-            PlayerCheckManager.Instance.clearlist();
+        if (PlayerManager.Instance != null)
+            PlayerManager.Instance.ClearAllPlayerData();
 
         SceneManager.LoadScene("SelectScene");
     }

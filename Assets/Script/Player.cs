@@ -5,73 +5,38 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    private char type;
-    public char Type
-    {
-        set { type = value; }
-    }
+    public char playerType;
 
-    [SerializeField]
-    private int pnum;
-    public int Pnum
-    {
-        set { pnum = value; }
-    }
+    public int playerIndex;
 
-    Transform attack0, attack1;
+    Transform attackPoint0, attackPoint1;
     Animator ani;
-    Vector3 target = Vector3.zero;
+    Vector3 targetPosition = Vector3.zero;
 
-    [SerializeField]
-    private GameObject canvas;
-    public GameObject Canvas
-    {
-        get { return canvas; }
-    }
+    public GameObject uiCanvas;
 
-    [SerializeField]
-    private int roundWin = 0;
+    public int roundWins = 0;
 
-    public int RoundWin
-    {
-        get { return roundWin; }
-    }
+    public CharacterSOMaker characterSO;
 
-    public CharacterSOMaker SO;
-
-    bool startMove = true;
+    bool isMovingToStart = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        attack0 = transform.GetChild(0);
-        attack1 = transform.GetChild(1);
+        attackPoint0 = transform.GetChild(0);
+        attackPoint1 = transform.GetChild(1);
         ani = GetComponent<Animator>();
 
-        target = new Vector3(transform.position.x - (transform.position.x / Mathf.Abs(transform.position.x) * 3), transform.position.y, transform.position.z);
+        targetPosition = new Vector3(transform.position.x - (transform.position.x / Mathf.Abs(transform.position.x) * 3), transform.position.y, transform.position.z);
+
+        StartCoroutine(MoveToStartPosition());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(startMove)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, target, 1.5f * Time.deltaTime);
-            ani.Play("run");
-
-            if (transform.position.x == Mathf.Abs(3) * (transform.position.x / Mathf.Abs(transform.position.x)))
-            {
-                startMove = false;
-                ani.Play("idle");
-
-                PlaySetting.Instance.UIstart();
-
-                Invoke("canvasCheck", 0.5f);
-            }
-                
-        }
-        else
+        if (!isMovingToStart)
         {
             if (Input.GetKeyDown(KeyCode.Z) && ani.GetCurrentAnimatorStateInfo(0).IsName("idle")) //GetButtonDown 나중에 써보자
             {
@@ -84,17 +49,17 @@ public class Player : MonoBehaviour
 
             if (ani.GetCurrentAnimatorStateInfo(0).IsName("down"))
             {
-                transform.position = Vector3.Lerp(gameObject.transform.position, target, 5 * Time.deltaTime);
+                transform.position = Vector3.Lerp(gameObject.transform.position, targetPosition, 5 * Time.deltaTime);
 
             }
         }  
     }
 
 
-    void BoxOn(int type)
+    void ActivateAttackBox(int index)
     {
         if (!ani.GetCurrentAnimatorStateInfo(0).IsName("down"))
-            transform.GetChild(type).gameObject.SetActive(true);
+            transform.GetChild(index).gameObject.SetActive(true);
     }
     IEnumerator ReturnIdle()
     {
@@ -107,41 +72,63 @@ public class Player : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ball") && !ani.GetCurrentAnimatorStateInfo(0).IsName("down"))
         {
-            target = new Vector3(transform.position.x + (transform.position.x / Mathf.Abs(transform.position.x) * 0.75f), transform.position.y, transform.position.z);
+            targetPosition = new Vector3(transform.position.x + (transform.position.x / Mathf.Abs(transform.position.x) * 0.75f), transform.position.y, transform.position.z);
 
             StopAllCoroutines();
             ani.Play("down");
         }
     }
 
-    public void canvasCheck()
+    public void UpdateCanvasUI()
     {
-        if (type.Equals('p'))
-            canvas = GameObject.Find("PlayerCanvas");
-        if (type.Equals('e'))
-            canvas = GameObject.Find("EnemyCanvas");
+        if (playerType.Equals('p'))
+            uiCanvas = GameObject.Find("PlayerCanvas");
+        if (playerType.Equals('e'))
+            uiCanvas = GameObject.Find("EnemyCanvas");
 
-        canvas.transform.GetChild(1).Find("VictoryText").GetComponent<TextMeshProUGUI>().text = $"WIN_[ {GetWin()} ]";
+        uiCanvas.transform.GetChild(1).Find("VictoryText").GetComponent<TextMeshProUGUI>().text = $"WIN_[ {GetWinCount()} ]";
     }
 
 
-    public void canvasWinCheck()
+    public void UpdateRoundWinUI()
     {
-        if(roundWin < 3)
+        if(roundWins < 3)
         {
-            canvas.transform.GetChild(1).transform.GetChild(1).transform.GetChild(roundWin).GetComponent<Image>().color = Color.red;
-            roundWin++;
+            uiCanvas.transform.GetChild(1).transform.GetChild(1).transform.GetChild(roundWins).GetComponent<Image>().color = Color.red;
+            roundWins++;
         }
     }
 
-    public int GetWin()
+    public int GetWinCount()
     {
-        return PlayerCheckManager.Instance.Player[pnum].win;
+        return PlayerManager.Instance.allPlayers[playerIndex].winCount;
     }
-    public void SetWin()
+    public void AddWinCount()
     {
-        PlayerCheckManager.Instance.Player[pnum].win++;
-        PlayerCheckManager.Instance.Player[pnum].isWin = true;
+        PlayerManager.Instance.allPlayers[playerIndex].winCount++;
+        PlayerManager.Instance.allPlayers[playerIndex].isWinner = true;
+    }
+
+    IEnumerator MoveToStartPosition()
+    {
+        while (true) 
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 1.5f * Time.deltaTime);
+            ani.Play("run");
+
+            if (transform.position.x == Mathf.Abs(3) * (transform.position.x / Mathf.Abs(transform.position.x)))
+            {
+                isMovingToStart = false;
+                ani.Play("idle");
+
+                PlaySetting.Instance.UIstart();
+
+                Invoke("canvasCheck", 0.5f);
+                break;
+            }
+            yield return new WaitForSeconds(0.01f);
+        }
+        
     }
 
 }

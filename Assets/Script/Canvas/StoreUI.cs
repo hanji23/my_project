@@ -27,29 +27,29 @@ public class StoreUI : MonoBehaviour
 
             for (int i = 0; i < 8; i++)
             {
-                if (PlayerCheckManager.Instance.PlayerCheck() != -1 && PlayerCheckManager.Instance.PlayerCheck() == i)
+                if (PlayerManager.Instance.GetMainPlayerIndex() != -1 && PlayerManager.Instance.GetMainPlayerIndex() == i)
                 {
-                    Player = PlayerCheckManager.Instance.Player[i].playerNum;
-                    I_p.sprite = sprites[Mathf.FloorToInt(PlayerCheckManager.Instance.Player[Player - 1].characterNum)];
+                    Player = PlayerManager.Instance.allPlayers[i].playerNumber;
+                    I_p.sprite = sprites[Mathf.FloorToInt(PlayerManager.Instance.allPlayers[Player - 1].characterNumber)];
 
                     namet_p.text =
-                $"{(PlayerCheckManager.EPlayerType)PlayerCheckManager.Instance.Player[Player - 1].PlayerType}" +
-                $"{PlayerCheckManager.Instance.Player[Player - 1].playerNum} \n {PlayerCheckManager.Instance.Player[Player - 1].PlayerSo.Character_name}";
-                    win_p.text = $"win [ {PlayerCheckManager.Instance.Player[Player - 1].win} ]";
+                $"{(PlayerManager.EPlayerType)PlayerManager.Instance.allPlayers[Player - 1].playerType}" +
+                $"{PlayerManager.Instance.allPlayers[Player - 1].playerNumber} \n {PlayerManager.Instance.allPlayers[Player - 1].characterSO.Character_name}";
+                    win_p.text = $"win [ {PlayerManager.Instance.allPlayers[Player - 1].winCount} ]";
 
                     break;
                 }
             }
-            int emeny = PlayerCheckManager.Instance.Player[Player - 1].VsplayerNum;
+            int emeny = PlayerManager.Instance.allPlayers[Player - 1].opponentPlayerNumber;
 
-            Enemy = PlayerCheckManager.Instance.Player[emeny - 1].playerNum;
+            Enemy = PlayerManager.Instance.allPlayers[emeny - 1].playerNumber;
 
-            I.sprite = sprites[Mathf.FloorToInt(PlayerCheckManager.Instance.Player[Enemy - 1].characterNum)];
+            I.sprite = sprites[Mathf.FloorToInt(PlayerManager.Instance.allPlayers[Enemy - 1].characterNumber)];
             
             namet.text =
-                $"{(PlayerCheckManager.EPlayerType)PlayerCheckManager.Instance.Player[Enemy - 1].PlayerType}" +
-                $"{PlayerCheckManager.Instance.Player[Enemy - 1].playerNum} \n {PlayerCheckManager.Instance.Player[Enemy - 1].PlayerSo.Character_name}";
-            win.text = $"win [ {PlayerCheckManager.Instance.Player[Enemy - 1].win} ]";
+                $"{(PlayerManager.EPlayerType)PlayerManager.Instance.allPlayers[Enemy - 1].playerType}" +
+                $"{PlayerManager.Instance.allPlayers[Enemy - 1].playerNumber} \n {PlayerManager.Instance.allPlayers[Enemy - 1].characterSO.Character_name}";
+            win.text = $"win [ {PlayerManager.Instance.allPlayers[Enemy - 1].winCount} ]";
 
         }
         else
@@ -65,7 +65,7 @@ public class StoreUI : MonoBehaviour
         handle = Addressables.LoadAssetAsync<Sprite[]>("character_Icon");
         handle.Completed += Handle_Completed;
 
-        roundt.text = $"Race {GamePlayManager.Instance.Race + 1}\n<size=10>다음상대</size>";
+        roundt.text = $"Race {GamePlayManager.Instance.currentRace + 1}\n<size=10>다음상대</size>";
     }
 
     public void NextBattle()
@@ -87,8 +87,8 @@ public class StoreUI : MonoBehaviour
         su.color = new Color32(0, 0, 0, 255);
         yield return new WaitForSeconds(0.5f);
 
-        GamePlayManager.Instance.Race++;
-        GamePlayManager.Instance.Round = 0;
+        GamePlayManager.Instance.currentRace++;
+        GamePlayManager.Instance.currentRound = 0;
         //GamePlayManager.Instance.Enemy_TypeSetting(Random.Range(1,4));
         SceneManager.LoadScene("BattleScene");
     }

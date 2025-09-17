@@ -1,7 +1,4 @@
 using System;
-using TMPro;
-using Unity.Burst.CompilerServices;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,7 +17,7 @@ public class MainCanvas : MonoBehaviour
             g.name = g.name.Remove(g.name.Length - 7, 7);
         }
 
-        if (PlayerCheckManager.Instance == null)
+        if (PlayerManager.Instance == null)
         {
             GameObject g = Instantiate(PCM);
             //g.name.Replace("(Clone)", "");
@@ -41,14 +38,14 @@ public class MainCanvas : MonoBehaviour
     {
         //씬 이동
         //유의사항 :  씬이 유니티 에디터에서 등록되어 있어야 합니다.
-        GamePlayManager.Instance.GameMode = (int)(GamePlayManager.EGameMode)Enum.Parse(typeof(GamePlayManager.EGameMode), s);
-        GamePlayManager.Instance.FinalRace = 16;
+        GamePlayManager.Instance.gameModeIndex = (int)(GamePlayManager.EGameMode)Enum.Parse(typeof(GamePlayManager.EGameMode), s);
+        GamePlayManager.Instance.totalRaceCount = 16;
         SceneManager.LoadScene("SelectScene");
     }
 
     public void SelectExit()
     {
-        GamePlayManager.Instance.GameMode = 0;
+        GamePlayManager.Instance.gameModeIndex = 0;
         SceneManager.LoadScene("StartScene");
     }
 
@@ -56,7 +53,7 @@ public class MainCanvas : MonoBehaviour
     {
         //GamePlayManager.Instance.Player_TypeSetting(0);
         //GamePlayManager.Instance.Player_Region_TypeSetting(0);
-        PlayerCheckManager.Instance.clearlist();
+        PlayerManager.Instance.ClearAllPlayerData();
     }
 
     public void CharacterExit()

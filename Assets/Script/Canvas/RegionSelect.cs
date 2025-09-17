@@ -6,10 +6,10 @@ public class RegionSelect : MonoBehaviour
 
     public void select(int Region)
     {
-        GamePlayManager.Instance.Race++;
+        GamePlayManager.Instance.currentRace++;
 
         //PlayerCheckManager.Instance.newPlayer("Player");
-        PlayerCheckManager.Instance.PlayerRegion(Region);
+        PlayerManager.Instance.SetPlayerRegion(Region);
 
         SceneManager.LoadScene("VersusScene");
     } 

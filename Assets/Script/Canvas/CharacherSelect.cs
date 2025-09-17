@@ -48,13 +48,13 @@ public class CharacherSelect : MonoBehaviour,
                     main.sprite = selectI;
                     break;
                 case "OnPointerExit":
-                    if (PlayerCheckManager.Instance.Player.Count == 0)
+                    if (PlayerManager.Instance.allPlayers.Count == 0)
                     {
                         Setting();
                     }
                     break;
                 case "OnPointerClick":
-                    PlayerCheckManager.Instance.newPlayer((int)(PlayerCheckManager.EPlayerType)Enum.Parse(typeof(PlayerCheckManager.EPlayerType), "Player"), player_Type);
+                    PlayerManager.Instance.AddNewPlayer((int)(PlayerManager.EPlayerType)Enum.Parse(typeof(PlayerManager.EPlayerType), "Player"), player_Type);
                     break;
             }
         }

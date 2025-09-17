@@ -9,15 +9,15 @@ public class GamePlayManager : MonoBehaviour
     public static GamePlayManager Instance = null;
 
     [SerializeField]
-    private float timespeed = 1.0f;
+    private float timeScale = 1.0f;
     //테스트용 시간속도 변수
 
     public enum EGameMode 
     { 
         None,
-        TraningMode,
-        AiMode,
-        OnLineMode
+        Training,
+        AI,
+        Online
     }
 
     public enum EMap
@@ -25,34 +25,34 @@ public class GamePlayManager : MonoBehaviour
         None
     }
 
-    public int GameMode = 0;
+    public int gameModeIndex = 0;
 
     //게임모드 정보가 들어가는 변수 (추후 enum으로 변경 예정)
 
     [SerializeField]
-    private List<CharacterSOMaker> so;
+    private List<CharacterSOMaker> characterSOs;
     //캐릭터 SO 정보가 담긴 리스트
-    public List<CharacterSOMaker> SO => so;
+    public List<CharacterSOMaker> CharacterSOs => characterSOs;
 
-    public int map = 0;
+    public int mapIndex = 0;
     // 게임 스테이지를 나타내는 변수 (추후 enum으로 변경할 예정)
 
-    public int Race = 0;
+    public int currentRace = 0;
     //현재 레이스 변수 한 레이스당 3번의 라운드가 진행됨
 
     [SerializeField]
-    public int FinalRace = 0;
+    public int totalRaceCount = 0;
     //한 게임당 몇번의 레이스를 진행할지 경정할때 쓰이는 변수
 
-    public int Round = 0;
+    public int currentRound = 0;
     //현재 라운드가 몇인지 기록하는 변수
 
-    public void settingReset()
+    public void ResetGameSettings()
     {
-        GameMode = 0;
-        map = 0;
-        Race = 0;
-        Round = 0;
+        gameModeIndex = 0;
+        mapIndex = 0;
+        currentRace = 0;
+        currentRound = 0;
     }
 
     private void Awake()
@@ -72,7 +72,7 @@ public class GamePlayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Round <= 3)
-            Time.timeScale = timespeed;
+        if (currentRound <= 3)
+            Time.timeScale = timeScale;
     }
 }

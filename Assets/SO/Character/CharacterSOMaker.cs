@@ -65,9 +65,9 @@ public class CharacterSOMaker : ScriptableObject
         }
 
         p.name = $"Player{num}";
-        p.GetComponent<Player>().Type = c;
-        p.GetComponent<Player>().SO = this;
-        p.GetComponent<Player>().Pnum = i;
+        p.GetComponent<Player>().playerType = c;
+        p.GetComponent<Player>().characterSO = this;
+        p.GetComponent<Player>().playerIndex = i;
     }
 
     public Vector2 get_imageSet(string s)

@@ -40,18 +40,18 @@ public class PlaySetting : MonoBehaviour
     {
         for (int i = 0; i < 8; i++)
         {
-            if (PlayerCheckManager.Instance.PlayerCheck() != -1 && PlayerCheckManager.Instance.PlayerCheck() == i)
+            if (PlayerManager.Instance.GetMainPlayerIndex() != -1 && PlayerManager.Instance.GetMainPlayerIndex() == i)
             {
-                Player = PlayerCheckManager.Instance.Player[i].playerNum;
-                so_P = PlayerCheckManager.Instance.Player[i].PlayerSo;
+                Player = PlayerManager.Instance.allPlayers[i].playerNumber;
+                so_P = PlayerManager.Instance.allPlayers[i].characterSO;
                 break;
             }
         }
 
-        int emeny = PlayerCheckManager.Instance.Player[Player - 1].VsplayerNum;
+        int emeny = PlayerManager.Instance.allPlayers[Player - 1].opponentPlayerNumber;
 
-        Enemy = PlayerCheckManager.Instance.Player[emeny - 1].playerNum;
-        so_E = PlayerCheckManager.Instance.Player[emeny - 1].PlayerSo;
+        Enemy = PlayerManager.Instance.allPlayers[emeny - 1].playerNumber;
+        so_E = PlayerManager.Instance.allPlayers[emeny - 1].characterSO;
 
         so_P.spwan(Player - 1, 'p', 1, -1);
         so_E.spwan(Enemy - 1, 'e', 2, 1);

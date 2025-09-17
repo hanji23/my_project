@@ -22,15 +22,15 @@ public class GameExitUI : MonoBehaviour
             float f;
             for (int i = 0; i < icon.Length; i++)
             {
-                f = PlayerCheckManager.Instance.VersusPlayers[i].characterNum;
+                f = PlayerManager.Instance.matchedPlayers[i].characterNumber;
                 
                 icon[i].sprite = sprites[Mathf.FloorToInt(f)];
                 icon[i].transform.parent.transform.parent.GetChild(2).GetComponent<TextMeshProUGUI>().text = 
-                    $"{(PlayerCheckManager.EPlayerType)PlayerCheckManager.Instance.VersusPlayers[i].PlayerType}" +
-                    $"{PlayerCheckManager.Instance.VersusPlayers[i].playerNum} \n " +
-                    $"{PlayerCheckManager.Instance.VersusPlayers[i].PlayerSo.Character_name}";
+                    $"{(PlayerManager.EPlayerType)PlayerManager.Instance.matchedPlayers[i].playerType}" +
+                    $"{PlayerManager.Instance.matchedPlayers[i].playerNumber} \n " +
+                    $"{PlayerManager.Instance.matchedPlayers[i].characterSO.Character_name}";
                 icon[i].transform.parent.transform.parent.GetChild(3).GetComponent<TextMeshProUGUI>().text =
-                    $"win [ {PlayerCheckManager.Instance.VersusPlayers[i].win} ]";
+                    $"win [ {PlayerManager.Instance.matchedPlayers[i].winCount} ]";
             }
         }
         else
@@ -48,7 +48,7 @@ public class GameExitUI : MonoBehaviour
     public void Exit()
     {
         SceneManager.LoadScene("StartScene");
-        GamePlayManager.Instance.settingReset();
-        PlayerCheckManager.Instance.clearlist();
+        GamePlayManager.Instance.ResetGameSettings();
+        PlayerManager.Instance.ClearAllPlayerData();
     }
 }
