@@ -1,5 +1,7 @@
-using UnityEditor.Animations;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+
 [CreateAssetMenu(fileName = "캐릭터", menuName = "Character/캐릭터")]
 public class CharacterSOMaker : ScriptableObject
 {
@@ -46,6 +48,9 @@ public class CharacterSOMaker : ScriptableObject
     private Vector2 position;
     [SerializeField]
     private Vector2 size;
+
+    [SerializeField]
+    private Dictionary<int, Enum> skillList;
 
     public void spwan(int i, char c, int num, int x)
     {

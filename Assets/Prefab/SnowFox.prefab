@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4754306821626693508
 Transform:
   m_ObjectHideFlags: 0
@@ -83,7 +83,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7751797655146188116}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -296,12 +296,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb74c6bf69777df4a973c91653925db2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  pnum: 0
-  canvas: {fileID: 0}
-  win: 0
-  roundWin: 0
-  SO: {fileID: 0}
+  playerType: 0
+  playerIndex: 0
+  uiCanvas: {fileID: 0}
+  roundWins: 0
+  characterSO: {fileID: 0}
 --- !u!1 &8634401820000335642
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2512303956437071909
 Transform:
   m_ObjectHideFlags: 0
@@ -385,7 +384,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8634401820000335642}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
