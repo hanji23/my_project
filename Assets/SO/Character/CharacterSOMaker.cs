@@ -50,7 +50,12 @@ public class CharacterSOMaker : ScriptableObject
     private Vector2 size;
 
     [SerializeField]
-    private Dictionary<int, Enum> skillList;
+    private List<SkillSOMaker> skillList;
+
+    public List<SkillSOMaker> SkillList
+    {
+        get { return skillList; }
+    }
 
     public void spwan(int i, char c, int num, int x)
     {

@@ -129,8 +129,6 @@ public class VersusUI : MonoBehaviour
             int r = UnityEngine.Random.Range(1, 6);
             switch (r)
             {
-                case 2:
-                case 4:
                 case 6:
                     r++;
                     break;

@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,6 +37,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log($"{ani.speed}");
+
         if (!isMovingToStart)
         {
             if (Input.GetKeyDown(KeyCode.Z) && ani.GetCurrentAnimatorStateInfo(0).IsName("idle")) //GetButtonDown 나중에 써보자
@@ -81,10 +84,7 @@ public class Player : MonoBehaviour
 
     public void UpdateCanvasUI()
     {
-        if (playerType.Equals('p'))
-            uiCanvas = GameObject.Find("PlayerCanvas");
-        if (playerType.Equals('e'))
-            uiCanvas = GameObject.Find("EnemyCanvas");
+        uiCanvas = playerType.Equals('p') ? uiCanvas = GameObject.Find("PlayerCanvas") : uiCanvas = GameObject.Find("EnemyCanvas");
 
         uiCanvas.transform.GetChild(1).Find("VictoryText").GetComponent<TextMeshProUGUI>().text = $"WIN_[ {GetWinCount()} ]";
     }
@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
 
                 PlaySetting.Instance.UIstart();
 
-                Invoke("canvasCheck", 0.5f);
+                Invoke("UpdateCanvasUI", 0.5f);
                 break;
             }
             yield return new WaitForSeconds(0.01f);
