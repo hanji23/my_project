@@ -23,16 +23,10 @@ public class GamePlayManager : MonoBehaviour
     }
 
     public int gameModeIndex = 0;
-
-    //게임모드 정보가 들어가는 변수 (추후 enum으로 변경 예정)
-
-    [SerializeField]
-    private List<CharacterSOMaker> characterSOs;
-    //캐릭터 SO 정보가 담긴 리스트
-    public List<CharacterSOMaker> CharacterSOs => characterSOs;
+    //게임모드 정보가 들어가는 변수
 
     public int mapIndex = 0;
-    // 게임 스테이지를 나타내는 변수 (추후 enum으로 변경할 예정)
+    // 게임 스테이지를 나타내는 변수
 
     public int currentRace = 0;
     //현재 레이스 변수 한 레이스당 3번의 라운드가 진행됨

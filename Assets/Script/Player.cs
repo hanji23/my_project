@@ -126,7 +126,7 @@ public class Player : MonoBehaviour
                 Invoke("UpdateCanvasUI", 0.5f);
                 break;
             }
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
         
     }

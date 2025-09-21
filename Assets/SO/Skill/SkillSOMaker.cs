@@ -5,10 +5,28 @@ using System.Collections.Generic;
 public class SkillSOMaker : ScriptableObject
 {
     [SerializeField]
-    private string skill_name;
-    public string Skill_name
+    private string skillName;
+    public string SkillName
     {
-        get { return skill_name; }
+        get { return skillName; }
+    }
+
+    private enum SkillType 
+    {
+        None,           // 기본값, 공격 없음 상태
+        Forward,        // 앞으로 던지는 공격
+        UpTarget,       // 목표를 향해 포물선 공격
+        UpPlayer,       // 플레이어 머리 위로 올리는 공격
+    };
+
+    [SerializeField]
+    private SkillType skillType;
+
+    [SerializeField]
+    private string skillNumber;
+    public string SkillNumber
+    {
+        get { return skillNumber; }
     }
 
     [SerializeField]
@@ -19,9 +37,9 @@ public class SkillSOMaker : ScriptableObject
     }
 
     [SerializeField]
-    private string skill_text;
-    public string Skill_text
+    private string skillText;
+    public string SkillText
     {
-        get { return skill_text; }
+        get { return skillText; }
     }
 }

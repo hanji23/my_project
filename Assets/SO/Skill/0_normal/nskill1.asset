@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413b776c13cb03645a730a6d6082e695, type: 3}
   m_Name: nskill1
   m_EditorClassIdentifier: 
-  skill_name: "\uAC00\uC18D\uC0C1\uC2B9"
+  skillName: "\uC810\uD504"
+  skillType: 2
+  skillNumber: 0
   ani: []
-  skill_text: 
+  skillText: "\uACF5\uD1B5\uC2A4\uD0AC1"

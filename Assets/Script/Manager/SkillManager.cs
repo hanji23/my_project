@@ -18,10 +18,10 @@ public class SkillManager : MonoBehaviour
     {
         if(GamePlayManager.Instance != null && PlayerManager.Instance != null)
         {
-            for (int i = 0; i < GamePlayManager.Instance.CharacterSOs[0].SkillList.Count; i++)
+            for (int i = 0; i < PlayerManager.Instance.CharacterSOs[0].SkillList.Count; i++)
             {
                 count++;
-                skillList.Add(count, GamePlayManager.Instance.CharacterSOs[0].SkillList[i]);
+                skillList.Add(count, PlayerManager.Instance.CharacterSOs[0].SkillList[i]);
             }
 
             List<PlayerManager.PlayerInfo> p = PlayerManager.Instance.allPlayers;

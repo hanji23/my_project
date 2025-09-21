@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413b776c13cb03645a730a6d6082e695, type: 3}
   m_Name: oseo_jump
   m_EditorClassIdentifier: 
-  skill_name: "\uD5E4\uB529"
+  skillName: "\uC810\uD504(\uB2E4\uB978\uAC78\uB85C \uBCC0\uACBD\uC608\uC815)"
+  skillType: 2
+  skillNumber: 
   ani:
   - {fileID: 7400000, guid: dc57be15461d3b34ea34f63e4978c6ea, type: 2}
-  skill_text: 
+  skillText: "\uC624\uC11C \uC2A4\uD0AC 3"

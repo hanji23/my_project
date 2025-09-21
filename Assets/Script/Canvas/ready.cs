@@ -40,7 +40,7 @@ public class ready : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             Util.EaseCubic(elapsed, duration, startY, endY, 5f, Util.EEaseMode.Out, Util.EEaseType.MoveY, Rect1: topRect);
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
 
         // 마지막 위치 보정
@@ -56,11 +56,11 @@ public class ready : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             Util.EaseCubic(elapsed, duration, bottomRect.localScale.y, 1f, 1f, Util.EEaseMode.Out, Util.EEaseType.Text, Rect2: bottomRect);
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
         bottomRect.localScale = new Vector3(topRect.localScale.x, 1, bottomRect.localScale.z);
 
-        yield return new WaitForSeconds(0.01f);
+        yield return null;
 
         elapsed = 0f;
 
@@ -69,7 +69,7 @@ public class ready : MonoBehaviour
             elapsed += Time.deltaTime;
             Util.EaseCubic(elapsed, duration, bottomRect.localScale.y, 0f, 1f, Util.EEaseMode.In, Util.EEaseType.Text, Rect1: topRect);
             Util.EaseCubic(elapsed, duration, bottomRect.localScale.y, 0f, 1f, Util.EEaseMode.In, Util.EEaseType.Text, Rect2: bottomRect);
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
         topRect.localScale = new Vector3(topRect.localScale.x, 0, topRect.localScale.z);
         bottomRect.localScale = new Vector3(topRect.localScale.x, 0, bottomRect.localScale.z);
@@ -79,15 +79,15 @@ public class ready : MonoBehaviour
 
         t.text = "3";
         yield return StartCoroutine(Util.FadeTransparency(t, Util.EEaseMode.Out));
-        yield return new WaitForSeconds(0.01f);
+        yield return null;
 
         t.text = "2";
         yield return StartCoroutine(Util.FadeTransparency(t, Util.EEaseMode.Out));
-        yield return new WaitForSeconds(0.01f);
+        yield return null;
 
         t.text = "1";
         yield return StartCoroutine(Util.FadeTransparency(t, Util.EEaseMode.Out));
-        yield return new WaitForSeconds(0.01f);
+        yield return null;
 
         t.color = Util.Setcolor255A(255);
         t2.color = Util.Setcolor255A(255);
@@ -114,13 +114,13 @@ public class ready : MonoBehaviour
             Util.EaseCubic(elapsed, duration, startY, endY, 5f, Util.EEaseMode.Out, Util.EEaseType.MoveY, Rect1: topRect);
             Util.EaseCubic(elapsed, duration, -startY, -endY, 5f, Util.EEaseMode.Out, Util.EEaseType.MoveY, Rect2: bottomRect);
 
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
         // 마지막 위치 보정
         topRect.anchoredPosition = new Vector2(topRect.anchoredPosition.x, endY);
         bottomRect.anchoredPosition = new Vector2(bottomRect.anchoredPosition.x, -endY);
 
-        yield return new WaitForSeconds(0.01f);
+        yield return null;
 
         elapsed = 0f;
         startY = 20f;
@@ -132,7 +132,7 @@ public class ready : MonoBehaviour
             Util.EaseCubic(elapsed, duration, startY, endY, 5f, Util.EEaseMode.In, Util.EEaseType.MoveYX, Rect1: topRect, startX: 0, endX: -250);
             Util.EaseCubic(elapsed, duration, -startY, -endY, 5f, Util.EEaseMode.In, Util.EEaseType.MoveYX, Rect2: bottomRect, startX: 0, endX: 250);
 
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
 
         t.color = Util.Setcolor255A(0);
@@ -161,7 +161,7 @@ public class ready : MonoBehaviour
             elapsed += Time.deltaTime;
             Util.EaseCubic(elapsed, duration, startY, endY, 5f, Util.EEaseMode.Out, Util.EEaseType.MoveY, Rect1: topRect);
 
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
         // 마지막 위치 보정
         topRect.anchoredPosition = new Vector2(topRect.anchoredPosition.x, endY);
@@ -173,10 +173,10 @@ public class ready : MonoBehaviour
             elapsed += Time.deltaTime;
             Util.EaseCubic(elapsed, duration, topRect.localScale.y, 0f, 1f, Util.EEaseMode.In, Util.EEaseType.Text, Rect1: topRect);
 
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
         topRect.localScale = new Vector3(topRect.localScale.x, 0, topRect.localScale.z);
-        yield return new WaitForSeconds(0.01f);
+        yield return null;
 
         t.text = $"Round {GamePlayManager.Instance.currentRound}!";
         elapsed = 0f;
@@ -186,10 +186,10 @@ public class ready : MonoBehaviour
             elapsed += Time.deltaTime;
             Util.EaseCubic(elapsed, duration, topRect.localScale.y, 1f, 1f, Util.EEaseMode.Out, Util.EEaseType.Text, Rect1: topRect);
 
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
         topRect.localScale = new Vector3(topRect.localScale.x, 1, topRect.localScale.z);
-        yield return new WaitForSeconds(0.01f);
+        yield return null;
 
         elapsed = 0f;
 
@@ -198,13 +198,13 @@ public class ready : MonoBehaviour
             elapsed += Time.deltaTime;
             Util.EaseCubic(elapsed, duration, topRect.localScale.y, 0f, 1f, Util.EEaseMode.In, Util.EEaseType.Text, Rect1: topRect);
 
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
 
         topRect.localScale = new Vector3(topRect.localScale.x, 0, topRect.localScale.z);
         t.color = Util.Setcolor255A(0);
 
-       yield return new WaitForSeconds(0.01f);
+       yield return null;
     }
 
     public IEnumerator UIFINISH()
@@ -224,7 +224,7 @@ public class ready : MonoBehaviour
             elapsed += Time.deltaTime;
             Util.EaseCubic(elapsed, duration, startY, endY, 5f, Util.EEaseMode.Out, Util.EEaseType.MoveY, Rect1: topRect);
 
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
         // 마지막 위치 보정
         topRect.anchoredPosition = new Vector2(topRect.anchoredPosition.x, endY);
@@ -236,7 +236,7 @@ public class ready : MonoBehaviour
             elapsed += Time.deltaTime;
             Util.EaseCubic(elapsed, duration, topRect.localScale.y, 0f, 1f, Util.EEaseMode.In, Util.EEaseType.Text, Rect1: topRect);
 
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
         topRect.localScale = new Vector3(topRect.localScale.x, 0, topRect.localScale.z);
 
@@ -260,7 +260,7 @@ public class ready : MonoBehaviour
             elapsed += Time.deltaTime;
             Util.EaseCubic(elapsed, duration, topRect.localScale.y, 1f, 1f, Util.EEaseMode.Out, Util.EEaseType.Text, Rect1: topRect);
 
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
         topRect.localScale = new Vector3(topRect.localScale.x, 1, topRect.localScale.z);
 
@@ -273,14 +273,14 @@ public class ready : MonoBehaviour
             elapsed += Time.deltaTime;
             Util.EaseCubic(elapsed, duration, topRect.localScale.y, 0f, 1f, Util.EEaseMode.In, Util.EEaseType.Text, Rect1: topRect);
 
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
         topRect.localScale = new Vector3(topRect.localScale.x, 0, topRect.localScale.z);
 
         for (byte colorA = 0; colorA < 255; colorA += 15)
         {
             transform.GetChild(2).GetComponent<Image>().color = Util.Setcolor0A(colorA);
-           yield return new WaitForSeconds(0.01f);
+           yield return null;
         }
         transform.GetChild(2).GetComponent<Image>().color = Util.Setcolor0A(255);
 

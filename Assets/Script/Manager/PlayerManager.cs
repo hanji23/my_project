@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    [SerializeField]
+    private List<CharacterSOMaker> characterSOs;
+    //캐릭터 SO 정보가 담긴 리스트
+    public List<CharacterSOMaker> CharacterSOs => characterSOs;
+
     public static PlayerManager Instance = null;
 
     public enum EPlayerType
@@ -144,7 +149,7 @@ public class PlayerManager : MonoBehaviour
         allPlayers.Add(newP); // 리스트에 추가
 
         newP.characterNumber = characterNum;
-        newP.characterSO = GamePlayManager.Instance.CharacterSOs[newP.characterNumber];
+        newP.characterSO = CharacterSOs[newP.characterNumber];
         newP.AssignPlayerNumber(true);
 
         if ((EPlayerType)newP.playerType == EPlayerType.AI)
