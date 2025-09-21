@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee9bcf167fac19429c9e7893029c583, type: 3}
   m_Name: 0
   m_EditorClassIdentifier: 
-  Character_name: 
-  Character_type: 0
+  character_name: 
+  character_type: 0
   attack_power: 0
-  Stamina: 0
-  MaxStamina: 0
+  stamina: 0
+  maxStamina: 0
   player: {fileID: 0}
   mainI: {fileID: 0}
   loseI: {fileID: 0}
   position: {x: 0, y: 0}
   size: {x: 0, y: 0}
+  skillList:
+  - {fileID: 11400000, guid: 7e303051df146b04587ee7a5ed4b015c, type: 2}
+  - {fileID: 11400000, guid: d94ae989c3d107c41b7efa3d72230900, type: 2}

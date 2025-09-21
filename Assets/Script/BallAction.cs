@@ -79,7 +79,7 @@ public class BallAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (attackType.Equals("PlayerHit"))
+        if (attackType.Equals(EAttackType.PlayerHit))
         {
             if (countdownTime <= 0 && GamePlayManager.Instance.currentRound <= 3)
             {

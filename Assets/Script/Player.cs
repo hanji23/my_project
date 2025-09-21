@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -81,10 +82,7 @@ public class Player : MonoBehaviour
 
     public void UpdateCanvasUI()
     {
-        if (playerType.Equals('p'))
-            uiCanvas = GameObject.Find("PlayerCanvas");
-        if (playerType.Equals('e'))
-            uiCanvas = GameObject.Find("EnemyCanvas");
+        uiCanvas = playerType.Equals('p') ? uiCanvas = GameObject.Find("PlayerCanvas") : uiCanvas = GameObject.Find("EnemyCanvas");
 
         uiCanvas.transform.GetChild(1).Find("VictoryText").GetComponent<TextMeshProUGUI>().text = $"WIN_[ {GetWinCount()} ]";
     }
@@ -123,10 +121,10 @@ public class Player : MonoBehaviour
 
                 PlaySetting.Instance.UIstart();
 
-                Invoke("canvasCheck", 0.5f);
+                Invoke("UpdateCanvasUI", 0.5f);
                 break;
             }
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
         
     }

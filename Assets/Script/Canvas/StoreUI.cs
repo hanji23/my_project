@@ -75,6 +75,9 @@ public class StoreUI : MonoBehaviour
 
     public IEnumerator offui()
     {
+        if (handle.IsValid())
+            Addressables.Release(handle);
+
         GameObject g = GameObject.Find("start").transform.GetChild(0).gameObject;
         g.SetActive(true);
         Image su = g.GetComponent<Image>();

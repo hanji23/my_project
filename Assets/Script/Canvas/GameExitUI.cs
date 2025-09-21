@@ -47,6 +47,9 @@ public class GameExitUI : MonoBehaviour
 
     public void Exit()
     {
+        if (handle.IsValid())
+            Addressables.Release(handle);
+
         SceneManager.LoadScene("StartScene");
         GamePlayManager.Instance.ResetGameSettings();
         PlayerManager.Instance.ClearAllPlayerData();

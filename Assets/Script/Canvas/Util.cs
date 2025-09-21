@@ -96,12 +96,12 @@ static class Util
             for (byte colorA = 255; colorA > 0; colorA -= 15)
             {
                 t.color = Setcolor255A(colorA);
-                yield return new WaitForSeconds(0.01f);
+                yield return null;
             }
             t.color = Setcolor255A(0);
         }
 
-        yield return new WaitForSeconds(0.01f);
+        yield return null;
     }
 
     public static IEnumerator CameraShake(float elapsed = 0f, float startY = 1f, float endY = 0f, float duration = 1)

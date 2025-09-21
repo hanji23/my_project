@@ -17,8 +17,9 @@ MonoBehaviour:
   attack_power: 0.25
   stamina: 0
   maxStamina: 3
-  player: {fileID: 0}
-  mainI: {fileID: 0}
+  player: {fileID: 8406773227660015284, guid: a58ad6a63e8b81c4fa3f30f1722e4f05, type: 3}
+  mainI: {fileID: 1651912509, guid: bfe750f30e0ee50478237b434633d395, type: 3}
   loseI: {fileID: 0}
-  position: {x: 0, y: 0}
-  size: {x: 0, y: 0}
+  position: {x: 30, y: -12}
+  size: {x: 224, y: 244}
+  skillList: []

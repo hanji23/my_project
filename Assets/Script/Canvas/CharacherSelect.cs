@@ -54,7 +54,13 @@ public class CharacherSelect : MonoBehaviour,
                     }
                     break;
                 case "OnPointerClick":
-                    PlayerManager.Instance.AddNewPlayer((int)(PlayerManager.EPlayerType)Enum.Parse(typeof(PlayerManager.EPlayerType), "Player"), player_Type);
+                    if (pointerData.button == PointerEventData.InputButton.Left)
+                        PlayerManager.Instance.AddNewPlayer((int)(PlayerManager.EPlayerType)Enum.Parse(typeof(PlayerManager.EPlayerType), "Player"),player_Type);
+                    else if (pointerData.button == PointerEventData.InputButton.Right)
+                    {
+                        GetComponent<Button>().onClick.Invoke();
+                        PlayerManager.Instance.AddNewPlayer((int)(PlayerManager.EPlayerType)Enum.Parse(typeof(PlayerManager.EPlayerType), "Player"), player_Type + 1);
+                    } 
                     break;
             }
         }

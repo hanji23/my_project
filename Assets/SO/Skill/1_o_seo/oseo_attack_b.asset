@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 413b776c13cb03645a730a6d6082e695, type: 3}
+  m_Name: oseo_attack_b
+  m_EditorClassIdentifier: 
+  skillName: "\uB3C4\uB07C \uD718\uB450\uB974\uAE30"
+  skillType: 1
+  skillNumber: 1
+  ani:
+  - {fileID: 7400000, guid: 84f85d6f7dc82154da79768805ad9ec1, type: 2}
+  - {fileID: 7400000, guid: 59109d42dfe93404eb253ef1c08fbea9, type: 2}
+  - {fileID: 7400000, guid: dc371067b26213a46b7ae986017b2d94, type: 2}
+  skillText: "\uC624\uC11C \uC2A4\uD0AC 1"

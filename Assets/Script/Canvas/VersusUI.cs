@@ -125,16 +125,8 @@ public class VersusUI : MonoBehaviour
 
         while (PlayerManager.Instance.allPlayers.Count < 8)
         {
-            //변종스킨 구현시 제거
-            int r = UnityEngine.Random.Range(1, 6);
-            switch (r)
-            {
-                case 2:
-                case 4:
-                case 6:
-                    r++;
-                    break;
-            }
+            int r = UnityEngine.Random.Range(1, 7);
+
             PlayerManager.Instance.AddNewPlayer((int)(PlayerManager.EPlayerType)Enum.Parse(typeof(PlayerManager.EPlayerType), "AI"), r);
         }
         PlayerManager.Instance.ResetPlayerCount();
