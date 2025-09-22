@@ -6,21 +6,27 @@ using UnityEngine.SceneManagement;
 public class MainCanvas : MonoBehaviour
 {
     [SerializeField]
-    private GameObject GPM, PCM;
+    private GameObject GPM, PCM, SKM;
 
     private void Start()
     {
+        GameObject g;
+
         if (GamePlayManager.Instance == null)
         {
-            GameObject g = Instantiate(GPM);
-            //g.name.Replace("(Clone)", "");
+            g = Instantiate(GPM);
             g.name = g.name.Remove(g.name.Length - 7, 7);
         }
 
         if (PlayerManager.Instance == null)
         {
-            GameObject g = Instantiate(PCM);
-            //g.name.Replace("(Clone)", "");
+            g = Instantiate(PCM);
+            g.name = g.name.Remove(g.name.Length - 7, 7);
+        }
+
+        if (SkillManager.Instance == null)
+        {
+            g = Instantiate(SKM);
             g.name = g.name.Remove(g.name.Length - 7, 7);
         }
     }

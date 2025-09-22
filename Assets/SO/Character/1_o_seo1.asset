@@ -25,4 +25,12 @@ MonoBehaviour:
   skillList:
   - {fileID: 11400000, guid: fa498b99cc014634b925f3fbc22d7654, type: 2}
   - {fileID: 11400000, guid: f1778688e344a3a4896349c435451ec4, type: 2}
+  - {fileID: 11400000, guid: d349bb08c2198004382d7326d2cb3815, type: 2}
+  - {fileID: 11400000, guid: 64958d06b1309254ea81d8e97f712f5e, type: 2}
   - {fileID: 11400000, guid: 097eb66dea8fb724ebe33715d0421be6, type: 2}
+  - {fileID: 11400000, guid: f4250572464cf2d45803046e3a955f4f, type: 2}
+  - {fileID: 11400000, guid: 17e99b3cf1e1f6a47b2a1c158734fe49, type: 2}
+  - {fileID: 11400000, guid: a013568af91c0ca4b9a5b8b66ef6a0ed, type: 2}
+  - {fileID: 11400000, guid: 4b1e254932596cb48aa6a77e44314f52, type: 2}
+  - {fileID: 11400000, guid: dd2e8c586b41e0e4fa839e619e8e6108, type: 2}
+  - {fileID: 11400000, guid: 6e9b9965c5a19c04eb4d52252a77ec93, type: 2}

@@ -112,7 +112,7 @@ static class Util
 
         while (elapsed < duration)
         {
-            elapsed += Time.unscaledDeltaTime * 4;
+            elapsed += Time.unscaledDeltaTime * 10;
             float f = Mathf.Clamp01(elapsed / duration);
 
             // EaseOutCubic: 빠르게 시작해서 점점 느려짐 (감속)

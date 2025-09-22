@@ -63,8 +63,6 @@ public class GamePlayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log($"{Time.deltaTime} + {Time.timeScale}");
-
         if (currentRound <= 3)
             Time.timeScale = timeScale;
     }

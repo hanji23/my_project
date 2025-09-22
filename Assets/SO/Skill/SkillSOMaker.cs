@@ -29,12 +29,31 @@ public class SkillSOMaker : ScriptableObject
         get { return skillNumber; }
     }
 
-    [SerializeField]
-    private List<AnimationClip> ani;
-    public AnimationClip Ani(int i)
+    private enum AniType
     {
-        return ani[i];
-    }
+        single,           // 애니메이션 안에 애니메이션 하나
+        multi,            // 애니메이션 안에 애니메이션 둘 이상
+    };
+
+    [SerializeField]
+    private AniType aniType;
+
+    [SerializeField]
+    private float[] anistartFrame; //AniType이 multi 경우 사용할 애니메이션 시작 프레임 변수
+
+    //public Animator animator;
+    //public float startTime;
+    //private float clipFrameRate;
+    //private float clipLength;
+    //AnimationClip clip = animator.runtimeAnimatorController.animationClips[0];
+    //clipFrameRate = clip.frameRate;
+    //    clipLength = clip.length;
+
+    //    // 프레임 → 시간 변환
+    //    startTime = anistartFrame / clipFrameRate;
+
+    [SerializeField]
+    private string aniName;
 
     [SerializeField]
     private string skillText;

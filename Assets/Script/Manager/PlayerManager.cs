@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    public static PlayerManager Instance = null;
+
     [SerializeField]
     private List<CharacterSOMaker> characterSOs;
     //캐릭터 SO 정보가 담긴 리스트
     public List<CharacterSOMaker> CharacterSOs => characterSOs;
-
-    public static PlayerManager Instance = null;
 
     public enum EPlayerType
     {
