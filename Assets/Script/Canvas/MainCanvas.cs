@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainCanvas : MonoBehaviour
 {
     [SerializeField]
-    private GameObject GPM, PCM, SKM;
+    private GameObject GPM, PCM, SKM, ITM;
 
     private void Start()
     {
@@ -27,6 +27,12 @@ public class MainCanvas : MonoBehaviour
         if (SkillManager.Instance == null)
         {
             g = Instantiate(SKM);
+            g.name = g.name.Remove(g.name.Length - 7, 7);
+        }
+
+        if (InventoryManager.Instance == null)
+        {
+            g = Instantiate(ITM);
             g.name = g.name.Remove(g.name.Length - 7, 7);
         }
     }

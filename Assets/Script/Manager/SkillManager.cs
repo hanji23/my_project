@@ -8,42 +8,49 @@ public class SkillManager : MonoBehaviour
 
     int count = 0;
 
-    Dictionary<int, SkillSOMaker> skillList = new Dictionary<int, SkillSOMaker>();
+    private Dictionary<int, SkillSOMaker> skillList = new Dictionary<int, SkillSOMaker>();
+
+    [SerializeField]
+    private List<SkillSOMaker> allSkills = new List<SkillSOMaker>();
+    public List<SkillSOMaker> AllSkills => allSkills;
 
     public void SkillAdd()
     {
-        if(GamePlayManager.Instance != null && PlayerManager.Instance != null)
+        if (count == 0)
         {
-            for (int i = 0; i < PlayerManager.Instance.CharacterSOs[0].SkillList.Count; i++)
+            if (GamePlayManager.Instance != null && PlayerManager.Instance != null)
             {
-                count++;
-                skillList.Add(count, PlayerManager.Instance.CharacterSOs[0].SkillList[i]);
-            }
+                for (int i = 0; i < PlayerManager.Instance.CharacterSOs[0].SkillList.Count; i++)
+                {
+                    count++;
+                    skillList.Add(count, PlayerManager.Instance.CharacterSOs[0].SkillList[i]);
+                }
 
-            List<PlayerManager.PlayerInfo> p = PlayerManager.Instance.allPlayers;
-            int pindex = PlayerManager.Instance.GetMainPlayerIndex();
+                List<PlayerManager.PlayerInfo> p = PlayerManager.Instance.allPlayers;
+                int pindex = PlayerManager.Instance.GetMainPlayerIndex();
 
-            for (int i = 0; i < p[pindex].characterSO.SkillList.Count; i++)
-            {
-                count++;
-                skillList.Add(count, p[pindex].characterSO.SkillList[i]);
+                for (int i = 0; i < p[pindex].characterSO.SkillList.Count; i++)
+                {
+                    count++;
+                    skillList.Add(count, p[pindex].characterSO.SkillList[i]);
+                }
             }
         }
+        CapyList();
+    }
 
+    public void CapyList()
+    {
         //List<SkillSOMaker> allSkills = skillList.Values.ToList();
 
-        List<SkillSOMaker> allSkills = new List<SkillSOMaker>();
+        allSkills.Clear();
         foreach (var skill in skillList)
         {
             allSkills.Add(skill.Value);
         }
         Shuffle(allSkills);
-
-        foreach (var kvp in allSkills)
-        {
-            Debug.Log($"Skill: {kvp.SkillName}");
-        }
     }
+
 
     private void Shuffle<T>(List<T> list)
     {
@@ -51,15 +58,6 @@ public class SkillManager : MonoBehaviour
         {
             int j = Random.Range(0, i + 1);
             (list[i], list[j]) = (list[j], list[i]);
-        }
-    }
-    public void PrintAllSkills()
-    {
-        Debug.Log($"스킬 전체 갯수 : {skillList.Count}");
-
-        foreach (var kvp in skillList)
-        {
-            Debug.Log($"Key: {kvp.Key}, Skill: {kvp.Value.SkillName}");
         }
     }
 

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "\uB3C4\uB07C \uD718\uB450\uB974\uAE30"
   skillType: 1
-  skillNumber: 1
+  skillNumber: 0
   aniType: 1
   anistartFrame:
   - 0
   - 3
   - 6
   aniName: attack_b1_b4
-  skillText: 
+  skillText: "\uC624\uC11C \uAE30\uBCF8 \uC2A4\uD0AC"

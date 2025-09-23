@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "\uC2A4\uD14C\uBBF8\uB108\uD68C\uBCF5"
   skillType: 0
-  skillNumber: 3
+  skillNumber: 2
   aniType: 0
   anistartFrame: []
   aniName: 
