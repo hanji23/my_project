@@ -20,11 +20,18 @@ public class SkillSOMaker : ScriptableObject
     };
 
     [SerializeField]
+    private int chracterNumber;
+    public int ChracterNumber
+    {
+        get { return chracterNumber; }
+    }
+
+    [SerializeField]
     private SkillType skillType;
 
     [SerializeField]
-    private string skillNumber;
-    public string SkillNumber
+    private int skillNumber;
+    public int SkillNumber
     {
         get { return skillNumber; }
     }

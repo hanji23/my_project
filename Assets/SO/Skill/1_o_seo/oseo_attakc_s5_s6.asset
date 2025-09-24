@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: oseo_attakc_s5_s6
   m_EditorClassIdentifier: 
   skillName: "\uB3C4\uB07C \uCC0C\uB974\uAE30"
+  chracterNumber: 1
   skillType: 1
   skillNumber: 6
   aniType: 1

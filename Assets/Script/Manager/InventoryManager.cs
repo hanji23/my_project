@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance = null;
 
-    public SkillSOMaker[] itemList = new SkillSOMaker[10];
+    public List<SkillSOMaker> itemList = new List<SkillSOMaker>();
 
     private void Awake()
     {

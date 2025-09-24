@@ -39,7 +39,35 @@ public class SkillManager : MonoBehaviour
         CapyList();
     }
 
-    public void CapyList()
+    public void SkillRemove(SkillSOMaker item)
+    {
+        int removeKey = int.MinValue;
+        foreach (var skill in skillList)
+        {
+            if (skill.Value == item)
+            {
+                removeKey = skill.Key;
+                break;
+            }
+        }
+
+        if (removeKey != int.MinValue)
+        {
+            skillList.Remove(removeKey);
+            count--;
+        }
+
+        foreach (var skill in allSkills)
+        {
+            if (skill == item)
+            {
+                allSkills.Remove(skill);
+                break;
+            }
+        }
+    }
+
+    public void CapyList(bool isShuffle = true)
     {
         //List<SkillSOMaker> allSkills = skillList.Values.ToList();
 
@@ -48,7 +76,13 @@ public class SkillManager : MonoBehaviour
         {
             allSkills.Add(skill.Value);
         }
-        Shuffle(allSkills);
+
+        if (allSkills.Count < 4)
+            for (int i = 0; i < 4; i++)
+                allSkills.Add(PlayerManager.Instance.CharacterSOs[0].SkillList[PlayerManager.Instance.CharacterSOs[0].SkillList.Count - 1]);
+
+        if(isShuffle)
+            Shuffle(allSkills);
     }
 
 
