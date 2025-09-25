@@ -97,6 +97,8 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < InventoryManager.Instance.skillList.Length; i++)
         {
+            if (InventoryManager.Instance.skillList[i] == null)
+                continue;
             AsyncOperationHandle<Sprite[]> handle = Addressables.LoadAssetAsync<Sprite[]>($"Skill_Icon_{InventoryManager.Instance.skillList[i].ChracterNumber}");
             int localIndex = i;
             handle.Completed += (op) => Handle_IconCompleted(op, localIndex);

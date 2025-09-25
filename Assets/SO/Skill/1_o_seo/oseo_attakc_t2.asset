@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "(\uAD81\uADF9\uAE30) \uB3C4\uB07C \uCDA9\uACA9"
   skillType: 1
-  skillTier: 1
+  _skillTier: 1
   chracterNumber: 1
   skillNumber: 9
   aniType: 1

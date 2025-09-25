@@ -22,13 +22,19 @@ public class SkillSOMaker : ScriptableObject
     [SerializeField]
     private SkillType skillType;
 
+    [SerializeField]
     public enum SkillTier 
     { 
         Normal,
         Ultimate 
     }
     [SerializeField]
-    private SkillTier skillTier;
+    private SkillTier _skillTier;
+
+    public SkillTier skillTier
+    {
+        get { return _skillTier; }
+    }
 
     [SerializeField]
     private int chracterNumber;
