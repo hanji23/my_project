@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413b776c13cb03645a730a6d6082e695, type: 3}
   m_Name: oseo_attakc_t2
   m_EditorClassIdentifier: 
-  skillName: "(\uAD81\uADF9\uAE30) \uB354\uBE14 \uD1A0\uB9C8\uD638\uD06C \uBD80\uBA54\uB791"
-  chracterNumber: 1
+  skillName: "(\uAD81\uADF9\uAE30) \uB3C4\uB07C \uCDA9\uACA9"
   skillType: 1
+  skillTier: 1
+  chracterNumber: 1
   skillNumber: 9
   aniType: 1
   anistartFrame:

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: oseo_attack_b4
   m_EditorClassIdentifier: 
   skillName: "\uACF5\uC911\uC81C\uBE44"
-  chracterNumber: 1
   skillType: 1
+  skillTier: 0
+  chracterNumber: 1
   skillNumber: 1
   aniType: 1
   anistartFrame:

@@ -19,6 +19,9 @@ public class StoreUI : MonoBehaviour
 
     AsyncOperationHandle<Sprite[]> handle;
 
+    [SerializeField]
+    private Image[] inventoryIcon;
+
     private void Handle_Completed(AsyncOperationHandle<Sprite[]> handle)
     {
         if (handle.Status == AsyncOperationStatus.Succeeded)
@@ -56,6 +59,7 @@ public class StoreUI : MonoBehaviour
         {
             Debug.LogError("Failed to load sprites.");
         }
+        Addressables.Release(handle);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -66,6 +70,7 @@ public class StoreUI : MonoBehaviour
         handle.Completed += Handle_Completed;
 
         roundt.text = $"Race {GamePlayManager.Instance.currentRace + 1}\n<size=10>다음상대</size>";
+        Icon();
     }
 
     public void NextBattle()
@@ -94,5 +99,31 @@ public class StoreUI : MonoBehaviour
         GamePlayManager.Instance.currentRound = 0;
         //GamePlayManager.Instance.Enemy_TypeSetting(Random.Range(1,4));
         SceneManager.LoadScene("BattleScene");
+    }
+
+    public void Icon()
+    {
+        for (int i = 0; i < InventoryManager.Instance.itemList.Count; i++)
+        {
+            AsyncOperationHandle<Sprite[]> handle = Addressables.LoadAssetAsync<Sprite[]>($"Skill_Icon_{InventoryManager.Instance.itemList[i].ChracterNumber}");
+            int localIndex = i;
+            handle.Completed += (op) => Handle_IconCompleted(op, localIndex);
+        }
+    }
+
+    private void Handle_IconCompleted(AsyncOperationHandle<Sprite[]> handle, int i)
+    {
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            Sprite[] sprites = handle.Result;
+
+            inventoryIcon[i].sprite = sprites[InventoryManager.Instance.itemList[i].SkillNumber];
+
+        }
+        else
+        {
+            Debug.LogError("Failed to load sprites.");
+        }
+        Addressables.Release(handle);
     }
 }

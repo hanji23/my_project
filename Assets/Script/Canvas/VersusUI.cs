@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -162,6 +163,17 @@ public class VersusUI : MonoBehaviour
 
         PlayerManager.Instance.CopyPlayerList();
         PlayerManager.Instance.ShuffleAndMatchPlayers();
+
+        InventoryManager.Instance.itemList.Clear();
+
+        List<PlayerManager.PlayerInfo> p = PlayerManager.Instance.allPlayers;
+        int pindex = PlayerManager.Instance.GetMainPlayerIndex();
+        InventoryManager.Instance.itemList.Add(p[pindex].characterSO.SkillList[0]);
+        InventoryManager.Instance.itemList.Add(PlayerManager.Instance.CharacterSOs[0].SkillList[0]);
+
+        for (int i = 0; i < 2; i++)
+            InventoryManager.Instance.skillList[i] = InventoryManager.Instance.itemList[i];
+
 
         SceneManager.LoadScene("BattleScene");
     }

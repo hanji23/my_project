@@ -6,7 +6,8 @@ public class SkillManager : MonoBehaviour
 {
     public static SkillManager Instance = null;
 
-    int count = 0;
+    [SerializeField]
+    private int count = 0;
 
     private Dictionary<int, SkillSOMaker> skillList = new Dictionary<int, SkillSOMaker>();
 
@@ -18,18 +19,21 @@ public class SkillManager : MonoBehaviour
     {
         if (count == 0)
         {
-            if (GamePlayManager.Instance != null && PlayerManager.Instance != null)
+            if (GamePlayManager.Instance != null)
             {
-                for (int i = 0; i < PlayerManager.Instance.CharacterSOs[0].SkillList.Count; i++)
+                for (int i = 1; i < PlayerManager.Instance.CharacterSOs[0].SkillList.Count; i++)
                 {
                     count++;
                     skillList.Add(count, PlayerManager.Instance.CharacterSOs[0].SkillList[i]);
                 }
+            }
 
+            if (PlayerManager.Instance != null)
+            {
                 List<PlayerManager.PlayerInfo> p = PlayerManager.Instance.allPlayers;
                 int pindex = PlayerManager.Instance.GetMainPlayerIndex();
 
-                for (int i = 0; i < p[pindex].characterSO.SkillList.Count; i++)
+                for (int i = 1; i < p[pindex].characterSO.SkillList.Count; i++)
                 {
                     count++;
                     skillList.Add(count, p[pindex].characterSO.SkillList[i]);
@@ -79,8 +83,11 @@ public class SkillManager : MonoBehaviour
 
         if (allSkills.Count < 4)
             for (int i = 0; i < 4; i++)
+            {
                 allSkills.Add(PlayerManager.Instance.CharacterSOs[0].SkillList[PlayerManager.Instance.CharacterSOs[0].SkillList.Count - 1]);
-
+                count = allSkills.Count;
+            }
+                
         if(isShuffle)
             Shuffle(allSkills);
     }

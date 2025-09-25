@@ -4,9 +4,13 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
 public class SkillSelectUI : MonoBehaviour
 {
+    [SerializeField]
+    private StoreUI inventoryCanvas;
+
     [SerializeField]
     private SkillSOMaker[] skillList = new SkillSOMaker[4];
 
@@ -21,12 +25,9 @@ public class SkillSelectUI : MonoBehaviour
 
     bool[] isSell = new bool[4];
 
-    AsyncOperationHandle<Sprite[]> handle;
-
     void Start()
     {
         SkillManager.Instance.SkillAdd();
-
         SellSkillList();
     }
 
@@ -38,43 +39,36 @@ public class SkillSelectUI : MonoBehaviour
 
             skillList[i] = SkillManager.Instance.AllSkills[idx];
 
-            handle = Addressables.LoadAssetAsync<Sprite[]>($"Skill_Icon_{skillList[i].ChracterNumber}");
-            switch (i)
-            {
-                case 0:
-                    handle.Completed += Handle_Completed1;
-                    break;
-                case 1:
-                    handle.Completed += Handle_Completed2;
-                    break;
-                case 2:
-                    handle.Completed += Handle_Completed3;
-                    break;
-                case 3:
-                    handle.Completed += Handle_Completed4;
-                    break;
-            }
+            AsyncOperationHandle<Sprite[]> handle = Addressables.LoadAssetAsync<Sprite[]>($"Skill_Icon_{skillList[i].ChracterNumber}");
+
+            int localIndex = i;
+            handle.Completed += (op) => Handle_Completed(op, localIndex);
+
             skilltext[i].text = $"{skillList[i].SkillName}\n<size=6>{skillList[i].SkillText}</size>";
         }
-        
+
     }
 
     public void Reroll()
     {
         reRollCount++;
 
-        startIndex = (reRollCount * 4) % SkillManager.Instance.AllSkills.Count;
-
-        int totalSkills = SkillManager.Instance.AllSkills.Count;
-        int totalPages = Mathf.CeilToInt(totalSkills / 4f); // 4개씩 나누기
-
-        if (Array.Exists(isSell, b => b) || reRollCount % totalPages == 0)
+        if(SkillManager.Instance.AllSkills.Count > 0)
         {
-            reRollCount = 0;
-            startIndex = 0;
-            SkillManager.Instance.CapyList();
+            startIndex = (reRollCount * 4) % SkillManager.Instance.AllSkills.Count;
+
+            int totalSkills = SkillManager.Instance.AllSkills.Count;
+            int totalPages = Mathf.CeilToInt(totalSkills / 4f); // 4개씩 나누기
+
+            if (Array.Exists(isSell, b => b) || reRollCount % totalPages == 0)
+            {
+                reRollCount = 0;
+                startIndex = 0;
+            }
         }
-           
+
+        SkillManager.Instance.CapyList();
+
         SellSkillList();
         isSellReset();
     }
@@ -86,6 +80,7 @@ public class SkillSelectUI : MonoBehaviour
             if (InventoryManager.Instance.itemList.Count < 10)
             {
                 InventoryManager.Instance.itemList.Add(skillList[i]);
+                inventoryCanvas.Icon();
                 skilltext[i].text = "구매 완료!";
                 isSell[i] = true;
                 SkillManager.Instance.SkillRemove(skillList[i]);
@@ -103,70 +98,19 @@ public class SkillSelectUI : MonoBehaviour
         }
     }
 
-    private void Handle_Completed1(AsyncOperationHandle<Sprite[]> handle)
+    private void Handle_Completed(AsyncOperationHandle<Sprite[]> handle, int i)
     {
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             Sprite[] sprites = handle.Result;
 
-            skillImage[0].sprite = sprites[skillList[0].SkillNumber];
+            skillImage[i].sprite = sprites[skillList[i].SkillNumber];
 
-            Addressables.Release(handle);
         }
         else
         {
             Debug.LogError("Failed to load sprites.");
         }
+        Addressables.Release(handle);
     }
-    private void Handle_Completed2(AsyncOperationHandle<Sprite[]> handle)
-    {
-        if (handle.Status == AsyncOperationStatus.Succeeded)
-        {
-            Sprite[] sprites = handle.Result;
-
-            skillImage[1].sprite = sprites[skillList[1].SkillNumber];
-
-            Addressables.Release(handle);
-        }
-        else
-        {
-            Debug.LogError("Failed to load sprites.");
-        }
-    }
-    private void Handle_Completed3(AsyncOperationHandle<Sprite[]> handle)
-    {
-        if (handle.Status == AsyncOperationStatus.Succeeded)
-        {
-            Sprite[] sprites = handle.Result;
-
-            skillImage[2].sprite = sprites[skillList[2].SkillNumber];
-
-            Addressables.Release(handle);
-        }
-        else
-        {
-            Debug.LogError("Failed to load sprites.");
-        }
-    }
-    private void Handle_Completed4(AsyncOperationHandle<Sprite[]> handle)
-    {
-        if (handle.Status == AsyncOperationStatus.Succeeded)
-        {
-            Sprite[] sprites = handle.Result;
-
-            skillImage[3].sprite = sprites[skillList[3].SkillNumber];
-
-            Addressables.Release(handle);
-        }
-        else
-        {
-            Debug.LogError("Failed to load sprites.");
-        }
-    }
-
-    //private void OnDestroy()
-    //{
-    //    if (handle.IsValid())
-    //        Addressables.Release(handle);
-    //}
 }
