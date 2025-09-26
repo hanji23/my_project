@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "\uACF5\uC911\uC81C\uBE44"
   skillType: 1
-  skillTier: 0
+  _skillTier: 0
   chracterNumber: 1
   skillNumber: 1
-  aniType: 1
-  anistartFrame:
-  - 9
+  _aniType: 0
+  anistartFrame: 09000000
   aniName: attack_b1_b4
+  aniClip: {fileID: 7400000, guid: 84f85d6f7dc82154da79768805ad9ec1, type: 2}
   skillText: "\uC624\uC11C \uC2A4\uD0AC 1"

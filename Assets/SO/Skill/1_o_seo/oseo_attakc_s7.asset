@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: oseo_attakc_s7
   m_EditorClassIdentifier: 
   skillName: "\uB3CC\uC9C4"
-  chracterNumber: 1
   skillType: 1
+  _skillTier: 0
+  chracterNumber: 1
   skillNumber: 7
-  aniType: 0
-  anistartFrame: []
-  aniName: 
+  _aniType: 0
+  anistartFrame: 00000000
+  aniName: attack_s7
+  aniClip: {fileID: 7400000, guid: 7afe870f478c34946b0186d69fa7db77, type: 2}
   skillText: "\uC624\uC11C \uC2A4\uD0AC 7"

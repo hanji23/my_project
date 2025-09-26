@@ -11,7 +11,7 @@ public class SkillSOMaker : ScriptableObject
         get { return skillName; }
     }
 
-    private enum SkillType 
+    public enum SkillType 
     {
         None,           // 기본값, 공격 없음 상태
         Forward,        // 앞으로 던지는 공격
@@ -21,8 +21,11 @@ public class SkillSOMaker : ScriptableObject
 
     [SerializeField]
     private SkillType skillType;
+    public SkillType _skillType
+    {
+        get { return skillType; }
+    }
 
-    [SerializeField]
     public enum SkillTier 
     { 
         Normal,
@@ -50,17 +53,26 @@ public class SkillSOMaker : ScriptableObject
         get { return skillNumber; }
     }
 
-    private enum AniType
+    public enum AniType
     {
         single,           // 애니메이션 안에 애니메이션 하나
         multi,            // 애니메이션 안에 애니메이션 둘 이상
     };
 
     [SerializeField]
-    private AniType aniType;
+    private AniType _aniType;
+
+    public AniType aniType
+    {
+        get { return _aniType; }
+    }
 
     [SerializeField]
-    private float[] anistartFrame; //AniType이 multi 경우 사용할 애니메이션 시작 프레임 변수
+    private int[] anistartFrame; //AniType이 multi 경우 사용할 애니메이션 시작 프레임 변수
+    public int[] AnistartFrame
+    {
+        get { return anistartFrame; }
+    }
 
     //public Animator animator;
     //public float startTime;
@@ -73,8 +85,19 @@ public class SkillSOMaker : ScriptableObject
     //    // 프레임 → 시간 변환
     //    startTime = anistartFrame / clipFrameRate;
 
+    //[SerializeField]
+    //private string aniName;
+    //public string AniName
+    //{
+    //    get { return aniName; }
+    //}
+
     [SerializeField]
-    private string aniName;
+    private AnimationClip aniClip;
+    public AnimationClip AniClip
+{
+        get { return aniClip; }
+    }
 
     [SerializeField]
     private string skillText;

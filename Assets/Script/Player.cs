@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -41,14 +42,30 @@ public class Player : MonoBehaviour
     {
         if (!isMovingToStart)
         {
-            if (Input.GetKeyDown(KeyCode.Z) && ani.GetCurrentAnimatorStateInfo(0).IsName("idle")) //GetButtonDown 나중에 써보자
+            if (playerType.Equals('p')) 
             {
-                //ani.Play($"attack{Random.Range(1, 4)}");
+                if (Input.GetKeyDown(KeyCode.Z) && ani.GetCurrentAnimatorStateInfo(0).IsName("idle")) //GetButtonDown 나중에 써보자
+                {
+                    Onbutton(0);
+                }
+                if (Input.GetKeyDown(KeyCode.X) && ani.GetCurrentAnimatorStateInfo(0).IsName("idle")) //GetButtonDown 나중에 써보자
+                {
+                    Onbutton(1);
+                }
+                if (Input.GetKeyDown(KeyCode.C) && ani.GetCurrentAnimatorStateInfo(0).IsName("idle")) //GetButtonDown 나중에 써보자
+                {
+                    Onbutton(2);
+                }
+                if (Input.GetKeyDown(KeyCode.V) && ani.GetCurrentAnimatorStateInfo(0).IsName("idle")) //GetButtonDown 나중에 써보자
+                {
+                    Onbutton(3);
+                }
+                if (Input.GetKeyDown(KeyCode.Space) && ani.GetCurrentAnimatorStateInfo(0).IsName("idle")) //GetButtonDown 나중에 써보자
+                {
+                    Onbutton(4);
+                }
             }
-            if (Input.GetKeyDown(KeyCode.X) && ani.GetCurrentAnimatorStateInfo(0).IsName("idle")) //GetButtonDown 나중에 써보자
-            {
-                //ani.Play("attack4");
-            }
+            
 
             if (ani.GetCurrentAnimatorStateInfo(0).IsName("down"))
             {
@@ -58,6 +75,33 @@ public class Player : MonoBehaviour
         }  
     }
 
+    void Onbutton(int i)
+    {
+        SkillSOMaker SO = InventoryManager.Instance.skillList[i];
+        AnimationClip targetClip = null;
+        if (SO.AnistartFrame.Length > 0)
+            targetClip = ani.runtimeAnimatorController.animationClips.FirstOrDefault(c => c.name == SO.AniClip.name);
+        else
+        {
+            ani.Play("jump");
+            return;
+        }
+
+        if (targetClip != null)
+        {
+            float clipFrameRate = targetClip.frameRate;
+            int r;
+
+            if (SO.aniType == SkillSOMaker.AniType.multi)
+                r = SO.AnistartFrame[Random.Range(0, SO.AnistartFrame.Length)];
+            else
+                r = SO.AnistartFrame[0];
+
+            float startTime = r / clipFrameRate;
+            ani.Play(SO.AniClip.name, 0, startTime / targetClip.length); // normalizedTime 사용
+        }
+        
+    }
 
     void ActivateAttackBox(int index)
     {
@@ -66,7 +110,7 @@ public class Player : MonoBehaviour
     }
     IEnumerator ReturnIdle()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.1f);
         if (!ani.GetCurrentAnimatorStateInfo(0).IsName("down"))
             ani.Play("idle");
     }

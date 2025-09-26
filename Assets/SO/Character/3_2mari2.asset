@@ -22,4 +22,14 @@ MonoBehaviour:
   loseI: {fileID: 0}
   position: {x: 13, y: -17}
   size: {x: 224, y: 192}
-  skillList: []
+  skillList:
+  - {fileID: 11400000, guid: 277ca8cacba8e1f4e902df3ef0756140, type: 2}
+  - {fileID: 11400000, guid: b1c08e5130918514bbd353bc19b390a8, type: 2}
+  - {fileID: 11400000, guid: 5b54c54e1f9deda49a6671956368f6bb, type: 2}
+  - {fileID: 11400000, guid: 810591ab1ff8dba44bfb99e5c4fff72d, type: 2}
+  - {fileID: 11400000, guid: 693fa64ea375bd349a1779bf561c3b33, type: 2}
+  - {fileID: 11400000, guid: aafabdb8794560644ae8f54d2771797b, type: 2}
+  - {fileID: 11400000, guid: 3d32422db5e901e448408aa15d859ea0, type: 2}
+  - {fileID: 11400000, guid: 8b4848c673ca06e48bfbfe862c994023, type: 2}
+  - {fileID: 11400000, guid: 8598e4ac15ce28e43bb729e23dd73fa0, type: 2}
+  - {fileID: 11400000, guid: 32f710ab8e0e26848a25f45a1b4a21d4, type: 2}

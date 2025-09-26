@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "\uC810\uD504"
   skillType: 2
+  _skillTier: 0
+  chracterNumber: 0
   skillNumber: 0
-  aniType: 0
-  anistartFrame: []
-  aniName: 
+  _aniType: 0
+  anistartFrame: 
+  aniClip: {fileID: 0}
   skillText: "\uACF5\uD1B5\uC2A4\uD0AC1"

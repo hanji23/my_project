@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 413b776c13cb03645a730a6d6082e695, type: 3}
+  m_Name: oseo_y_attakc_s4
+  m_EditorClassIdentifier: 
+  skillName: "\uB354\uBE14 \uD1A0\uB9C8\uD638\uD06C \uBD80\uBA54\uB791"
+  skillType: 1
+  _skillTier: 0
+  chracterNumber: 1
+  skillNumber: 5
+  _aniType: 0
+  anistartFrame: 09000000
+  aniClip: {fileID: 7400000, guid: 9e3b249d15174254d93086ec1fb7b2ec, type: 2}
+  skillText: "\uC624\uC11C \uC2A4\uD0AC 5"
