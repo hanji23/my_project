@@ -53,5 +53,7 @@ public class GameExitUI : MonoBehaviour
         SceneManager.LoadScene("StartScene");
         GamePlayManager.Instance.ResetGameSettings();
         PlayerManager.Instance.ClearAllPlayerData();
+        SkillManager.Instance.ClearAllPlayerData();
+        InventoryManager.Instance.ClearAllPlayerData();
     }
 }

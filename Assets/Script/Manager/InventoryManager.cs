@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,5 +20,11 @@ public class InventoryManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    public void ClearAllPlayerData()
+    {
+        itemList.Clear();
+        Array.Clear(skillList, 0, skillList.Length);
     }
 }
