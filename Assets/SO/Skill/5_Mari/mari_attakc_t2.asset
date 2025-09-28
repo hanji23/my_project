@@ -15,8 +15,8 @@ MonoBehaviour:
   skillName: "(\uAD81\uADF9\uAE30) \uB9C8\uB9AC \uC2A4\uD0AC 9"
   skillType: 1
   _skillTier: 0
-  chracterNumber: 1
-  skillNumber: 9
+  chracterNumber: 5
+  skillNumber: 8
   _aniType: 0
   anistartFrame: 03000000
   aniClip: {fileID: 7400000, guid: 2374bff9f903c604c87fc9f1348b6d84, type: 2}
