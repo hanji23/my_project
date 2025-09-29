@@ -5,10 +5,7 @@ public class SkillManager : MonoBehaviour
 {
     public static SkillManager Instance = null;
 
-    [SerializeField]
-    private int count = 0;
-
-    private Dictionary<int, SkillSOMaker> skillList = new Dictionary<int, SkillSOMaker>();
+    private List<SkillSOMaker> skillList = new List<SkillSOMaker>();
 
     [SerializeField]
     private List<SkillSOMaker> allSkills = new List<SkillSOMaker>();
@@ -16,14 +13,13 @@ public class SkillManager : MonoBehaviour
 
     public void SkillAdd()
     {
-        if (count == 0)
+        if (skillList.Count == 0)
         {
             if (GamePlayManager.Instance != null)
             {
                 for (int i = 1; i < PlayerManager.Instance.CharacterSOs[0].SkillList.Count; i++)
                 {
-                    count++;
-                    skillList.Add(count, PlayerManager.Instance.CharacterSOs[0].SkillList[i]);
+                    skillList.Add(PlayerManager.Instance.CharacterSOs[0].SkillList[i]);
                 }
             }
 
@@ -34,8 +30,7 @@ public class SkillManager : MonoBehaviour
 
                 for (int i = 1; i < p[pindex].characterSO.SkillList.Count; i++)
                 {
-                    count++;
-                    skillList.Add(count, p[pindex].characterSO.SkillList[i]);
+                    skillList.Add(p[pindex].characterSO.SkillList[i]);
                 }
             }
         }
@@ -44,20 +39,13 @@ public class SkillManager : MonoBehaviour
 
     public void SkillRemove(SkillSOMaker item)
     {
-        int removeKey = int.MinValue;
         foreach (var skill in skillList)
         {
-            if (skill.Value == item)
+            if (skill == item)
             {
-                removeKey = skill.Key;
+                skillList.Remove(skill);
                 break;
             }
-        }
-
-        if (removeKey != int.MinValue)
-        {
-            skillList.Remove(removeKey);
-            count--;
         }
 
         foreach (var skill in allSkills)
@@ -72,19 +60,16 @@ public class SkillManager : MonoBehaviour
 
     public void CapyList(bool isShuffle = true)
     {
-        //List<SkillSOMaker> allSkills = skillList.Values.ToList();
-
         allSkills.Clear();
         foreach (var skill in skillList)
         {
-            allSkills.Add(skill.Value);
+            allSkills.Add(skill);
         }
 
         if (allSkills.Count < 4)
             for (int i = 0; i < 4; i++)
             {
                 allSkills.Add(PlayerManager.Instance.CharacterSOs[0].SkillList[PlayerManager.Instance.CharacterSOs[0].SkillList.Count - 1]);
-                count = allSkills.Count;
             }
                 
         if(isShuffle)

@@ -128,7 +128,7 @@ public class VersusUI : MonoBehaviour
         {
             int r = UnityEngine.Random.Range(1, 7);
 
-            PlayerManager.Instance.AddNewPlayer((int)(PlayerManager.EPlayerType)Enum.Parse(typeof(PlayerManager.EPlayerType), "AI"), r);
+            PlayerManager.Instance.AddNewPlayer((int)PlayerManager.EPlayerType.AI, r);
         }
         PlayerManager.Instance.ResetPlayerCount();
 

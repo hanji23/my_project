@@ -32,6 +32,7 @@ public class SkillSelectUI : MonoBehaviour
 
     void SellSkillList()
     {
+        Debug.Log($"SellSkillList called with startIndex: {startIndex}");
         for (int i = 0; i < 4; i++)
         {
             int idx = (startIndex + i) % SkillManager.Instance.AllSkills.Count;
@@ -45,28 +46,27 @@ public class SkillSelectUI : MonoBehaviour
 
             skilltext[i].text = $"{skillList[i].SkillName}\n<size=6>{skillList[i].SkillText}</size>";
         }
-
+        
     }
 
     public void Reroll()
     {
+        if (SkillManager.Instance.AllSkills.Count <= 0)
+            return;
+
         reRollCount++;
 
-        if(SkillManager.Instance.AllSkills.Count > 0)
+        int totalSkills = SkillManager.Instance.AllSkills.Count;
+        int totalPages = Mathf.CeilToInt(totalSkills / 4f); // 4개씩 나누기
+
+        startIndex = (reRollCount * 4) % totalSkills;
+
+        if (Array.Exists(isSell, b => b) || reRollCount % totalPages == 0)
         {
-            startIndex = (reRollCount * 4) % SkillManager.Instance.AllSkills.Count;
-
-            int totalSkills = SkillManager.Instance.AllSkills.Count;
-            int totalPages = Mathf.CeilToInt(totalSkills / 4f); // 4개씩 나누기
-
-            if (Array.Exists(isSell, b => b) || reRollCount % totalPages == 0)
-            {
-                reRollCount = 0;
-                startIndex = 0;
-            }
+            reRollCount = 0;
+            startIndex = 0;
+            SkillManager.Instance.CapyList();
         }
-
-        SkillManager.Instance.CapyList();
 
         SellSkillList();
         isSellReset();

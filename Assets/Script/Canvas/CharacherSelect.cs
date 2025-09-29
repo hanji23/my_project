@@ -25,52 +25,41 @@ public class CharacherSelect : MonoBehaviour,
     [SerializeField]
     private Vector2 size;
 
-
     Animator ani;
 
-
-    private void Handle(string eventName, BaseEventData eventData)
+    private void HandleEnter(BaseEventData eventData)
     {
-        //C# 패턴 매칭
-        // 1. eventData is PointerEventData -> 객체가 PointerEventData인지 확인
-        // 2. 맞으면 PointerData로 변환 해서 지역변수로 저장한다
-        if (eventData is PointerEventData pointerData)
+        ani.Play(GetAniname());
+        i.rectTransform.sizeDelta = size;
+        i.rectTransform.anchoredPosition = position;
+        i.enabled = true;
+        t.text = Name;
+        back.color = new Color32(100, 200, 100, 255);
+        main.sprite = selectI;
+    }
+    private void HandleExit(BaseEventData eventData)
+    {
+        if (PlayerManager.Instance.allPlayers.Count == 0)
         {
-            switch (eventName)
-            {
-                case "OnPointerEnter":
-                    ani.Play(GetAniname());
-                    i.rectTransform.sizeDelta = size;
-                    i.rectTransform.anchoredPosition = position;
-                    i.enabled = true;
-                    t.text = Name;
-                    back.color = new Color32(100, 200, 100, 255);
-                    main.sprite = selectI;
-                    break;
-                case "OnPointerExit":
-                    if (PlayerManager.Instance.allPlayers.Count == 0)
-                    {
-                        Setting();
-                    }
-                    break;
-                case "OnPointerClick":
-                    if (pointerData.button == PointerEventData.InputButton.Left)
-                        PlayerManager.Instance.AddNewPlayer((int)(PlayerManager.EPlayerType)Enum.Parse(typeof(PlayerManager.EPlayerType), "Player"),player_Type);
-                    else if (pointerData.button == PointerEventData.InputButton.Right)
-                    {
-                        GetComponent<Button>().onClick.Invoke();
-                        PlayerManager.Instance.AddNewPlayer((int)(PlayerManager.EPlayerType)Enum.Parse(typeof(PlayerManager.EPlayerType), "Player"), player_Type + 1);
-                    } 
-                    break;
-            }
+            Setting();
+        }
+    }
+    private void HandleClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left)
+            PlayerManager.Instance.AddNewPlayer((int)PlayerManager.EPlayerType.Player, player_Type);
+        else if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            GetComponent<Button>().onClick.Invoke();
+            PlayerManager.Instance.AddNewPlayer((int)PlayerManager.EPlayerType.Player, player_Type + 1);
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData) => Handle("OnPointerClick", eventData);
+    public void OnPointerClick(PointerEventData eventData) => HandleClick(eventData);
 
-    public void OnPointerEnter(PointerEventData eventData) => Handle("OnPointerEnter", eventData);
+    public void OnPointerEnter(PointerEventData eventData) => HandleEnter(eventData);
 
-    public void OnPointerExit(PointerEventData eventData) => Handle("OnPointerExit", eventData);
+    public void OnPointerExit(PointerEventData eventData) => HandleExit(eventData);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
