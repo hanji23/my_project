@@ -50,8 +50,11 @@ public class MainCanvas : MonoBehaviour
     {
         //씬 이동
         //유의사항 :  씬이 유니티 에디터에서 등록되어 있어야 합니다.
-        GamePlayManager.Instance.gameModeIndex = (int)(GamePlayManager.EGameMode)Enum.Parse(typeof(GamePlayManager.EGameMode), s);
-        GamePlayManager.Instance.totalRaceCount = 16;
+        GamePlayManager.Instance.gameModeIndex = (int)Enum.Parse(typeof(GamePlayManager.EGameMode), s);
+        if (GamePlayManager.Instance.gameModeIndex == (int)GamePlayManager.EGameMode.Training)
+            GamePlayManager.Instance.totalRaceCount = 3;
+        else
+            GamePlayManager.Instance.totalRaceCount = 16;
         SceneManager.LoadScene("SelectScene");
     }
 

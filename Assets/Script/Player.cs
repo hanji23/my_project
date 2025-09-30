@@ -38,6 +38,9 @@ public class Player : MonoBehaviour
         targetPosition = new Vector3(transform.position.x - (transform.position.x / Mathf.Abs(transform.position.x) * 3), transform.position.y, transform.position.z);
 
         StartCoroutine(MoveToStartPosition());
+
+        if (PlayerManager.Instance.allPlayers[playerIndex].playerType == (int)PlayerManager.EPlayerType.AI)
+            transform.GetChild(transform.childCount - 1).gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -207,5 +210,26 @@ public class Player : MonoBehaviour
             yield return null;
         }
         
+    }
+
+    public void AIAttack()
+    {
+        SkillSOMaker SO = characterSO.SkillList[UnityEngine.Random.Range(0, characterSO.SkillList.Count)];
+        AnimationClip targetClip = null;
+        if (SO.AnistartFrame.Length > 0)
+            targetClip = ani.runtimeAnimatorController.animationClips.FirstOrDefault(c => c.name == SO.AniClip.name);
+        if (targetClip != null)
+        {
+            float clipFrameRate = targetClip.frameRate;
+            int r;
+
+            if (SO.aniType == SkillSOMaker.AniType.multi)
+                r = SO.AnistartFrame[UnityEngine.Random.Range(0, SO.AnistartFrame.Length)];
+            else
+                r = SO.AnistartFrame[0];
+
+            float startTime = r / clipFrameRate;
+            ani.Play(SO.AniClip.name, 0, startTime / targetClip.length); // normalizedTime »ç¿ë
+        }
     }
 }

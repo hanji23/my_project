@@ -135,13 +135,20 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.6666667
-    functionName: ReturnIdle
+    functionName: ActivateAttackBox
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.6666667
+    functionName: ReturnIdle
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.9166667
     functionName: ActivateAttackBox
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -150,13 +157,6 @@ AnimationClip:
     messageOptions: 0
   - time: 1
     functionName: ReturnIdle
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1
-    functionName: ActivateAttackBox
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

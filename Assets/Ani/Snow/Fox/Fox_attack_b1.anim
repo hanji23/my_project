@@ -148,15 +148,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1
-    functionName: ReturnIdle
+  - time: 0.9166667
+    functionName: ActivateAttackBox
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: ActivateAttackBox
+    functionName: ReturnIdle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

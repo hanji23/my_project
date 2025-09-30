@@ -97,6 +97,12 @@ public class BallAction : MonoBehaviour
     {
         if (!isGameEnded)
         {
+            if (hit.gameObject.layer == 6)
+            {
+                hit.gameObject.SetActive(false);
+                hit.transform.parent.GetComponent<Player>().AIAttack();
+            }
+
             if (hit.CompareTag("attack_forward"))//전방 발사
             {
                 //Debug.Log($"{hit.name} {hit.transform.parent.name}");
@@ -172,19 +178,21 @@ public class BallAction : MonoBehaviour
 
     void SwitchTarget(Collider hit)
     {
-        //target = target == p1? p2: p1;
-        targetTransform = hit.transform.parent == player1Transform?  player2Transform : player1Transform;
+        //targetTransform = hit.transform.parent == player1Transform?  player2Transform : player1Transform;
+
         lerpProgress = 0;
         startPosition = transform.position;
-        
-        //if (target == p1)
-        //{
-        //    startpostion = p2.transform.position;
-        //}
-        //else
-        //{
-        //    startpostion = p1.transform.position;
-        //}
+
+        if (hit.transform.parent == player1Transform)
+        {
+            targetTransform = player2Transform;
+            if (PlayerManager.Instance.allPlayers[player2Transform.GetComponent<Player>().playerIndex].playerType == (int)PlayerManager.EPlayerType.AI)
+                player2Transform.GetChild(player2Transform.childCount - 1).gameObject.SetActive(true);
+        }
+        else
+        {
+            targetTransform = player1Transform;
+        }
     }
 
     void ResetAttackState()
@@ -217,6 +225,9 @@ public class BallAction : MonoBehaviour
 
     void SetupNextRound()
     {
+        if (PlayerManager.Instance.allPlayers[player2Transform.GetComponent<Player>().playerIndex].playerType == (int)PlayerManager.EPlayerType.AI)
+            player2Transform.GetChild(player2Transform.childCount - 1).gameObject.SetActive(true);
+
         transform.position = new Vector3(targetTransform.position.x + -(targetTransform.position.x / Mathf.Abs(targetTransform.position.x) * 0.375f), targetTransform.position.y + 6, targetTransform.position.z);
         attackSpeed = -0.25f;
         attackType = EAttackType.None;
