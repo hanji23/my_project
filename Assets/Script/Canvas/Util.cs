@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -124,9 +125,15 @@ static class Util
             else
                 Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Ysave - y, Camera.main.transform.position.z);
             i++;
-            yield return new WaitForSecondsRealtime(0.05f);
+            yield return new WaitForSecondsRealtime(0.01f);
         }
         Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Ysave, Camera.main.transform.position.z);
         Time.timeScale = 1f;
+    }
+
+    public static int ExtractNumber(string name)
+    {
+        var digits = new string(name.Where(char.IsDigit).ToArray());
+        return int.TryParse(digits, out int num) ? num : 0;
     }
 }

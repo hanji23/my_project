@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -10,6 +11,7 @@ public class GameExitUI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     AsyncOperationHandle<Sprite[]> handle;
+    const string spriteArrayAddress = "character_Icon";
 
     [SerializeField]
     private Image[] icon;
@@ -19,12 +21,10 @@ public class GameExitUI : MonoBehaviour
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             Sprite[] sprites = handle.Result;
-            float f;
+            Array.Sort(sprites, (a, b) => { return Util.ExtractNumber(a.name).CompareTo(Util.ExtractNumber(b.name)); });
             for (int i = 0; i < icon.Length; i++)
             {
-                f = PlayerManager.Instance.matchedPlayers[i].characterNumber;
-                
-                icon[i].sprite = sprites[Mathf.FloorToInt(f)];
+                icon[i].sprite = sprites[PlayerManager.Instance.matchedPlayers[i].characterNumber];
                 icon[i].transform.parent.transform.parent.GetChild(2).GetComponent<TextMeshProUGUI>().text = 
                     $"{(PlayerManager.EPlayerType)PlayerManager.Instance.matchedPlayers[i].playerType}" +
                     $"{PlayerManager.Instance.matchedPlayers[i].playerNumber} \n " +
@@ -32,6 +32,7 @@ public class GameExitUI : MonoBehaviour
                 icon[i].transform.parent.transform.parent.GetChild(3).GetComponent<TextMeshProUGUI>().text =
                     $"win [ {PlayerManager.Instance.matchedPlayers[i].winCount} ]";
             }
+            Addressables.Release(handle);
         }
         else
         {
@@ -41,15 +42,12 @@ public class GameExitUI : MonoBehaviour
 
     private void Start()
     {
-        handle = Addressables.LoadAssetAsync<Sprite[]>("character_Icon");
+        handle = Addressables.LoadAssetAsync<Sprite[]>(spriteArrayAddress);
         handle.Completed += Handle_Completed;
     }
 
     public void Exit()
     {
-        if (handle.IsValid())
-            Addressables.Release(handle);
-
         SceneManager.LoadScene("StartScene");
         GamePlayManager.Instance.ResetGameSettings();
         PlayerManager.Instance.ClearAllPlayerData();

@@ -1,9 +1,11 @@
 using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
 public class SkillSelectUI : MonoBehaviour
 {
@@ -24,6 +26,9 @@ public class SkillSelectUI : MonoBehaviour
 
     bool[] isSell = new bool[4];
 
+    AsyncOperationHandle<Sprite[]> handle;
+    const string spriteArrayAddress = "Skill_Icon_";
+
     void Start()
     {
         SkillManager.Instance.SkillAdd();
@@ -32,21 +37,20 @@ public class SkillSelectUI : MonoBehaviour
 
     void SellSkillList()
     {
-        Debug.Log($"SellSkillList called with startIndex: {startIndex}");
         for (int i = 0; i < 4; i++)
         {
             int idx = (startIndex + i) % SkillManager.Instance.AllSkills.Count;
 
             skillList[i] = SkillManager.Instance.AllSkills[idx];
 
-            AsyncOperationHandle<Sprite[]> handle = Addressables.LoadAssetAsync<Sprite[]>($"Skill_Icon_{skillList[i].ChracterNumber}");
+            handle = Addressables.LoadAssetAsync<Sprite[]>($"{spriteArrayAddress}{skillList[i].ChracterNumber}");
 
             int localIndex = i;
             handle.Completed += (op) => Handle_Completed(op, localIndex);
 
             skilltext[i].text = $"{skillList[i].SkillName}\n<size=6>{skillList[i].SkillText}</size>";
         }
-        
+        Addressables.Release(handle);
     }
 
     public void Reroll()
@@ -102,7 +106,7 @@ public class SkillSelectUI : MonoBehaviour
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             Sprite[] sprites = handle.Result;
-
+            Array.Sort(sprites, (a, b) => { return Util.ExtractNumber(a.name).CompareTo(Util.ExtractNumber(b.name)); });
             skillImage[i].sprite = sprites[skillList[i].SkillNumber];
 
         }
@@ -110,6 +114,7 @@ public class SkillSelectUI : MonoBehaviour
         {
             Debug.LogError("Failed to load sprites.");
         }
-        Addressables.Release(handle);
     }
+
+    
 }

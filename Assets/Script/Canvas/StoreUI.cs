@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -18,6 +19,8 @@ public class StoreUI : MonoBehaviour
     private int Player, Enemy;
 
     AsyncOperationHandle<Sprite[]> handle;
+    const string spriteArrayAddress1 = "character_Icon";
+    const string spriteArrayAddress2 = "Skill_Icon_";
 
     [SerializeField]
     private Image[] inventoryIcon;
@@ -27,7 +30,7 @@ public class StoreUI : MonoBehaviour
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             Sprite[] sprites = handle.Result;
-
+            Array.Sort(sprites, (a, b) => { return Util.ExtractNumber(a.name).CompareTo(Util.ExtractNumber(b.name)); });
             for (int i = 0; i < 8; i++)
             {
                 if (PlayerManager.Instance.GetMainPlayerIndex() != -1 && PlayerManager.Instance.GetMainPlayerIndex() == i)
@@ -59,14 +62,13 @@ public class StoreUI : MonoBehaviour
         {
             Debug.LogError("Failed to load sprites.");
         }
-        Addressables.Release(handle);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 
-        handle = Addressables.LoadAssetAsync<Sprite[]>("character_Icon");
+        handle = Addressables.LoadAssetAsync<Sprite[]>(spriteArrayAddress1);
         handle.Completed += Handle_Completed;
 
         roundt.text = $"Race {GamePlayManager.Instance.currentRace + 1}\n<size=10>다음상대</size>";
@@ -105,7 +107,7 @@ public class StoreUI : MonoBehaviour
     {
         for (int i = 0; i < InventoryManager.Instance.itemList.Count; i++)
         {
-            AsyncOperationHandle<Sprite[]> handle = Addressables.LoadAssetAsync<Sprite[]>($"Skill_Icon_{InventoryManager.Instance.itemList[i].ChracterNumber}");
+            AsyncOperationHandle<Sprite[]> handle = Addressables.LoadAssetAsync<Sprite[]>($"{spriteArrayAddress2}{InventoryManager.Instance.itemList[i].ChracterNumber}");
             int localIndex = i;
             handle.Completed += (op) => Handle_IconCompleted(op, localIndex);
         }
@@ -116,7 +118,7 @@ public class StoreUI : MonoBehaviour
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             Sprite[] sprites = handle.Result;
-
+            Array.Sort(sprites, (a, b) => { return Util.ExtractNumber(a.name).CompareTo(Util.ExtractNumber(b.name)); });
             inventoryIcon[i].sprite = sprites[InventoryManager.Instance.itemList[i].SkillNumber];
 
         }
@@ -124,6 +126,5 @@ public class StoreUI : MonoBehaviour
         {
             Debug.LogError("Failed to load sprites.");
         }
-        Addressables.Release(handle);
     }
 }

@@ -1,12 +1,16 @@
+using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
 public class SkillChangeUI : MonoBehaviour
 {
     SkillSOMaker selectSO;
-
+    AsyncOperationHandle<Sprite[]> handle;
+    const string spriteArrayAddress1 = "character_Icon";
+    const string spriteArrayAddress2 = "Skill_Icon_";
     public void OnSkillChangeUI(int listnumber)
     {
         if (listnumber >= InventoryManager.Instance.itemList.Count)
@@ -34,23 +38,26 @@ public class SkillChangeUI : MonoBehaviour
         {
             if (InventoryManager.Instance.skillList[i] == null)
                 continue;
-            AsyncOperationHandle<Sprite[]> handle = Addressables.LoadAssetAsync<Sprite[]>($"Skill_Icon_{InventoryManager.Instance.skillList[i].ChracterNumber}");
+            handle = Addressables.LoadAssetAsync<Sprite[]>($"{spriteArrayAddress2}{InventoryManager.Instance.skillList[i].ChracterNumber}");
             int localIndex = i;
             handle.Completed += (op) => Handle_IconCompleted(op, localIndex);
         }
+
+        Addressables.Release(handle);
     }
 
     public void UltimateSkillIcon()
     {
         if (InventoryManager.Instance.skillList[4] != null)
         {
-            AsyncOperationHandle<Sprite[]> handle = Addressables.LoadAssetAsync<Sprite[]>($"Skill_Icon_{InventoryManager.Instance.skillList[4].ChracterNumber}");
+             handle = Addressables.LoadAssetAsync<Sprite[]>($"{spriteArrayAddress2}{InventoryManager.Instance.skillList[4].ChracterNumber}");
             handle.Completed += (op) => Handle_IconCompleted(op, 0);
         }
 
-        AsyncOperationHandle<Sprite[]> handle2 = Addressables.LoadAssetAsync<Sprite[]>($"Skill_Icon_{selectSO.ChracterNumber}");
-        handle2.Completed += (op) => Handle_IconCompleted(op, 1);
+        handle = Addressables.LoadAssetAsync<Sprite[]>($"{spriteArrayAddress2}{selectSO.ChracterNumber}");
+        handle.Completed += (op) => Handle_IconCompleted(op, 1);
 
+        Addressables.Release(handle);
     }
 
     private void Handle_IconCompleted(AsyncOperationHandle<Sprite[]> handle, int i)
@@ -58,7 +65,7 @@ public class SkillChangeUI : MonoBehaviour
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             Sprite[] sprites = handle.Result;
-
+            Array.Sort(sprites, (a, b) => { return Util.ExtractNumber(a.name).CompareTo(Util.ExtractNumber(b.name)); });
             if (selectSO.skillTier == SkillSOMaker.SkillTier.Normal)
                 transform.GetChild(1).GetChild(i).GetChild(0).GetChild(1).GetComponent<Image>().sprite = sprites[InventoryManager.Instance.skillList[i].SkillNumber];
             else
@@ -73,7 +80,6 @@ public class SkillChangeUI : MonoBehaviour
         {
             Debug.LogError("Failed to load sprites.");
         }
-        Addressables.Release(handle);
     }
 
     public void IconSelect(int index)
@@ -86,7 +92,7 @@ public class SkillChangeUI : MonoBehaviour
                 if (selectSO.skillTier == SkillSOMaker.SkillTier.Normal)
                     transform.GetChild(1).GetChild(i).GetChild(0).GetChild(1).GetComponent<Image>().sprite = null;
 
-                AsyncOperationHandle<Sprite[]> handle = Addressables.LoadAssetAsync<Sprite[]>("character_Icon");
+                AsyncOperationHandle<Sprite[]> handle = Addressables.LoadAssetAsync<Sprite[]>(spriteArrayAddress1);
                 int localIndex = i;
                 handle.Completed += (op) => Handle_IconNullCompleted(op, localIndex);
 
@@ -102,6 +108,7 @@ public class SkillChangeUI : MonoBehaviour
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             Sprite[] sprites = handle.Result;
+            Array.Sort(sprites, (a, b) => { return Util.ExtractNumber(a.name).CompareTo(Util.ExtractNumber(b.name)); });
             if (selectSO.skillTier == SkillSOMaker.SkillTier.Normal)
                 transform.GetChild(1).GetChild(i).GetChild(0).GetChild(1).GetComponent<Image>().sprite = sprites[0];
         }
@@ -109,6 +116,6 @@ public class SkillChangeUI : MonoBehaviour
         {
             Debug.LogError("Failed to load sprites.");
         }
-        Addressables.Release(handle);
     }
+
 }

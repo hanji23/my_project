@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -24,6 +24,9 @@ public class Player : MonoBehaviour
     public CharacterSOMaker characterSO;
 
     bool isMovingToStart = true;
+
+    AsyncOperationHandle<Sprite[]> handle;
+    const string spriteArrayAddress = "Skill_Icon_";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -93,7 +96,7 @@ public class Player : MonoBehaviour
             int r;
 
             if (SO.aniType == SkillSOMaker.AniType.multi)
-                r = SO.AnistartFrame[Random.Range(0, SO.AnistartFrame.Length)];
+                r = SO.AnistartFrame[UnityEngine.Random.Range(0, SO.AnistartFrame.Length)];
             else
                 r = SO.AnistartFrame[0];
 
@@ -143,10 +146,11 @@ public class Player : MonoBehaviour
         {
             if (InventoryManager.Instance.skillList[i] == null)
                 continue;
-            AsyncOperationHandle<Sprite[]> handle = Addressables.LoadAssetAsync<Sprite[]>($"Skill_Icon_{InventoryManager.Instance.skillList[i].ChracterNumber}");
+            handle = Addressables.LoadAssetAsync<Sprite[]>($"{spriteArrayAddress}{InventoryManager.Instance.skillList[i].ChracterNumber}");
             int localIndex = i;
             handle.Completed += (op) => Handle_IconCompleted(op, localIndex);
         }
+        Addressables.Release(handle);
     }
 
     private void Handle_IconCompleted(AsyncOperationHandle<Sprite[]> handle, int i)
@@ -154,7 +158,7 @@ public class Player : MonoBehaviour
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             Sprite[] sprites = handle.Result;
-
+            Array.Sort(sprites, (a, b) => { return Util.ExtractNumber(a.name).CompareTo(Util.ExtractNumber(b.name)); });
             uiCanvas.transform.GetChild(0).GetChild(i).GetChild(0).GetChild(1).GetComponent<Image>().sprite = sprites[InventoryManager.Instance.skillList[i].SkillNumber];
 
         }
@@ -162,7 +166,6 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("Failed to load sprites.");
         }
-        Addressables.Release(handle);
     }
 
     public void UpdateRoundWinUI()
@@ -205,5 +208,4 @@ public class Player : MonoBehaviour
         }
         
     }
-
 }

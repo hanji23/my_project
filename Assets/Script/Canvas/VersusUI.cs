@@ -17,6 +17,7 @@ public class VersusUI : MonoBehaviour
     public TextMeshProUGUI text, timetext, timetext2, backtext;
 
     AsyncOperationHandle<Sprite[]> handle;
+    const string spriteArrayAddress = "character_Icon";
 
     [SerializeField]
     private Image[] icon;
@@ -75,12 +76,10 @@ public class VersusUI : MonoBehaviour
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             Sprite[] sprites = handle.Result;
-            float f;
-            for (int i = 0; i < icon.Length; i++)
+            Array.Sort(sprites, (a, b) => { return Util.ExtractNumber(a.name).CompareTo(Util.ExtractNumber(b.name)); });
+            for (int i = 0; i < icon.Length; i++) 
             {
-                f = PlayerManager.Instance.allPlayers[i].characterNumber;
-
-                icon[i].sprite = sprites[Mathf.FloorToInt(f)];
+                icon[i].sprite = sprites[PlayerManager.Instance.allPlayers[i].characterNumber];
             }
         }
         else
@@ -106,11 +105,9 @@ public class VersusUI : MonoBehaviour
             elapsed += Time.deltaTime;
             float f = Mathf.Clamp01(elapsed / duration);
 
-
             float easedT = Mathf.Pow(f, 1f);
             float x = Mathf.Lerp(parentRect.localScale.x, 1f, easedT);
             float y = Mathf.Lerp(parentRect.localScale.y, 0f, easedT);
-
 
             parentRect.localScale = new Vector3(x, y, parentRect.localScale.z);
             yield return null;
@@ -139,8 +136,8 @@ public class VersusUI : MonoBehaviour
                 icon[i].transform.parent.GetChild(0).GetComponent<Image>().color = new Color32(100, 200, 100, 255);
             }
         }
-
-        handle = Addressables.LoadAssetAsync<Sprite[]>("character_Icon");
+        
+        handle = Addressables.LoadAssetAsync<Sprite[]>(spriteArrayAddress);
         handle.Completed += Handle_Completed;
 
         elapsed = 0f;
