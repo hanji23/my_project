@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413b776c13cb03645a730a6d6082e695, type: 3}
   m_Name: mari_attakc_t2
   m_EditorClassIdentifier: 
-  skillName: "(\uAD81\uADF9\uAE30) \uB9C8\uB9AC \uC2A4\uD0AC 9"
+  skillName: "(\uAD81\uADF9\uAE30) \uC0AC\uACA9"
   skillType: 1
   _skillTier: 1
   chracterNumber: 5

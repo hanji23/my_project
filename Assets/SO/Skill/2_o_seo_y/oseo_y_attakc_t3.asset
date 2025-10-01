@@ -18,6 +18,6 @@ MonoBehaviour:
   chracterNumber: 2
   skillNumber: 10
   _aniType: 0
-  anistartFrame: 08000000
+  anistartFrame: 0a000000
   aniClip: {fileID: 7400000, guid: 9643f8865d5b5684c893627208be5b7e, type: 2}
   skillText: "\uC624\uC11C \uC2A4\uD0AC 10"

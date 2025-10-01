@@ -84,6 +84,9 @@ public class Player : MonoBehaviour
     void Onbutton(int i)
     {
         SkillSOMaker SO = InventoryManager.Instance.skillList[i];
+        if (SO == null)
+            return;
+
         AnimationClip targetClip = null;
         if (SO.AnistartFrame.Length > 0)
             targetClip = ani.runtimeAnimatorController.animationClips.FirstOrDefault(c => c.name == SO.AniClip.name);

@@ -1,3 +1,5 @@
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BallAction : MonoBehaviour
@@ -95,14 +97,14 @@ public class BallAction : MonoBehaviour
     }
     void OnTriggerEnter(Collider hit)
     {
+        if (hit.gameObject.layer == 6)
+        {
+            hit.gameObject.SetActive(false);
+            hit.transform.parent.GetComponent<Player>().AIAttack();
+        }
+
         if (!isGameEnded)
         {
-            if (hit.gameObject.layer == 6)
-            {
-                hit.gameObject.SetActive(false);
-                hit.transform.parent.GetComponent<Player>().AIAttack();
-            }
-
             if (hit.CompareTag("attack_forward"))//전방 발사
             {
                 //Debug.Log($"{hit.name} {hit.transform.parent.name}");
@@ -217,8 +219,10 @@ public class BallAction : MonoBehaviour
         countdownTime = 3;
         //t1.text = "게임시작!";
 
-        player1Transform.GetComponent<Animator>().Play("idle");
-        player2Transform.GetComponent<Animator>().Play("idle");
+        if (player1Transform.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("down"))
+            player1Transform.GetComponent<Animator>().Play("idle");
+        if (player2Transform.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("down"))
+            player2Transform.GetComponent<Animator>().Play("idle");
         Camera.main.GetComponent<MainCamera>().moveOnOff(true);
         
     }

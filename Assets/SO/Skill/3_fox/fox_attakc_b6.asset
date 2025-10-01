@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413b776c13cb03645a730a6d6082e695, type: 3}
   m_Name: fox_attakc_b6
   m_EditorClassIdentifier: 
-  skillName: "(\uAD81\uADF9\uAE30) \uBE44\uC62C\uB81B \uC2A4\uD0AC 7"
+  skillName: "(\uAD81\uADF9\uAE30) \uB208\uC0AC\uB78C \uB0B4\uB824\uCC0D\uAE30"
   skillType: 1
   _skillTier: 1
   chracterNumber: 3
   skillNumber: 7
   _aniType: 0
-  anistartFrame: 03000000
+  anistartFrame: 04000000
   aniClip: {fileID: 7400000, guid: 523e7f17325e8514182f5f08e852050f, type: 2}
   skillText: "\uBE44\uC62C\uB81B \uC2A4\uD0AC 7"

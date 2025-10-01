@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413b776c13cb03645a730a6d6082e695, type: 3}
   m_Name: mari_attakc_b7
   m_EditorClassIdentifier: 
-  skillName: "(\uAD81\uADF9\uAE30) \uB9C8\uB9AC \uC2A4\uD0AC 7"
+  skillName: "(\uAD81\uADF9\uAE30) \uAC15\uD0C0"
   skillType: 1
   _skillTier: 1
   chracterNumber: 5
   skillNumber: 7
   _aniType: 0
-  anistartFrame: 06000000
+  anistartFrame: 08000000
   aniClip: {fileID: 7400000, guid: 4c45c043c414dce44964691adb9406a6, type: 2}
   skillText: "\uB9C8\uB9AC \uC2A4\uD0AC 7"
